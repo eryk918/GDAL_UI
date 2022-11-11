@@ -48,15 +48,7 @@
     <normaloff>../images/icon.ico</normaloff>../images/icon.ico</iconset>
   </property>
   <property name="styleSheet">
-   <string notr="true">QComboBox {
-	color: rgb(0,0,0);
-}
-* {
-	background-color: rgb(255, 255, 255);
-    font: 10pt &quot;Segoe UI&quot;; 
-}
-
-</string>
+   <string notr="true"/>
   </property>
   <property name="sizeGripEnabled">
    <bool>true</bool>
@@ -129,7 +121,6 @@
           <family>Samsung Sans</family>
           <pointsize>-1</pointsize>
           <weight>75</weight>
-          <italic>false</italic>
           <bold>true</bold>
          </font>
         </property>
@@ -169,52 +160,52 @@
           <string>Statistics</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="translate">
+        <widget class="QWidget" name="transform">
          <attribute name="title">
-          <string>Translate</string>
+          <string>Transform</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="tab_3">
+        <widget class="QWidget" name="nodata">
          <attribute name="title">
-          <string>No data info</string>
+          <string>NoData info</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="tab_4">
+        <widget class="QWidget" name="bands">
          <attribute name="title">
           <string>Band plots</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="tab_5">
+        <widget class="QWidget" name="converter">
          <attribute name="title">
           <string>Converter</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="tab_6">
+        <widget class="QWidget" name="tiling">
          <attribute name="title">
           <string>Tiling</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="tab_7">
+        <widget class="QWidget" name="clip">
          <attribute name="title">
           <string>Clip</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="tab_8">
+        <widget class="QWidget" name="dem">
          <attribute name="title">
           <string>DEM Analysis</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="tab_9">
+        <widget class="QWidget" name="mergetiles">
          <attribute name="title">
           <string>Merge tiles</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="tab_10">
+        <widget class="QWidget" name="compare">
          <attribute name="title">
           <string>Compare</string>
          </attribute>
         </widget>
-        <widget class="QWidget" name="tab_11">
+        <widget class="QWidget" name="vrt">
          <attribute name="title">
           <string>VRT</string>
          </attribute>
