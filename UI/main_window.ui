@@ -45,7 +45,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>../images/icon.ico</normaloff>../images/icon.ico</iconset>
+    <normaloff>:/images/images/icon.ico</normaloff>:/images/images/icon.ico</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"/>
@@ -150,84 +150,12 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="2" column="0" colspan="2">
-       <widget class="QTabWidget" name="main_tab_widget">
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <widget class="QWidget" name="statistics">
-         <attribute name="title">
-          <string>Statistics</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="transform">
-         <attribute name="title">
-          <string>Transform</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="nodata">
-         <attribute name="title">
-          <string>NoData info</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="bands">
-         <attribute name="title">
-          <string>Band plots</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="converter">
-         <attribute name="title">
-          <string>Converter</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="tiling">
-         <attribute name="title">
-          <string>Tiling</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="clip">
-         <attribute name="title">
-          <string>Clip</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="dem">
-         <attribute name="title">
-          <string>DEM Analysis</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="mergetiles">
-         <attribute name="title">
-          <string>Merge tiles</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="compare">
-         <attribute name="title">
-          <string>Compare</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="vrt">
-         <attribute name="title">
-          <string>VRT</string>
-         </attribute>
-        </widget>
-       </widget>
-      </item>
       <item row="1" column="0">
        <widget class="QGroupBox" name="load_groupBox">
         <property name="title">
-         <string>Input</string>
+         <string>Input:</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="1">
-          <widget class="QLineEdit" name="select_path">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-             <horstretch>200</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
          <item row="0" column="2">
           <widget class="QPushButton" name="select_file">
            <property name="sizePolicy">
@@ -250,11 +178,115 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>Raster file path</string>
+            <string>Raster file paths:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="select_path">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>200</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
            </property>
           </widget>
          </item>
         </layout>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2">
+       <widget class="QTabWidget" name="main_tab_widget">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="statistics">
+         <attribute name="title">
+          <string>Statistics</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="0" column="1">
+           <widget class="QComboBox" name="statistics_file_cbbx"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="statistics_file_label">
+            <property name="maximumSize">
+             <size>
+              <width>120</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Select file</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QTextEdit" name="statistics_text_box">
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+            <property name="html">
+             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="converter">
+         <attribute name="title">
+          <string>Converter</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="clip">
+         <attribute name="title">
+          <string>Clip</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="transform">
+         <attribute name="title">
+          <string>Transform</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="bands">
+         <attribute name="title">
+          <string>Band plots</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="nodata">
+         <attribute name="title">
+          <string>NoData info</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="dem">
+         <attribute name="title">
+          <string>DEM Analysis</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="tiling">
+         <attribute name="title">
+          <string>Tiling</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="mergetiles">
+         <attribute name="title">
+          <string>Merge tiles</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="compare">
+         <attribute name="title">
+          <string>Compare</string>
+         </attribute>
+        </widget>
+        <widget class="QWidget" name="vrt">
+         <attribute name="title">
+          <string>VRT</string>
+         </attribute>
+        </widget>
        </widget>
       </item>
      </layout>
