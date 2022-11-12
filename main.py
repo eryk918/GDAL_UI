@@ -6,7 +6,6 @@ from PyQt5.QtWidgets import QApplication
 
 from UI.main_window import MainWindowDialog
 from gdal_modules.StatisticsTab import StatisticsTab
-from utils import icon_object
 
 
 class MainDialogFunctionality(QApplication):
@@ -20,7 +19,6 @@ class MainDialogFunctionality(QApplication):
 
     def setup_app(self) -> None:
         self.setStyle('Fusion')
-        self.setWindowIcon(icon_object)
         self.connect_tabs()
 
     def connect_tabs(self) -> None:

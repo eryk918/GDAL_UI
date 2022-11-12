@@ -4,10 +4,8 @@ import os
 from subprocess import run, PIPE
 from typing import Optional, List, Tuple, Any
 
-from PyQt5.QtGui import QIcon
 
 plugin_dir = os.path.normpath(os.path.dirname(__file__))
-icon_object = QIcon(os.path.join(plugin_dir, 'images', 'icon.ico'))
 raster_extensions = ['tif', 'tiff', 'asc', 'img', 'xyz', 'ascii']
 
 

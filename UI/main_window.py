@@ -6,7 +6,7 @@ from PyQt5 import uic
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
 
-from utils import icon_object, raster_extensions
+from utils import raster_extensions
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'main_window.ui'))
@@ -29,7 +29,6 @@ class MainWindowDialog(QDialog, FORM_CLASS):
 
     def setup_dialog(self) -> None:
         self.setWindowFlags(Qt.Window)
-        self.setWindowIcon(icon_object)
 
     def connect_actions(self) -> None:
         self.select_file.clicked.connect(self.select_raster_file)
