@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication
 
 from UI.main_window import MainWindowDialog
 from gdal_modules.DataInformationTab import DataInformationTab
+from gdal_modules.NoDataTab import NoDataTab
 
 
 class MainDialogFunctionality(QApplication):
@@ -23,11 +24,14 @@ class MainDialogFunctionality(QApplication):
 
     def connect_tabs(self) -> None:
         self.statistics_tab = DataInformationTab(self)
+        self.no_data_tab = NoDataTab(self)
 
     def tab_execution(self) -> None:
         if self.connected_rasters:
             if self.active_tab == 'Data information':
                 self.statistics_tab.run(self.connected_rasters)
+            elif self.active_tab == 'NoData value':
+                self.no_data_tab.run(self.connected_rasters)
 
     def run(self) -> None:
         self.main_dlg.show_dialog()

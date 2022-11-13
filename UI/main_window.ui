@@ -244,8 +244,14 @@ QPushButton{
           <string>Data information</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_5">
-          <item row="0" column="1">
-           <widget class="QComboBox" name="information_file_cbbx"/>
+          <item row="1" column="0" colspan="2">
+           <widget class="QWebView" name="information_file_webView" native="true">
+            <property name="url" stdset="0">
+             <url>
+              <string>www.youtube.com</string>
+             </url>
+            </property>
+           </widget>
           </item>
           <item row="0" column="0">
            <widget class="QLabel" name="information_file_label">
@@ -260,14 +266,8 @@ QPushButton{
             </property>
            </widget>
           </item>
-          <item row="1" column="0" colspan="2">
-           <widget class="QWebView" name="information_file_webView" native="true">
-            <property name="url" stdset="0">
-             <url>
-              <string>www.youtube.com</string>
-             </url>
-            </property>
-           </widget>
+          <item row="0" column="1">
+           <widget class="QComboBox" name="information_file_cbbx"/>
           </item>
          </layout>
         </widget>
@@ -293,8 +293,98 @@ QPushButton{
         </widget>
         <widget class="QWidget" name="nodata">
          <attribute name="title">
-          <string>NoData info</string>
+          <string>NoData value</string>
          </attribute>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="4" column="0" rowspan="2" colspan="5">
+           <widget class="QGroupBox" name="nodata_output_path_groupBox">
+            <property name="title">
+             <string>Create new file</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <item row="0" column="1">
+              <widget class="QLineEdit" name="nodata_output_path_lineedit"/>
+             </item>
+             <item row="0" column="2">
+              <widget class="QPushButton" name="nodata_output_path_btn">
+               <property name="text">
+                <string>...</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="nodata_output_path_label">
+               <property name="text">
+                <string>Output file path</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="4">
+           <widget class="QComboBox" name="nodata_file_cbbx"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="nodata_file_label">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Select file</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="5">
+           <widget class="QTextEdit" name="nodata_text_box">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <widget class="QLabel" name="new_nodata_label">
+            <property name="text">
+             <string>New NoData value</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="4">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="1" colspan="4">
+           <widget class="QLineEdit" name="nodata_new_value_lineedit"/>
+          </item>
+          <item row="6" column="4">
+           <widget class="QPushButton" name="new_nodata_save_btn">
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="dem">
          <attribute name="title">
