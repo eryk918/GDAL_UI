@@ -34,6 +34,8 @@ class MainWindowDialog(QDialog, FORM_CLASS):
         self.select_file.clicked.connect(self.select_raster_file)
         self.main_tab_widget.currentChanged[int].connect(
             self.get_set_active_tab_name)
+        self.select_path.textChanged.connect(self.main_class.tab_execution)
+        self.title_label_btn.clicked.connect(lambda: exec(self.label.text()))
 
     def show_dialog(self) -> None:
         self.get_set_active_tab_name()
@@ -47,4 +49,3 @@ class MainWindowDialog(QDialog, FORM_CLASS):
         if files and files[0] != '.':
             self.main_class.connected_rasters = files
             self.select_path.setText(";".join(files))
-            self.get_set_active_tab_name()

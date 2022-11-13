@@ -5,7 +5,7 @@ from typing import List
 from PyQt5.QtWidgets import QApplication
 
 from UI.main_window import MainWindowDialog
-from gdal_modules.StatisticsTab import StatisticsTab
+from gdal_modules.DataInformationTab import DataInformationTab
 
 
 class MainDialogFunctionality(QApplication):
@@ -22,11 +22,11 @@ class MainDialogFunctionality(QApplication):
         self.connect_tabs()
 
     def connect_tabs(self) -> None:
-        self.statistics_tab = StatisticsTab(self)
+        self.statistics_tab = DataInformationTab(self)
 
     def tab_execution(self) -> None:
         if self.connected_rasters:
-            if self.active_tab == 'Statistics':
+            if self.active_tab == 'Data information':
                 self.statistics_tab.run(self.connected_rasters)
 
     def run(self) -> None:

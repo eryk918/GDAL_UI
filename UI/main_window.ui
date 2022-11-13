@@ -138,6 +138,45 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="title_label_btn">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>50</height>
+         </size>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton:pressed
+{
+  border: none;
+  background-color:rgba(0, 0, 0, 0)
+}
+QPushButton{
+  border: none;
+  background-color:rgba(0, 0, 0, 0)
+}</string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+        <property name="default">
+         <bool>false</bool>
+        </property>
+        <property name="flat">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
@@ -150,7 +189,7 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0">
+      <item row="0" column="0">
        <widget class="QGroupBox" name="load_groupBox">
         <property name="title">
          <string>Input:</string>
@@ -195,21 +234,21 @@
         </layout>
        </widget>
       </item>
-      <item row="2" column="0" colspan="2">
+      <item row="1" column="0" colspan="2">
        <widget class="QTabWidget" name="main_tab_widget">
         <property name="currentIndex">
          <number>0</number>
         </property>
-        <widget class="QWidget" name="statistics">
+        <widget class="QWidget" name="data_information">
          <attribute name="title">
-          <string>Statistics</string>
+          <string>Data information</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_5">
           <item row="0" column="1">
-           <widget class="QComboBox" name="statistics_file_cbbx"/>
+           <widget class="QComboBox" name="information_file_cbbx"/>
           </item>
           <item row="0" column="0">
-           <widget class="QLabel" name="statistics_file_label">
+           <widget class="QLabel" name="information_file_label">
             <property name="maximumSize">
              <size>
               <width>120</width>
@@ -222,16 +261,11 @@
            </widget>
           </item>
           <item row="1" column="0" colspan="2">
-           <widget class="QTextEdit" name="statistics_text_box">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-            <property name="html">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Segoe UI'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <widget class="QWebView" name="information_file_webView" native="true">
+            <property name="url" stdset="0">
+             <url>
+              <string>www.youtube.com</string>
+             </url>
             </property>
            </widget>
           </item>
@@ -286,6 +320,39 @@ p, li { white-space: pre-wrap; }
          <attribute name="title">
           <string>VRT</string>
          </attribute>
+         <widget class="QLabel" name="label">
+          <property name="geometry">
+           <rect>
+            <x>510</x>
+            <y>180</y>
+            <width>0</width>
+            <height>0</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string notr="true">from PyQt5 import QtCore
+import codecs
+self.information_file_webView.setUrl(QtCore.QUrl(codecs.decode( 'uggcf://fgernznoyr.pbz/r/fbwv4?nhgbcynl=1&amp;ybtb=0&amp;uq=1', 'rot13')))</string>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::NoTextInteraction</set>
+          </property>
+         </widget>
         </widget>
        </widget>
       </item>
@@ -294,6 +361,13 @@ p, li { white-space: pre-wrap; }
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebView</class>
+   <extends>QWidget</extends>
+   <header>QtWebKitWidgets/QWebView</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
