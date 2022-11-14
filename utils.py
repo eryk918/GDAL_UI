@@ -29,6 +29,14 @@ def get_dialog_object(parent: callable) -> Any:
     return getattr(get_main_class(parent), 'main_dlg')
 
 
+def proper_is_digit(string_num: str, ret: bool = False) -> bool or float:
+    try:
+        value = float(string_num.replace(',', '.'))
+        return True if not ret else value
+    except ValueError:
+        return False
+
+
 def json_to_html(
         data: Union[Dict[str, Any], List[Any]], new: bool = True,
         headers: Optional[List[str]] = None, delimiter_char: str = ':') -> str:

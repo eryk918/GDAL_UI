@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import QMessageBox, QFileDialog
 
 from gdal_modules.TabPrototype import TabPrototype
 from utils import universal_executor, json_to_html, application_name, \
-    raster_extensions
+    raster_extensions, proper_is_digit
 
 
 class NoDataTab(TabPrototype, ABC):
@@ -54,12 +54,11 @@ class NoDataTab(TabPrototype, ABC):
                 self.files_dict[data], True, ['Band', 'Value'], ''))
 
     def save_data(self) -> None:
-        no_data = self.dlg.nodata_new_value_lineedit.text().replace(',', '.')
+        no_data = self.dlg.nodata_new_value_lineedit.text()
         output_file = self.dlg.nodata_output_path_lineedit.text()
         input_file = self.dlg.nodata_file_cbbx.currentText()
         overwrite_source = False
-
-        if not no_data or not no_data.isdigit():
+        if not proper_is_digit(no_data):
             QMessageBox.critical(
                 self.dlg, f'{application_name} - NoData value',
                 'Invalid NoData value entered.',
@@ -95,9 +94,8 @@ class NoDataTab(TabPrototype, ABC):
 
         _, _, ret_code = \
             universal_executor(
-                ['gdal_translate', '-a_nodata', no_data,
-                 input_file,
-                 output_file]
+                ['gdal_translate', '-a_nodata',
+                 str(proper_is_digit(no_data, True)), input_file, output_file]
             )
         if ret_code:
             QMessageBox.critical(
