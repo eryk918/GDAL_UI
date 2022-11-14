@@ -6,7 +6,7 @@ from PyQt5 import uic
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
 
-from utils import raster_extensions
+from utils import get_extensions
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'main_window.ui'))
@@ -44,7 +44,8 @@ class MainWindowDialog(QDialog, FORM_CLASS):
     def select_raster_file(self) -> None:
         paths_to_files, __ = QFileDialog.getOpenFileNames(
             self, "Select raster files: ",
-            "", ' '.join([f'*.{ext}' for ext in raster_extensions]))
+            "", f"All raster files "
+                f"({' '.join([f'*.{ext}' for ext in get_extensions()])})")
         files = [os.path.normpath(path) for path in paths_to_files]
         if files and files[0] != '.':
             self.main_class.connected_rasters = files

@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import QMessageBox, QFileDialog
 
 from gdal_modules.TabPrototype import TabPrototype
 from utils import universal_executor, json_to_html, application_name, \
-    raster_extensions, proper_is_digit
+    get_extensions, proper_is_digit
 
 
 class NoDataTab(TabPrototype, ABC):
@@ -70,6 +70,7 @@ class NoDataTab(TabPrototype, ABC):
                     self.dlg, f'{application_name} - NoData value',
                     'Output path not entered.',
                     QMessageBox.Ok)
+                return
             elif os.path.exists(output_file):
                 question = QMessageBox.warning(
                     self.dlg, f'{application_name} - NoData value',
@@ -115,7 +116,7 @@ class NoDataTab(TabPrototype, ABC):
     def select_output_path(self) -> None:
         path_to_file, __ = QFileDialog.getSaveFileName(
             self.dlg, "Save raster file: ",
-            "", ' '.join([f'*.{ext}' for ext in raster_extensions]))
+            "", ';; '.join([f'*.{ext}' for ext in get_extensions()]))
         path_to_file = os.path.normpath(path_to_file)
         if path_to_file and path_to_file != '.':
             self.dlg.nodata_output_path_lineedit.setText(path_to_file)

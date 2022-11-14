@@ -3,9 +3,36 @@ import os
 from subprocess import run, PIPE
 from typing import Optional, List, Tuple, Any, Union, Dict
 
+from osgeo import gdal
+
 application_name = 'GDAL UI'
 plugin_dir = os.path.normpath(os.path.dirname(__file__))
-raster_extensions = ['tif', 'tiff', 'asc', 'img', 'xyz', 'ascii', 'png']
+
+
+def get_extensions(ext_type: bool = True) -> List[str]:
+    """
+    :type ext_type: True == raster extensions; False == vector extensions
+    """
+
+    raster_extensions = set()
+    vector_extensions = set()
+    for drv_index in range(gdal.GetDriverCount()):
+        driver = gdal.GetDriver(drv_index)
+        ext = driver.GetMetadataItem(gdal.DMD_EXTENSIONS)
+        if ext:
+            if 'DCAP_RASTER' in driver.GetMetadata_Dict():
+                if len(ext.split()) > 1:
+                    raster_extensions.update(set(ext.split()))
+                else:
+                    raster_extensions.add(ext)
+            if 'DCAP_VECTOR' in driver.GetMetadata_Dict():
+                if len(ext.split()) > 1:
+                    vector_extensions.update(set(ext.split()))
+                else:
+                    vector_extensions.add(ext)
+    return list(sorted(raster_extensions.difference(vector_extensions))) \
+        if ext_type \
+        else list(sorted(vector_extensions.difference(raster_extensions)))
 
 
 def universal_executor(cmd: str or List[str], stdout: int = PIPE,
