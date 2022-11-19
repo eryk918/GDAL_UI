@@ -5,8 +5,10 @@ import tempfile
 from subprocess import run, PIPE
 from typing import Optional, List, Tuple, Any, Union, Dict
 
-from PyQt5.QtWidgets import QProgressDialog, QApplication
+from PyQt5.QtWidgets import QProgressDialog, QApplication, QLayout
 from osgeo import gdal
+
+from CustomFileWidget import CustomFileWidget
 
 application_name = 'GDAL UI'
 plugin_dir = os.path.normpath(os.path.dirname(__file__))
@@ -151,3 +153,20 @@ def multiprocessing_execution(
     safe_remove(temp)
     progress.close()
     return response
+
+
+def insert_file_widget(destination_layout: QLayout, pos: Tuple[int, int],
+                       mode: int = CustomFileWidget.GetMultipleFiles,
+                       filters: str = '', default_root: str = '',
+                       dialog_title: str = '',
+                       action_after_use: callable = None) -> CustomFileWidget:
+    if not filters:
+        filters = f"({' '.join([f'*.{ext}' for ext in get_extensions()])})"
+    file_widget = CustomFileWidget(
+        dialog_title=dialog_title, default_root=default_root)
+    file_widget._mStorageMode = mode
+    file_widget.filter = filters
+    if action_after_use:
+        file_widget.lineEdit.textChanged.connect(action_after_use)
+    destination_layout.addWidget(file_widget, *pos)
+    return file_widget

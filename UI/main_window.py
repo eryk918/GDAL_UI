@@ -4,10 +4,9 @@ from typing import Optional
 
 from PyQt5 import uic
 from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
+from PyQt5.QtWidgets import QDialog, QWidget
 
-from CustomFileWidget import CustomFileWidget
-from utils import get_extensions
+from utils import insert_file_widget
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'main_window.ui'))
@@ -21,13 +20,9 @@ class MainWindowDialog(QDialog, FORM_CLASS):
         self.main_class = main_class
         self.setup_dialog()
         self.connect_actions()
-        self.insert_file_widget()
-
-    def insert_file_widget(self):
-        self.file_widget = CustomFileWidget()
-        self.file_widget.filter = f"({' '.join([f'*.{ext}' for ext in get_extensions()])})"
-        self.file_widget.lineEdit.textChanged.connect(self.select_raster_file)
-        self.load_groupBox.layout().addWidget(self.file_widget, 0, 1)
+        self.file_widget = insert_file_widget(
+            self.load_groupBox.layout(), (0, 1),
+            action_after_use=self.select_raster_file)
 
     def get_set_active_tab_name(self, idx: int = 0) -> str:
         tab_name = self.main_tab_widget.tabText(idx)
@@ -48,7 +43,8 @@ class MainWindowDialog(QDialog, FORM_CLASS):
         self.show()
 
     def select_raster_file(self) -> None:
-        files = [os.path.normpath(path) for path in self.file_widget.filePath.split('"') if os.path.exists(path)]
+        files = [os.path.normpath(path) for path in
+                 self.file_widget.filePath.split('"') if os.path.exists(path)]
         if files and files[0] != '.':
             self.main_class.connected_rasters = files
             self.main_class.tab_execution()

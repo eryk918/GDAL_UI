@@ -7,11 +7,13 @@ from abc import ABC
 from shutil import move
 from typing import List, Optional, Any
 
-from PyQt5.QtWidgets import QMessageBox, QFileDialog
+from PyQt5.QtWidgets import QMessageBox
 
+from CustomFileWidget import CustomFileWidget
 from gdal_modules.TabPrototype import TabPrototype
 from utils import universal_executor, json_to_html, application_name, \
-    get_extensions, proper_is_digit, multiprocessing_execution
+    get_extensions, proper_is_digit, multiprocessing_execution, \
+    insert_file_widget
 
 
 class NoDataTab(TabPrototype, ABC):
@@ -21,8 +23,10 @@ class NoDataTab(TabPrototype, ABC):
         self.dlg.nodata_file_cbbx.currentTextChanged[str].connect(
             lambda text: self.show_data(text))
         self.dlg.new_nodata_save_btn.clicked.connect(self.save_data)
-        self.dlg.nodata_output_path_btn.clicked.connect(
-            self.select_output_path)
+        self.dlg.nodata_output_path_lineedit = insert_file_widget(
+            self.dlg.nodata_output_path_groupBox.layout(), (0, 1),
+            mode=CustomFileWidget.SaveFile,
+            filters=';; '.join([f'*.{ext}' for ext in get_extensions()]))
 
     def run(self, input_files: List[str],
             output_path: Optional[str] = None) -> None:
@@ -55,7 +59,7 @@ class NoDataTab(TabPrototype, ABC):
 
     def save_data(self) -> None:
         no_data = self.dlg.nodata_new_value_lineedit.text()
-        output_file = self.dlg.nodata_output_path_lineedit.text()
+        output_file = self.dlg.nodata_output_path_lineedit.filePath
         input_file = self.dlg.nodata_file_cbbx.currentText()
         overwrite_source = False
         if not proper_is_digit(no_data):
@@ -113,14 +117,6 @@ class NoDataTab(TabPrototype, ABC):
             QMessageBox.Ok)
         if overwrite_source:
             os.remove(input_file)
-
-    def select_output_path(self) -> None:
-        path_to_file, __ = QFileDialog.getSaveFileName(
-            self.dlg, "Save raster file: ",
-            "", ';; '.join([f'*.{ext}' for ext in get_extensions()]))
-        path_to_file = os.path.normpath(path_to_file)
-        if path_to_file and path_to_file != '.':
-            self.dlg.nodata_output_path_lineedit.setText(path_to_file)
 
     def refresh_data(self) -> None:
         self.dlg.get_set_active_tab_name()

@@ -2,9 +2,10 @@ import os
 import re
 from typing import List
 
-from PyQt5.QtCore import Qt, QRegularExpression, QFileInfo, pyqtSignal, QDir, QUrl
+from PyQt5.QtCore import Qt, QRegularExpression, QFileInfo, pyqtSignal, QDir
 from PyQt5.QtGui import QDropEvent, QDragEnterEvent, QDragLeaveEvent
-from PyQt5.QtWidgets import QFileDialog, QHBoxLayout, QLabel, QWidget, QSizePolicy, QLineEdit, QToolButton
+from PyQt5.QtWidgets import QFileDialog, QHBoxLayout, QWidget, QLineEdit, \
+    QToolButton
 
 
 class QgsFileDropEdit(QLineEdit):
@@ -59,14 +60,18 @@ class QgsFileDropEdit(QLineEdit):
                 local = url.toLocalFile()
                 if local not in raw_paths:
                     raw_paths.append(local)
-        if not event.mimeData().text() and event.mimeData().text() not in raw_paths:
+        if not event.mimeData().text() and \
+                event.mimeData().text() not in raw_paths:
             raw_paths.append(event.mimeData().text())
         for path in raw_paths:
             file = QFileInfo(path)
-            if self.parent.mStorageMode in [CustomFileWidget.GetFile, CustomFileWidget.GetMultipleFiles,
-                                            CustomFileWidget.SaveFile]:
-                if file.isFile() and (not self.acceptable_extensions or [elem for elem in self.acceptable_extensions
-                                                                         if elem.lower() == file.suffix().lower()]):
+            if self.parent.mStorageMode in [
+                CustomFileWidget.GetFile,
+                CustomFileWidget.GetMultipleFiles,
+                CustomFileWidget.SaveFile]:
+                if file.isFile() and (not self.acceptable_extensions or [
+                    elem for elem in self.acceptable_extensions
+                        if elem.lower() == file.suffix().lower()]):
                     paths.append(file.filePath())
             elif self.parent.mStorageMode == CustomFileWidget.GetDirectory:
                 if file.isDir():
@@ -109,7 +114,8 @@ class CustomFileWidget(QWidget):
         main_layout.setContentsMargins(0, 0, 0, 0)
         self.file_lineEdit = QgsFileDropEdit(self)
         self.file_lineEdit.setDragEnabled(True)
-        self.file_lineEdit.setToolTip("Full path to the file(s), including name and extension")
+        self.file_lineEdit.setToolTip(
+            "Full path to the file(s), including name and extension")
         self.file_lineEdit.textChanged.connect(self.textEdited)
         self.file_lineEdit.fileDropped.connect(self.fileDropped)
         main_layout.addWidget(self.file_lineEdit)
@@ -181,7 +187,8 @@ class CustomFileWidget(QWidget):
     def textEdited(self, path: str):
         self._filePath = path
         if self.isMultiFiles(path):
-            self.file_lineEdit.setToolTip(f'Selected files:<br><ul><li>{"</li><li>".join(self.splitFilePaths(path))}</li></ul><br>')
+            self.file_lineEdit.setToolTip(
+                f'Selected files:<br><ul><li>{"</li><li>".join(self.splitFilePaths(path))}</li></ul><br>')
         else:
             self.file_lineEdit.setToolTip('')
 
@@ -217,38 +224,56 @@ class CustomFileWidget(QWidget):
 
     def openFileDialog(self):
         old_path = ''
-        if self._filePath and (os.path.exists(self._filePath) or self._mStorageMode == CustomFileWidget.SaveFile):
+        if self._filePath and (os.path.exists(
+                self._filePath) or self._mStorageMode == CustomFileWidget.SaveFile):
             old_path = self.relativePath(self._filePath, False)
         elif self._defaultRoot:
             old_path = QDir.cleanPath(self._defaultRoot)
         file_name = ''
         file_names = []
         if self._mStorageMode == CustomFileWidget.GetFile:
-            title = self._dialogTitle if self._dialogTitle else 'Select a file'
-            file_name = QFileDialog.getOpenFileName(parent=self, caption=title,
-                                                    directory=QFileInfo(old_path).absoluteFilePath(), filter=self._filter,
-                                                    options=self._options)
+            title = self._dialogTitle if self._dialogTitle \
+                else 'Select a file'
+            file_name = QFileDialog.getOpenFileName(
+                parent=self, caption=title,
+                directory=QFileInfo(
+                    old_path).absoluteFilePath(),
+                filter=self._filter,
+                options=self._options)
             if file_name:
                 file_name = file_name[0]
         elif self._mStorageMode == CustomFileWidget.GetMultipleFiles:
-            title = self._dialogTitle if self._dialogTitle else 'Select one or more files'
-            file_names = QFileDialog.getOpenFileNames(parent=self, caption=title,
-                                                      directory=QFileInfo(old_path).absoluteFilePath(),
-                                                      filter=self._filter, options=self._options)
+            title = self._dialogTitle if self._dialogTitle \
+                else 'Select one or more files'
+            file_names = QFileDialog.getOpenFileNames(
+                parent=self,
+                caption=title,
+                directory=QFileInfo(
+                    old_path).absoluteFilePath(),
+                filter=self._filter,
+                options=self._options)
             if file_names:
                 file_names = file_names[0]
         elif self._mStorageMode == CustomFileWidget.GetDirectory:
-            title = self._dialogTitle if self._dialogTitle else "Select a directory"
-            file_name = QFileDialog.getExistingDirectory(parent=self, caption=title,
-                                                         directory=QFileInfo(old_path).absoluteFilePath(),
-                                                         options=self._options)
+            title = self._dialogTitle if self._dialogTitle \
+                else "Select a directory"
+            file_name = QFileDialog.getExistingDirectory(
+                parent=self,
+                caption=title,
+                directory=QFileInfo(
+                    old_path).absoluteFilePath(),
+                options=self._options)
             if file_name:
                 file_name = file_name[0]
         elif self._mStorageMode == CustomFileWidget.SaveFile:
-            title = self._dialogTitle if self._dialogTitle else "Create or select a file"
-            file_name = QFileDialog.getSaveFileName(parent=self, caption=title,
-                                                    directory=QFileInfo(old_path).absoluteFilePath(),
-                                                    filter=self._filter, options=self._options)
+            title = self._dialogTitle if self._dialogTitle \
+                else "Create or select a file"
+            file_name = QFileDialog.getSaveFileName(
+                parent=self, caption=title,
+                directory=QFileInfo(
+                    old_path).absoluteFilePath(),
+                filter=self._filter,
+                options=self._options)
             if file_name:
                 file_name = file_name[0]
         self.activateWindow()
@@ -257,7 +282,8 @@ class CustomFileWidget(QWidget):
         if self._mStorageMode != CustomFileWidget.GetMultipleFiles:
             file_names = [file_name]
         for index in range(len(file_names)):
-            file_names[index] = QDir.toNativeSeparators(QDir.cleanPath(QFileInfo(file_names[index]).absoluteFilePath()))
+            file_names[index] = QDir.toNativeSeparators(QDir.cleanPath(
+                QFileInfo(file_names[index]).absoluteFilePath()))
         self.setSelectedFileNames(file_names)
 
     def setSelectedFileNames(self, file_names: List[str]):
@@ -276,10 +302,13 @@ class CustomFileWidget(QWidget):
                 self.setFilePath(file_names[0])
 
     def relativePath(self, file_path: str, remove_relative: bool):
-        relative_path = QDir.toNativeSeparators(QDir.cleanPath(self._defaultRoot))
+        relative_path = QDir.toNativeSeparators(
+            QDir.cleanPath(self._defaultRoot))
         if relative_path:
-            return QDir.cleanPath(QDir(relative_path).relativeFilePath(file_path)) \
-                if remove_relative else QDir.cleanPath(QDir(relative_path).filePath(file_path))
+            return QDir.cleanPath(
+                QDir(relative_path).relativeFilePath(file_path)) \
+                if remove_relative else QDir.cleanPath(
+                QDir(relative_path).filePath(file_path))
         return file_path
 
     def minimumSizeHint(self):
