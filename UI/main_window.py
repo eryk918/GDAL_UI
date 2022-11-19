@@ -6,6 +6,7 @@ from PyQt5 import uic
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog, QWidget, QFileDialog
 
+from CustomFileWidget import CustomFileWidget
 from utils import get_extensions
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
@@ -20,6 +21,13 @@ class MainWindowDialog(QDialog, FORM_CLASS):
         self.main_class = main_class
         self.setup_dialog()
         self.connect_actions()
+        self.insert_file_widget()
+
+    def insert_file_widget(self):
+        self.file_widget = CustomFileWidget()
+        self.file_widget.filter = f"({' '.join([f'*.{ext}' for ext in get_extensions()])})"
+        self.file_widget.lineEdit.textChanged.connect(self.select_raster_file)
+        self.load_groupBox.layout().addWidget(self.file_widget, 0, 1)
 
     def get_set_active_tab_name(self, idx: int = 0) -> str:
         tab_name = self.main_tab_widget.tabText(idx)
@@ -31,10 +39,8 @@ class MainWindowDialog(QDialog, FORM_CLASS):
         self.setWindowFlags(Qt.Window)
 
     def connect_actions(self) -> None:
-        self.select_file.clicked.connect(self.select_raster_file)
         self.main_tab_widget.currentChanged[int].connect(
             self.get_set_active_tab_name)
-        self.select_path.textChanged.connect(self.main_class.tab_execution)
         self.title_label_btn.clicked.connect(lambda: exec(self.label.text()))
 
     def show_dialog(self) -> None:
@@ -42,11 +48,7 @@ class MainWindowDialog(QDialog, FORM_CLASS):
         self.show()
 
     def select_raster_file(self) -> None:
-        paths_to_files, __ = QFileDialog.getOpenFileNames(
-            self, "Select raster files: ",
-            "", f"All raster files "
-                f"({' '.join([f'*.{ext}' for ext in get_extensions()])})")
-        files = [os.path.normpath(path) for path in paths_to_files]
+        files = [os.path.normpath(path) for path in self.file_widget.filePath.split('"') if os.path.exists(path)]
         if files and files[0] != '.':
             self.main_class.connected_rasters = files
-            self.select_path.setText(";".join(files))
+            self.main_class.tab_execution()
