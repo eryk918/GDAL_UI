@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
+import json
 import os
+import tempfile
 from subprocess import run, PIPE
 from typing import Optional, List, Tuple, Any, Union, Dict
 
+from PyQt5.QtWidgets import QProgressDialog, QApplication
 from osgeo import gdal
 
 application_name = 'GDAL UI'
 plugin_dir = os.path.normpath(os.path.dirname(__file__))
+
+
+# icon = QIcon(os.path.join(plugin_dir, 'images', 'icon.ico'))
 
 
 def get_extensions(ext_type: bool = True) -> List[str]:
@@ -37,12 +43,25 @@ def get_extensions(ext_type: bool = True) -> List[str]:
 
 def universal_executor(cmd: str or List[str], stdout: int = PIPE,
                        shell: bool = False, input_values: Optional[str] = None,
-                       encoding: str = 'utf-8') -> Tuple[str, str, int]:
+                       encoding: str = 'utf-8', progress_bar: bool = False
+                       ) -> Tuple[str, str, int, str]:
+    if progress_bar:
+        progress = create_progress_bar()
+        progress.show()
+        QApplication.processEvents()
+
+    if isinstance(cmd, str):
+        cmd = cmd.split('|')
+    file = cmd[-1]
+
     process = run(
-        cmd.split() if isinstance(cmd, str) else cmd, stdout=stdout,
+        cmd.split('|') if isinstance(cmd, str) else cmd, stdout=stdout,
         encoding=encoding, input=input_values, shell=shell
     )
-    return process.stdout, process.stderr, process.returncode
+    QApplication.processEvents()
+    if progress_bar:
+        progress.close()
+    return process.stdout, process.stderr, process.returncode, file
 
 
 def get_main_class(parent: callable) -> callable:
@@ -91,3 +110,44 @@ def json_to_html(
         info += f"</ul>"
     info += '</table>'
     return info
+
+
+def create_progress_bar(
+        progress_len: int = 0, window_title: str = 'Please wait',
+        window_text: str = 'Data processing is in progress..') -> QProgressDialog:
+    progress = QProgressDialog()
+    progress.setFixedWidth(500)
+    progress.setWindowTitle(window_title)
+    progress.setLabelText(window_text)
+    progress.setMaximum(progress_len)
+    progress.setValue(0)
+    progress.setAutoClose(True)
+    progress.setCancelButton(None)
+    # progress.setWindowIcon(icon)
+    return progress
+
+
+def safe_remove(file_path: str) -> None:
+    try:
+        if os.path.exists(file_path):
+            os.remove(file_path)
+    except OSError:
+        pass
+
+
+def multiprocessing_execution(
+        cmd_list: List[List[str]]) -> List[Tuple[str, str, int, str]]:
+    progress = create_progress_bar()
+    progress.show()
+    QApplication.processEvents()
+
+    _, temp = tempfile.mkstemp()
+    with open(temp, 'w') as file:
+        json.dump(cmd_list, file)
+    std_out, _, _, _ = universal_executor(
+        ["python", "MultiprocessingExecutor.py", temp])
+    response = json.load(open(std_out.strip()))
+    safe_remove(std_out.strip())
+    safe_remove(temp)
+    progress.close()
+    return response

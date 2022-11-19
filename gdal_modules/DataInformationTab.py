@@ -4,7 +4,7 @@ from abc import ABC
 from typing import List, Optional, Any
 
 from gdal_modules.TabPrototype import TabPrototype
-from utils import universal_executor, json_to_html
+from utils import json_to_html, multiprocessing_execution
 
 
 class DataInformationTab(TabPrototype, ABC):
@@ -23,11 +23,11 @@ class DataInformationTab(TabPrototype, ABC):
     def execute_process(self, input_files: List[str],
                         output_path: Optional[str] = None) -> None:
         self.files_dict = {}
-        for file in input_files:
-            std_out, std_err, code = universal_executor(
-                ['gdalinfo', '-json', file])
+        cmd_list = [[f'gdalinfo|-json|{file}'] for file in input_files]
+        for response in multiprocessing_execution(cmd_list):
+            std_out, _, code, file_path = response
             if not code:
-                self.files_dict[file] = json.loads(std_out)
+                self.files_dict[file_path] = json.loads(std_out)
 
     def show_data(self, data: Any) -> None:
         if not data or data not in self.files_dict.keys():

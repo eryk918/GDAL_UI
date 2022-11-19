@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import QMessageBox, QFileDialog
 
 from gdal_modules.TabPrototype import TabPrototype
 from utils import universal_executor, json_to_html, application_name, \
-    get_extensions, proper_is_digit
+    get_extensions, proper_is_digit, multiprocessing_execution
 
 
 class NoDataTab(TabPrototype, ABC):
@@ -33,13 +33,13 @@ class NoDataTab(TabPrototype, ABC):
     def execute_process(self, input_files: List[str],
                         output_path: Optional[str] = None) -> None:
         self.files_dict = {}
-        for file in input_files:
-            std_out, std_err, code = universal_executor(
-                ['gdalinfo', '-json', file])
-            if not code:
+        cmd_list = [[f'gdalinfo|-json|{file}'] for file in input_files]
+        for response in multiprocessing_execution(cmd_list):
+            std_out, _, code, file_path = response
+            if response and not response[2]:
                 bands_list = json.loads(std_out)['bands']
                 if bands_list:
-                    self.files_dict[file] = {
+                    self.files_dict[file_path] = {
                         band["band"]: band['noDataValue']
                         for band in bands_list if 'noDataValue' in band.keys()
                     }
@@ -93,10 +93,11 @@ class NoDataTab(TabPrototype, ABC):
                                       f'{os.path.splitext(input_file)[-1]}')
             move(output_file, input_file)
 
-        _, _, ret_code = \
+        _, _, ret_code, _ = \
             universal_executor(
                 ['gdal_translate', '-a_nodata',
-                 str(proper_is_digit(no_data, True)), input_file, output_file]
+                 str(proper_is_digit(no_data, True)), input_file, output_file],
+                progress_bar=True
             )
         if ret_code:
             QMessageBox.critical(
