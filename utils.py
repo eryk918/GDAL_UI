@@ -5,6 +5,7 @@ import tempfile
 from subprocess import run, PIPE
 from typing import Optional, List, Tuple, Any, Union, Dict
 
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QProgressDialog, QApplication, QLayout
 from osgeo import gdal
 
@@ -14,7 +15,9 @@ application_name = 'GDAL UI'
 plugin_dir = os.path.normpath(os.path.dirname(__file__))
 
 
-# icon = QIcon(os.path.join(plugin_dir, 'images', 'icon.ico'))
+def get_icon() -> QIcon:
+    icon_path = os.path.join(plugin_dir, 'images', 'icon.ico')
+    return QIcon(icon_path)
 
 
 def get_extensions(ext_type: bool = True) -> List[str]:

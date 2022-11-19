@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QApplication
 from UI.main_window import MainWindowDialog
 from gdal_modules.DataInformationTab import DataInformationTab
 from gdal_modules.NoDataTab import NoDataTab
+from utils import get_icon
 
 
 class MainDialogFunctionality(QApplication):
@@ -34,6 +35,7 @@ class MainDialogFunctionality(QApplication):
                 self.no_data_tab.run(self.connected_rasters)
 
     def run(self) -> None:
+        self.main_dlg.setWindowIcon(get_icon())
         self.main_dlg.show_dialog()
 
 
