@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import QApplication
 from UI.main_window import MainWindowDialog
 from gdal_modules.DataInformationTab import DataInformationTab
 from gdal_modules.NoDataTab import NoDataTab
+from gdal_modules.TilesTab import TilesTab
 from utils import get_icon
 
 
@@ -26,6 +27,7 @@ class MainDialogFunctionality(QApplication):
     def connect_tabs(self) -> None:
         self.statistics_tab = DataInformationTab(self)
         self.no_data_tab = NoDataTab(self)
+        self.tiles_tab = TilesTab(self)
 
     def tab_execution(self) -> None:
         if self.connected_rasters:
@@ -33,6 +35,8 @@ class MainDialogFunctionality(QApplication):
                 self.statistics_tab.run(self.connected_rasters)
             elif self.active_tab == 'NoData value':
                 self.no_data_tab.run(self.connected_rasters)
+            elif self.active_tab == 'Tiling':
+                self.tiles_tab.run(self.connected_rasters)
 
     def run(self) -> None:
         self.main_dlg.setWindowIcon(get_icon())

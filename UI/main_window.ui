@@ -269,40 +269,18 @@ QPushButton{
           <string>NoData value</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="4" column="0" rowspan="2" colspan="5">
-           <widget class="QGroupBox" name="nodata_output_path_groupBox">
-            <property name="title">
-             <string>Create new file</string>
+          <item row="7" column="4">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
             </property>
-            <property name="checkable">
-             <bool>true</bool>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_6">
-             <item row="0" column="0">
-              <widget class="QLabel" name="nodata_output_path_label">
-               <property name="text">
-                <string>Output file path</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="4">
-           <widget class="QComboBox" name="nodata_file_cbbx"/>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="nodata_file_label">
-            <property name="maximumSize">
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>100</width>
-              <height>16777215</height>
+              <width>20</width>
+              <height>40</height>
              </size>
             </property>
-            <property name="text">
-             <string>Select file</string>
-            </property>
-           </widget>
+           </spacer>
           </item>
           <item row="1" column="0" colspan="5">
            <widget class="QTextEdit" name="nodata_text_box">
@@ -324,21 +302,43 @@ QPushButton{
             </property>
            </widget>
           </item>
-          <item row="7" column="4">
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
           <item row="3" column="1" colspan="4">
            <widget class="QLineEdit" name="nodata_new_value_lineedit"/>
+          </item>
+          <item row="4" column="0" rowspan="2" colspan="5">
+           <widget class="QGroupBox" name="nodata_output_path_groupBox">
+            <property name="title">
+             <string>Create new file</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <item row="0" column="0">
+              <widget class="QLabel" name="nodata_output_path_label">
+               <property name="text">
+                <string>Output file path</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="nodata_file_label">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Select file</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="4">
+           <widget class="QComboBox" name="nodata_file_cbbx"/>
           </item>
           <item row="6" column="4">
            <widget class="QPushButton" name="new_nodata_save_btn">
@@ -358,6 +358,225 @@ QPushButton{
          <attribute name="title">
           <string>Tiling</string>
          </attribute>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QLabel" name="tiling_file_label">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Select file</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QGroupBox" name="tiling_outdir_groupBox">
+            <property name="title">
+             <string>Output settings</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <widget class="QLabel" name="tiling_outdir_label">
+               <property name="text">
+                <string>Output directory</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QGroupBox" name="tiling_options_groupBox">
+            <property name="title">
+             <string>Options</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="tiling_srs_lineEdit">
+               <property name="placeholderText">
+                <string>Same as source SRS</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0" colspan="2">
+              <widget class="QCheckBox" name="tiling_excludetransparent_checkBox">
+               <property name="text">
+                <string>Exclude transparent tiles</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="tiling_tilesize_spinBox">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+               <property name="value">
+                <number>256</number>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="tiling_resampling_label">
+               <property name="text">
+                <string>Resampling</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="tiling_profile_comboBox">
+               <item>
+                <property name="text">
+                 <string>mercator</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>geodetic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>raster</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="tiling_profile_label">
+               <property name="text">
+                <string>Profile</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="tiling_resampling_comboBox">
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>near</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bilinear</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubicspline</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lanczos</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>antialias</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>mode</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>max</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>min</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>med</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>q1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>q3</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="tiling_srs_label">
+               <property name="text">
+                <string>SRS</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="tiling_tilesize_label">
+               <property name="text">
+                <string>Tile size</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0" colspan="2">
+              <widget class="QCheckBox" name="tiling_xyz_checkbox">
+               <property name="text">
+                <string>Generate XYZ tiles</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="2">
+           <widget class="QPushButton" name="tiling_save_btn">
+            <property name="maximumSize">
+             <size>
+              <width>136</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>97</width>
+              <height>209</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QComboBox" name="tiling_file_cbbx"/>
+          </item>
+         </layout>
         </widget>
         <widget class="QWidget" name="mergetiles">
          <attribute name="title">
