@@ -3,23 +3,21 @@ import os
 from abc import ABC
 from typing import List, Optional
 
+from PyQt5.QtCore import QRegExp
+from PyQt5.QtGui import QDoubleValidator, QIntValidator, QRegExpValidator
 from PyQt5.QtWidgets import QMessageBox
-from osgeo_utils import gdal2tiles
 
 from CustomFileWidget import CustomFileWidget
+from SimpleGdal2Tiles import SimpleGdal2Tiles
 from gdal_modules.TabPrototype import TabPrototype
-from utils import application_name, \
-    insert_file_widget
+from utils import application_name, insert_file_widget
 
 
 class TilesTab(TabPrototype, ABC):
 
     def __init__(self, main_class: callable):
         super().__init__(main_class)
-        self.dlg.tiling_save_btn.clicked.connect(self.save_data)
-        self.dlg.tiling_outdir_lineedit = insert_file_widget(
-            self.dlg.tiling_outdir_groupBox.layout(), (0, 1),
-            mode=CustomFileWidget.GetDirectory)
+        self.setup_dialog()
 
     def run(self, input_files: List[str],
             output_path: Optional[str] = None) -> None:
@@ -28,15 +26,26 @@ class TilesTab(TabPrototype, ABC):
             [os.path.normpath(path) for path in
              self.dlg.file_widget.filePath.split('"') if os.path.exists(path)])
 
+    def setup_dialog(self):
+        self.dlg.tiling_save_btn.clicked.connect(self.save_data)
+        self.dlg.tiling_outdir_lineedit = insert_file_widget(
+            self.dlg.tiling_outdir_groupBox.layout(), (0, 1),
+            mode=CustomFileWidget.GetDirectory)
+        self.dlg.tiling_srs_lineEdit.setValidator(QIntValidator())
+        self.dlg.tiling_zoom_lineEdit.setValidator(
+            QRegExpValidator(QRegExp('[0-9-]{1,}')))
+        self.dlg.tiling_nodata_lineEdit.setValidator(
+            QDoubleValidator(-999999.9999999, 999999.9999999, 20))
+        self.dlg.tiling_xyz_checkbox.hide()
+
     def save_data(self) -> None:
-        dialog_data = self.get_dialog_data()
-        if not dialog_data['output_dir']:
+        if not self.dlg.tiling_outdir_lineedit.filePath:
             QMessageBox.critical(
                 self.dlg, f'{application_name} - Tiling',
                 'Output path not entered.',
                 QMessageBox.Ok)
             return
-        elif os.listdir(dialog_data['output_dir']):
+        elif os.listdir(self.dlg.tiling_outdir_lineedit.filePath):
             question = QMessageBox.warning(
                 self.dlg, f'{application_name} - Tiling',
                 'The directory is not empty.\n'
@@ -44,12 +53,14 @@ class TilesTab(TabPrototype, ABC):
                 QMessageBox.Yes, QMessageBox.No)
             if question == QMessageBox.No:
                 return
+        g2t = SimpleGdal2Tiles()
+        ret_code = g2t.execute_gdal2tiles(
+            self.dlg.tiling_file_cbbx.currentText(),
+            self.dlg.tiling_outdir_lineedit.filePath,
+            self.get_dialog_data()
+        )
 
-        ret_code = gdal2tiles.main(
-            [" ".join(dialog_data['options']), dialog_data['input_file'],
-             dialog_data['output_dir']])
-
-        if ret_code is None:
+        if ret_code:
             QMessageBox.critical(
                 self.dlg, f'{application_name} - Tiling',
                 'The tiling process failed.',
@@ -65,15 +76,24 @@ class TilesTab(TabPrototype, ABC):
 
     def get_dialog_data(self):
         return {
-            'input_file': self.dlg.tiling_file_cbbx.currentText(),
-            'output_dir': self.dlg.tiling_outdir_lineedit.filePath,
-            'options': [
-                f"--profile={self.dlg.tiling_profile_comboBox.currentText()}",
-                f"--resampling={self.dlg.tiling_resampling_comboBox.currentText()}",
-                f"--tilesize={self.dlg.tiling_tilesize_spinBox.value()}",
-                f"--s_srs=EPSG:{self.dlg.tiling_srs_lineEdit.text()}" if self.dlg.tiling_srs_lineEdit.text() else '',
-                "--exclude" if self.dlg.tiling_excludetransparent_checkBox.isChecked() else '',
-                "--xyz" if self.dlg.tiling_xyz_checkbox.isChecked() else '',
-                f"--processes={int(os.cpu_count() / 2)}"
-            ]
+            'verbose': False,
+            'resampling': self.dlg.tiling_resampling_comboBox.currentText(),
+            'profile': self.dlg.tiling_profile_comboBox.currentText(),
+            'tilesize': self.dlg.tiling_tilesize_spinBox.value(),
+            'zoom': self.dlg.tiling_zoom_lineEdit.text()
+            if self.dlg.tiling_zoom_lineEdit.text() else None,
+            'srcnodata': self.dlg.tiling_nodata_lineEdit.text()
+            if self.dlg.tiling_nodata_lineEdit.text() else None,
+            'kml': None,
+            's_srs': self.dlg.tiling_srs_lineEdit.text()
+            if self.dlg.tiling_srs_lineEdit.text() else None,
+            'webviewer': None,
+            'title': None,
+            'url': None,
+            'exclude_transparent':
+                self.dlg.tiling_excludetransparent_checkBox.isChecked(),
+            'quiet': True,
+            'resume': None,
+            'xyz': self.dlg.tiling_xyz_checkbox.isChecked(),
+            'tmscompatible': None
         }
