@@ -5,6 +5,7 @@ from typing import List
 from PyQt5.QtWidgets import QApplication
 
 from UI.main_window import MainWindowDialog
+from gdal_modules.BandPlots import BandPlotTab
 from gdal_modules.DataInformationTab import DataInformationTab
 from gdal_modules.NoDataTab import NoDataTab
 from gdal_modules.TilesTab import TilesTab
@@ -27,6 +28,7 @@ class MainDialogFunctionality(QApplication):
     def connect_tabs(self) -> None:
         self.statistics_tab = DataInformationTab(self)
         self.no_data_tab = NoDataTab(self)
+        self.band_plot_tab = BandPlotTab(self)
         self.tiles_tab = TilesTab(self)
 
     def tab_execution(self) -> None:
@@ -37,6 +39,8 @@ class MainDialogFunctionality(QApplication):
                 self.no_data_tab.run(self.connected_rasters)
             elif self.active_tab == 'Tiling':
                 self.tiles_tab.run(self.connected_rasters)
+            elif self.active_tab == 'Band plots':
+                self.band_plot_tab.run(self.connected_rasters)
 
     def run(self) -> None:
         self.main_dlg.setWindowIcon(get_icon())
