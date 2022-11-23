@@ -76,6 +76,7 @@ class TilesTab(TabPrototype, ABC):
 
     def get_dialog_data(self):
         return {
+            'nb_processes': int(os.cpu_count() / 2),
             'verbose': False,
             'resampling': self.dlg.tiling_resampling_comboBox.currentText(),
             'profile': self.dlg.tiling_profile_comboBox.currentText(),
