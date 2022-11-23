@@ -263,8 +263,6 @@ class CustomFileWidget(QWidget):
                 directory=QFileInfo(
                     old_path).absoluteFilePath(),
                 options=self._options)
-            if file_name:
-                file_name = file_name[0]
         elif self._mStorageMode == CustomFileWidget.SaveFile:
             title = self._dialogTitle if self._dialogTitle \
                 else "Create or select a file"

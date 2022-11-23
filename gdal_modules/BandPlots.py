@@ -91,7 +91,7 @@ class BandPlotTab(TabPrototype, ABC):
                 lambda band_name: self.insert_plot_widget(
                     self.raster_file.read([int(band_name.split(' ')[-1])]), band_name,
                     os.path.basename(self.dlg.file_combo_plot.currentText())) if band_name else None)
-            self.dlg.band_combo_plot.addItems(f'Band {count}'for count in range(1, self.files_dict.get(file_name)))
+            self.dlg.band_combo_plot.addItems(f'Band {count}'for count in range(1, self.files_dict.get(file_name)+1))
 
     def insert_plot_widget(self, *args: List[Any]) -> None:
         if args:
