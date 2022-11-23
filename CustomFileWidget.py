@@ -287,7 +287,8 @@ class CustomFileWidget(QWidget):
     def setSelectedFileNames(self, file_names: List[str]):
         if file_names:
             for index in range(len(file_names)):
-                file_names[index] = self.relativePath(file_names[index], True)
+                file_names[index] = os.path.normpath(
+                    self.relativePath(file_names[index], True))
         self.setFilePaths(file_names)
 
     def setFilePaths(self, file_names: List[str]):
