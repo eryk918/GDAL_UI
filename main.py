@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication
 
 from UI.main_window import MainWindowDialog
 from gdal_modules.BandPlots import BandPlotTab
+from gdal_modules.CompareTab import CompareTab
 from gdal_modules.DataInformationTab import DataInformationTab
 from gdal_modules.NoDataTab import NoDataTab
 from gdal_modules.TilesTab import TilesTab
@@ -30,6 +31,7 @@ class MainDialogFunctionality(QApplication):
         self.no_data_tab = NoDataTab(self)
         self.band_plot_tab = BandPlotTab(self)
         self.tiles_tab = TilesTab(self)
+        self.compare_tab = CompareTab(self)
 
     def tab_execution(self) -> None:
         if self.connected_rasters:
@@ -41,6 +43,8 @@ class MainDialogFunctionality(QApplication):
                 self.tiles_tab.run(self.connected_rasters)
             elif self.active_tab == 'Band plots':
                 self.band_plot_tab.run(self.connected_rasters)
+            elif self.active_tab == 'Compare':
+                self.compare_tab.run(self.connected_rasters)
 
     def run(self) -> None:
         self.main_dlg.setWindowIcon(get_icon())
