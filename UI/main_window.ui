@@ -1339,6 +1339,9 @@ QPushButton{
              <pointsize>16</pointsize>
             </font>
            </property>
+           <property name="toolTip">
+            <string>Change window theme</string>
+           </property>
            <property name="styleSheet">
             <string notr="true">color:white;border:none;</string>
            </property>

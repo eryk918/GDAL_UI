@@ -19,12 +19,12 @@ class StyleManager:
 
         if mode == 'dark':
             self.set_dark_style()
-            self.dialog.settings_btn.setText('🌜')
+            self.dialog.settings_btn.setText('🌞')
             self.dialog.settings_btn.setChecked(True)
 
         else:
             self.set_light_style()
-            self.dialog.settings_btn.setText('🌞')
+            self.dialog.settings_btn.setText('🌜')
             self.dialog.settings_btn.setChecked(False)
         self.apply_theme()
         save_settings({'style': mode})
