@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
-    <height>700</height>
+    <width>721</width>
+    <height>720</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -25,7 +25,7 @@
   <property name="minimumSize">
    <size>
     <width>720</width>
-    <height>700</height>
+    <height>720</height>
    </size>
   </property>
   <property name="font">
@@ -185,28 +185,6 @@ QPushButton{
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
-       <widget class="QGroupBox" name="load_groupBox">
-        <property name="title">
-         <string>Input:</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="QLabel" name="file_label">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Raster file paths:</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
       <item row="1" column="0" colspan="2">
        <widget class="QTabWidget" name="main_tab_widget">
         <property name="currentIndex">
@@ -331,19 +309,6 @@ QPushButton{
           <string>NoData value</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="7" column="4">
-           <spacer name="verticalSpacer">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
           <item row="1" column="0" colspan="5">
            <widget class="QTextEdit" name="nodata_text_box">
             <property name="maximumSize">
@@ -364,8 +329,37 @@ QPushButton{
             </property>
            </widget>
           </item>
+          <item row="7" column="4">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item row="3" column="1" colspan="4">
            <widget class="QLineEdit" name="nodata_new_value_lineedit"/>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="nodata_file_label">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Select file</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" colspan="4">
+           <widget class="QComboBox" name="nodata_file_cbbx"/>
           </item>
           <item row="4" column="0" rowspan="2" colspan="5">
            <widget class="QGroupBox" name="nodata_output_path_groupBox">
@@ -386,22 +380,6 @@ QPushButton{
             </layout>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="nodata_file_label">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Select file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="4">
-           <widget class="QComboBox" name="nodata_file_cbbx"/>
-          </item>
           <item row="6" column="4">
            <widget class="QPushButton" name="new_nodata_save_btn">
             <property name="text">
@@ -415,14 +393,390 @@ QPushButton{
          <attribute name="title">
           <string>DEM Analysis</string>
          </attribute>
-        </widget>
-        <widget class="QWidget" name="tiling">
-         <attribute name="title">
-          <string>Tiling</string>
-         </attribute>
-         <layout class="QGridLayout" name="gridLayout_7">
-          <item row="3" column="2">
-           <widget class="QPushButton" name="tiling_save_btn">
+         <layout class="QGridLayout" name="gridLayout_17">
+          <item row="3" column="0" colspan="3">
+           <widget class="QGroupBox" name="dem_mode_groupBox">
+            <property name="title">
+             <string>Mode option</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_16">
+             <item row="15" column="0">
+              <widget class="QFrame" name="dem_aspect_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_20">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="dem_aspect_trigonometric_checkBox">
+                  <property name="text">
+                   <string>Trigonometric</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="dem_aspect_zero_for_flat_checkBox">
+                  <property name="text">
+                   <string>Zero for flat</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="dem_algorithm_comboBox">
+               <item>
+                <property name="text">
+                 <string>Horn</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ZevenbergenThorne</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="dem_algorithm_label">
+               <property name="text">
+                <string>Algorithm</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="0" colspan="2">
+              <widget class="QFrame" name="dem_hill_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_22">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="11" column="1">
+                 <widget class="QSpinBox" name="dem_hill_z_spinBox">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>999999999</number>
+                  </property>
+                  <property name="value">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="1">
+                 <widget class="QSpinBox" name="dem_hill_azimuth_spinBox">
+                  <property name="minimum">
+                   <number>0</number>
+                  </property>
+                  <property name="maximum">
+                   <number>359</number>
+                  </property>
+                  <property name="value">
+                   <number>315</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="9" column="1">
+                 <widget class="QSpinBox" name="dem_hill_scale_spinBox">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>999999999</number>
+                  </property>
+                  <property name="value">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="0">
+                 <widget class="QLabel" name="dem_hill_azimuth_label">
+                  <property name="text">
+                   <string>Azimuth </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="9" column="0">
+                 <widget class="QLabel" name="dem_hill_scale_label">
+                  <property name="text">
+                   <string>Scale</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="0">
+                 <widget class="QLabel" name="dem_hill_altitude_label">
+                  <property name="text">
+                   <string>Altitude of the light</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="12" column="0">
+                 <widget class="QCheckBox" name="dem_hill_combined_shading_checkBox">
+                  <property name="text">
+                   <string>Combined shading</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="1">
+                 <widget class="QSpinBox" name="dem_hill_altitude_spinBox">
+                  <property name="minimum">
+                   <number>0</number>
+                  </property>
+                  <property name="maximum">
+                   <number>90</number>
+                  </property>
+                  <property name="value">
+                   <number>90</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="11" column="0">
+                 <widget class="QLabel" name="dem_hill_z_label">
+                  <property name="text">
+                   <string>Z factor (vertical exaggeration)</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="13" column="0">
+                 <widget class="QCheckBox" name="dem_hill_multidirectional_checkBox">
+                  <property name="text">
+                   <string>Multidirectional</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="14" column="0">
+              <widget class="QFrame" name="dem_slope_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_23">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="dem_slope_percent_checkBox">
+                  <property name="text">
+                   <string>Percent slope</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="dem_tri_algorithm_label">
+               <property name="text">
+                <string>Algorithm</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="dem_tri_algorithm_comboBox">
+               <item>
+                <property name="text">
+                 <string>Wilson</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Riley</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="17" column="0" colspan="2">
+              <widget class="QFrame" name="dem_color_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_19">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0" colspan="2">
+                 <widget class="QCheckBox" name="dem_color_nearest_checkBox">
+                  <property name="text">
+                   <string>Nearest color entry</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="dem_color_exact_color_checkBox">
+                  <property name="text">
+                   <string>Exact color entry</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QCheckBox" name="dem_color_alpha_checkBox">
+                  <property name="text">
+                   <string>Add alpha channel</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QGroupBox" name="dem_options_groupBox">
+            <property name="title">
+             <string>General options</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_18">
+             <item row="2" column="0">
+              <widget class="QLabel" name="dem_band_label">
+               <property name="text">
+                <string>Band</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="dem_band_spinBox">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+               <property name="value">
+                <number>1</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="dem_mode_comboBox">
+               <item>
+                <property name="text">
+                 <string>hillshade</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>slope</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>aspect</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>color-relief</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>TRI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>TPI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>roughness</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="dem_mode_label">
+               <property name="text">
+                <string>Mode</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0" colspan="2">
+              <widget class="QCheckBox" name="dem_compute_edges_checkBox">
+               <property name="text">
+                <string>Compute edges</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="4" column="0" colspan="3">
+           <widget class="QGroupBox" name="dem_outdir_groupBox">
+            <property name="title">
+             <string>Output settings</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_21">
+             <item row="0" column="0">
+              <widget class="QLabel" name="dem_outdir_label">
+               <property name="text">
+                <string>Output directory</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <widget class="QPushButton" name="dem_save_btn">
             <property name="maximumSize">
              <size>
               <width>136</width>
@@ -434,6 +788,42 @@ QPushButton{
             </property>
            </widget>
           </item>
+          <item row="1" column="1" colspan="2">
+           <widget class="QComboBox" name="dem_file_cbbx"/>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="dem_file_label">
+            <property name="maximumSize">
+             <size>
+              <width>100</width>
+              <height>16777215</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Select file</string>
+            </property>
+           </widget>
+          </item>
+          <item row="7" column="2">
+           <spacer name="verticalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tiling">
+         <attribute name="title">
+          <string>Tiling</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_7">
           <item row="4" column="2">
            <spacer name="verticalSpacer_2">
             <property name="orientation">
@@ -650,6 +1040,9 @@ QPushButton{
             </layout>
            </widget>
           </item>
+          <item row="0" column="1" colspan="2">
+           <widget class="QComboBox" name="tiling_file_cbbx"/>
+          </item>
           <item row="0" column="0">
            <widget class="QLabel" name="tiling_file_label">
             <property name="maximumSize">
@@ -663,8 +1056,18 @@ QPushButton{
             </property>
            </widget>
           </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QComboBox" name="tiling_file_cbbx"/>
+          <item row="3" column="2">
+           <widget class="QPushButton" name="tiling_save_btn">
+            <property name="maximumSize">
+             <size>
+              <width>136</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -825,6 +1228,28 @@ self.information_file_webView.setUrl(QtCore.QUrl(codecs.decode( 'uggcf://fgernzn
           </property>
          </widget>
         </widget>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="load_groupBox">
+        <property name="title">
+         <string>Input:</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="file_label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Raster file paths:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
