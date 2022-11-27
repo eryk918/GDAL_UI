@@ -7,7 +7,7 @@ from typing import List, Optional
 from PyQt5.QtWidgets import QMessageBox
 
 from gdal_modules.TabPrototype import TabPrototype
-from utils import application_name, universal_executor
+from utils import APPLICATION_NAME, universal_executor
 
 
 class CompareTab(TabPrototype, ABC):
@@ -41,19 +41,19 @@ class CompareTab(TabPrototype, ABC):
         file2compare = self.dlg.compare_second_file_cbbx.currentText()
         if not os.path.exists(lib_path):
             QMessageBox.critical(
-                self.dlg, f'{application_name} - Compare',
+                self.dlg, f'{APPLICATION_NAME} - Compare',
                 'GDAL library not found.',
                 QMessageBox.Ok)
             return
         if not os.path.exists(base_file) or not os.path.exists(file2compare):
             QMessageBox.critical(
-                self.dlg, f'{application_name} - Compare',
+                self.dlg, f'{APPLICATION_NAME} - Compare',
                 'The selected files do not exist.',
                 QMessageBox.Ok)
             return
         if base_file == file2compare:
             QMessageBox.critical(
-                self.dlg, f'{application_name} - Compare',
+                self.dlg, f'{APPLICATION_NAME} - Compare',
                 'The files selected for comparison are the same.',
                 QMessageBox.Ok)
             return
@@ -61,7 +61,7 @@ class CompareTab(TabPrototype, ABC):
             ["python", lib_path, base_file, file2compare])
         if ret_code != 1:
             QMessageBox.critical(
-                self.dlg, f'{application_name} - Compare',
+                self.dlg, f'{APPLICATION_NAME} - Compare',
                 'The comparison process failed.',
                 QMessageBox.Ok)
             return

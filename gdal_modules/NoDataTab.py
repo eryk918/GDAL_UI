@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import QMessageBox
 
 from CustomFileWidget import CustomFileWidget
 from gdal_modules.TabPrototype import TabPrototype
-from utils import universal_executor, json_to_html, application_name, \
+from utils import universal_executor, json_to_html, APPLICATION_NAME, \
     get_extensions, proper_is_digit, multiprocessing_execution, \
     insert_file_widget
 
@@ -64,20 +64,20 @@ class NoDataTab(TabPrototype, ABC):
         overwrite_source = False
         if not proper_is_digit(no_data):
             QMessageBox.critical(
-                self.dlg, f'{application_name} - NoData value',
+                self.dlg, f'{APPLICATION_NAME} - NoData value',
                 'Invalid NoData value entered.',
                 QMessageBox.Ok)
             return
         if self.dlg.nodata_output_path_groupBox.isChecked():
             if not output_file:
                 QMessageBox.critical(
-                    self.dlg, f'{application_name} - NoData value',
+                    self.dlg, f'{APPLICATION_NAME} - NoData value',
                     'Output path not entered.',
                     QMessageBox.Ok)
                 return
             elif os.path.exists(output_file):
                 question = QMessageBox.warning(
-                    self.dlg, f'{application_name} - NoData value',
+                    self.dlg, f'{APPLICATION_NAME} - NoData value',
                     'A file with this output path exists.\n'
                     'Do you want to overwrite it?',
                     QMessageBox.Yes, QMessageBox.No)
@@ -85,7 +85,7 @@ class NoDataTab(TabPrototype, ABC):
                     return
         else:
             question = QMessageBox.warning(
-                self.dlg, f'{application_name} - NoData value',
+                self.dlg, f'{APPLICATION_NAME} - NoData value',
                 'Do you want to overwrite the source file?',
                 QMessageBox.Yes, QMessageBox.No)
             if question == QMessageBox.No:
@@ -105,14 +105,14 @@ class NoDataTab(TabPrototype, ABC):
             )
         if ret_code:
             QMessageBox.critical(
-                self.dlg, f'{application_name} - NoData value',
+                self.dlg, f'{APPLICATION_NAME} - NoData value',
                 'The change of NoData value failed.',
                 QMessageBox.Ok)
             if overwrite_source:
                 move(input_file, output_file)
             return
         QMessageBox.information(
-            self.dlg, f'{application_name} - NoData value',
+            self.dlg, f'{APPLICATION_NAME} - NoData value',
             'The change of NoData value was successful.',
             QMessageBox.Ok)
         if overwrite_source:

@@ -10,7 +10,7 @@ from PyQt5.QtWidgets import QMessageBox
 from CustomFileWidget import CustomFileWidget
 from SimpleGdal2Tiles import SimpleGdal2Tiles
 from gdal_modules.TabPrototype import TabPrototype
-from utils import application_name, insert_file_widget
+from utils import APPLICATION_NAME, insert_file_widget
 
 
 class TilesTab(TabPrototype, ABC):
@@ -41,13 +41,13 @@ class TilesTab(TabPrototype, ABC):
     def save_data(self) -> None:
         if not self.dlg.tiling_outdir_lineedit.filePath:
             QMessageBox.critical(
-                self.dlg, f'{application_name} - Tiling',
+                self.dlg, f'{APPLICATION_NAME} - Tiling',
                 'Output path not entered.',
                 QMessageBox.Ok)
             return
         elif os.listdir(self.dlg.tiling_outdir_lineedit.filePath):
             question = QMessageBox.warning(
-                self.dlg, f'{application_name} - Tiling',
+                self.dlg, f'{APPLICATION_NAME} - Tiling',
                 'The directory is not empty.\n'
                 'Do you want to continue?',
                 QMessageBox.Yes, QMessageBox.No)
@@ -62,12 +62,12 @@ class TilesTab(TabPrototype, ABC):
 
         if ret_code:
             QMessageBox.critical(
-                self.dlg, f'{application_name} - Tiling',
+                self.dlg, f'{APPLICATION_NAME} - Tiling',
                 'The tiling process failed.',
                 QMessageBox.Ok)
             return
         QMessageBox.information(
-            self.dlg, f'{application_name} - Tiling',
+            self.dlg, f'{APPLICATION_NAME} - Tiling',
             'The tiling process has been successfully completed.',
             QMessageBox.Ok)
 

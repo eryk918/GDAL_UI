@@ -11,12 +11,13 @@ from osgeo import gdal
 
 from CustomFileWidget import CustomFileWidget
 
-application_name = 'GDAL UI'
-plugin_dir = os.path.normpath(os.path.dirname(__file__))
+APPLICATION_NAME = 'GDAL UI'
+PLUGIN_DIR = os.path.normpath(os.path.dirname(__file__))
+SETTINGS_PATH = os.path.join(tempfile.gettempdir(), 'gdal_ui_settings.json')
 
 
 def get_icon() -> QIcon:
-    icon_path = os.path.join(plugin_dir, 'images', 'icon.ico')
+    icon_path = os.path.join(PLUGIN_DIR, 'images', 'icon.ico')
     return QIcon(icon_path)
 
 
@@ -138,6 +139,28 @@ def safe_remove(file_path: str) -> None:
             os.remove(file_path)
     except OSError:
         pass
+
+
+def load_settings() -> Dict[str, bool or str]:
+    settings = {}
+    if os.path.exists(SETTINGS_PATH):
+        try:
+            with open(SETTINGS_PATH, "r") as json_file:
+                settings = json.load(json_file)
+        except json.JSONDecodeError:
+            pass
+    return settings
+
+
+def save_settings(settings_dict: Dict[str, bool or str],
+                  incremental: bool = False) -> None:
+    if incremental:
+        tmp_settings = load_settings()
+        tmp_settings.update(settings_dict)
+    else:
+        tmp_settings = settings_dict
+    with open(SETTINGS_PATH, "w") as outfile:
+        json.dump(tmp_settings, outfile)
 
 
 def multiprocessing_execution(

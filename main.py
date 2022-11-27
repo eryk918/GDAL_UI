@@ -11,6 +11,7 @@ from gdal_modules.DEMTab import DEMTab
 from gdal_modules.DataInformationTab import DataInformationTab
 from gdal_modules.NoDataTab import NoDataTab
 from gdal_modules.TilesTab import TilesTab
+from style.StyleManager import StyleManager
 from utils import get_icon
 
 
@@ -19,12 +20,13 @@ class MainDialogFunctionality(QApplication):
         super().__init__(argv)
         self.args = argv
         self.main_dlg = MainWindowDialog(self)
+        self.styler = StyleManager(self, self.main_dlg)
         self.connected_rasters = []
         self.setup_app()
         self.run()
 
     def setup_app(self) -> None:
-        self.setStyle('Fusion')
+        self.main_dlg.settings_btn.clicked.connect(self.change_style)
         self.connect_tabs()
 
     def connect_tabs(self) -> None:
@@ -51,8 +53,13 @@ class MainDialogFunctionality(QApplication):
                 self.dem_tab.run(self.connected_rasters)
 
     def run(self) -> None:
+        self.change_style(False, True)
         self.main_dlg.setWindowIcon(get_icon())
         self.main_dlg.show_dialog()
+
+    def change_style(self, state: bool, first_load: bool = False) -> None:
+        self.styler.set_style('dark', first_load) if state \
+            else self.styler.set_style('light', first_load)
 
 
 main_app = MainDialogFunctionality(sys.argv)
