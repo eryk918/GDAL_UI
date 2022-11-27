@@ -19,7 +19,7 @@ class StyleManager:
 
         if mode == 'dark':
             self.set_dark_style()
-            self.dialog.settings_btn.setText('🌚')
+            self.dialog.settings_btn.setText('🌜')
             self.dialog.settings_btn.setChecked(True)
 
         else:
