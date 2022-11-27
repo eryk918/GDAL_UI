@@ -115,12 +115,12 @@ class DEMTab(TabPrototype, ABC):
         if ret_code:
             QMessageBox.critical(
                 self.dlg, f'{application_name} - DEM Analysis',
-                'The change of NoData value failed.',
+                f'{mode.capitalize()} file generation failed.',
                 QMessageBox.Ok)
             return
         QMessageBox.information(
             self.dlg, f'{application_name} - DEM Analysis',
-            'The change of NoData value was successful.',
+            f'{mode.capitalize()} file generation succeeded.',
             QMessageBox.Ok)
 
     def cmd_parameters(self, mode: str) -> List[str]:
