@@ -14,7 +14,7 @@ from rasterio import DatasetReader
 from rasterio.plot import get_plt
 
 from gdal_modules.TabPrototype import TabPrototype
-from utils import multiprocessing_execution
+from utils import multiprocessing_execution, load_settings
 
 
 class MplCanvas(FigureCanvas):
@@ -25,10 +25,11 @@ class MplCanvas(FigureCanvas):
             self.fig = self.ax.get_figure()
         else:
             self.create_hist(source, label, file_name)
+        self.set_theme(file_name)
         super(MplCanvas, self).__init__(self.fig)
 
-    def create_hist(self, source: Any, label: str,
-                    file_name: str) -> None:
+    def create_hist(self, source: Any, label: str, file_name: str) -> None:
+
         plt = get_plt()
         if isinstance(source, DatasetReader):
             arr = source.read(masked=True)
@@ -43,7 +44,8 @@ class MplCanvas(FigureCanvas):
             colors = ['gold']
         else:
             arr = arr.reshape(arr.shape[0], -1).T
-            colors = ['red', 'green', 'blue', 'violet', 'gold', 'saddlebrown']
+            colors = [(0.16471, 0.50980, 0.85490), 'blue', 'violet', 'gold',
+                      'saddlebrown']
         if arr.shape[-1] > len(colors):
             n = arr.shape[-1] - len(colors)
             colors.extend(np.ndarray.tolist(
@@ -53,16 +55,38 @@ class MplCanvas(FigureCanvas):
         self.ax = plt.gca()
         self.fig = self.ax.get_figure()
         self.ax.clear()
-        self.ax.hist(arr,
-                     bins=50,
-                     color=colors,
-                     label=label,
-                     range=rng)
+        self.ax.hist(arr, bins=50, color=colors, label=label, range=rng)
         self.ax.legend(loc="upper right")
-        self.ax.set_title(f'Histogram for file {file_name}', fontweight='bold')
         self.ax.grid(True)
         self.ax.set_xlabel('DN')
         self.ax.set_ylabel('Frequency')
+        self.set_theme(file_name)
+
+    def set_theme(self, file_name: str = None) -> None:
+        if load_settings().get('style') and load_settings()['style'] == 'dark':
+            self.fig.patch.set_facecolor((0.25882, 0.25882, 0.25882))
+            self.ax.set_title(
+                f'Histogram for file {file_name}' if file_name else '',
+                fontweight='bold',
+                color=(0.74510, 0.74510, 0.74510)
+            )
+            self.ax.set_facecolor((0.25882, 0.25882, 0.25882))
+            self.ax.yaxis.label.set_color((0.74510, 0.74510, 0.74510))
+            self.ax.xaxis.label.set_color((0.74510, 0.74510, 0.74510))
+            self.ax.tick_params(axis='x', colors=(0.74510, 0.74510, 0.74510))
+            self.ax.tick_params(axis='y', colors=(0.74510, 0.74510, 0.74510))
+        else:
+            self.fig.patch.set_facecolor((0.98039, 0.98039, 0.98039))
+            self.ax.set_title(
+                f'Histogram for file {file_name}' if file_name else '',
+                fontweight='bold',
+                color=(0, 0, 0)
+            )
+            self.ax.set_facecolor((0.98039, 0.98039, 0.98039))
+            self.ax.yaxis.label.set_color((0, 0, 0))
+            self.ax.xaxis.label.set_color((0, 0, 0))
+            self.ax.tick_params(axis='x', colors=(0, 0, 0))
+            self.ax.tick_params(axis='y', colors=(0, 0, 0))
 
 
 class BandPlotTab(TabPrototype, ABC):
@@ -71,6 +95,8 @@ class BandPlotTab(TabPrototype, ABC):
         self.insert_plot_widget()
         self.dlg.file_combo_plot.currentTextChanged[str].connect(
             self.fill_bands_combo)
+        self.dlg.settings_btn.clicked.connect(
+            lambda: self.insert_plot_widget(reload=True))
 
     def run(self, input_files: List[str],
             output_path: Optional[str] = None) -> Optional[Any] or None:
@@ -95,7 +121,6 @@ class BandPlotTab(TabPrototype, ABC):
                 self.dlg.band_combo_plot.disconnect()
             except TypeError:
                 pass
-
             self.raster_file = rasterio.open(file_name)
             self.dlg.band_combo_plot.clear()
             self.dlg.band_combo_plot.currentTextChanged[str].connect(
@@ -108,9 +133,14 @@ class BandPlotTab(TabPrototype, ABC):
                 f'Band {count}' for count in range(
                     1, self.files_dict.get(file_name) + 1))
 
-    def insert_plot_widget(self, *args: List[Any]) -> None:
-        if args:
+    def insert_plot_widget(self, *args: List[Any],
+                           reload: bool = False) -> None:
+        if args or reload:
             self.dlg.plot_groupBox.layout().removeItem(
                 self.dlg.plot_groupBox.layout().itemAt(0))
+            if reload and hasattr(self, 'backup_args'):
+                args = self.backup_args
+            else:
+                self.backup_args = args
         self.canvas = MplCanvas(*args)
         self.dlg.plot_groupBox.layout().addWidget(self.canvas)
