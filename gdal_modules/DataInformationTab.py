@@ -13,6 +13,9 @@ class DataInformationTab(TabPrototype, ABC):
         super().__init__(main_class)
         self.dlg.information_file_cbbx.currentTextChanged[str].connect(
             lambda text: self.show_data(text))
+        self.dlg.settings_btn.clicked.connect(
+            lambda: self.show_data(
+                self.dlg.information_file_cbbx.currentText()))
 
     def run(self, input_files: List[str],
             output_path: Optional[str] = None) -> None:

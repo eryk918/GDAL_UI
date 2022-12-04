@@ -92,8 +92,15 @@ def proper_is_digit(string_num: str, ret: bool = False) -> bool or float:
 def json_to_html(
         data: Union[Dict[str, Any], List[Any]], new: bool = True,
         headers: Optional[List[str]] = None, delimiter_char: str = ':') -> str:
+
+    color = 'rgb(0, 0, 0)'
+    settings = load_settings()
+    if settings.get('style') and settings['style'] == 'dark':
+        color = 'rgb(190, 190, 190)'
+
     info = f'<table {"border=1" if new else ""} ' \
-           f'style="font-family: Segoe UI, sans-serif; font-size: 10pt">'
+           f'style="font-family: Segoe UI, sans-serif; ' \
+           f'font-size: 10pt; color:{color};">'
     if headers:
         info += f'<thead><tr><th><b>{"</b></th><td><b>".join(headers)}' \
                 f'</b></th></tr></thead>'

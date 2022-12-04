@@ -22,6 +22,9 @@ class NoDataTab(TabPrototype, ABC):
         super().__init__(main_class)
         self.dlg.nodata_file_cbbx.currentTextChanged[str].connect(
             lambda text: self.show_data(text))
+        self.dlg.settings_btn.clicked.connect(
+            lambda: self.show_data(
+                self.dlg.nodata_file_cbbx.currentText()))
         self.dlg.new_nodata_save_btn.clicked.connect(self.save_data)
         self.dlg.nodata_output_path_lineedit = insert_file_widget(
             self.dlg.nodata_output_path_groupBox.layout(), (0, 1),
