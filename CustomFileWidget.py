@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import os
 import re
 from typing import List
@@ -71,7 +73,7 @@ class QgsFileDropEdit(QLineEdit):
                 CustomFileWidget.SaveFile]:
                 if file.isFile() and (not self.acceptable_extensions or [
                     elem for elem in self.acceptable_extensions
-                        if elem.lower() == file.suffix().lower()]):
+                    if elem.lower() == file.suffix().lower()]):
                     paths.append(file.filePath())
             elif self.parent.mStorageMode == CustomFileWidget.GetDirectory:
                 if file.isDir():

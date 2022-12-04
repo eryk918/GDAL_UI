@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication
 
 from UI.main_window import MainWindowDialog
 from gdal_modules.BandPlots import BandPlotTab
+from gdal_modules.ClipTab import ClipTab
 from gdal_modules.CompareTab import CompareTab
 from gdal_modules.DEMTab import DEMTab
 from gdal_modules.DataInformationTab import DataInformationTab
@@ -36,6 +37,7 @@ class MainDialogFunctionality(QApplication):
         self.tiles_tab = TilesTab(self)
         self.compare_tab = CompareTab(self)
         self.dem_tab = DEMTab(self)
+        self.clip_tab = ClipTab(self)
 
     def tab_execution(self) -> None:
         if self.connected_rasters:
@@ -51,6 +53,8 @@ class MainDialogFunctionality(QApplication):
                 self.compare_tab.run(self.connected_rasters)
             elif self.active_tab == 'DEM Analysis':
                 self.dem_tab.run(self.connected_rasters)
+            elif self.active_tab == 'Clip':
+                self.clip_tab.run(self.connected_rasters)
 
     def run(self) -> None:
         self.change_style(False, True)

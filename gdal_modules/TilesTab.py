@@ -26,7 +26,7 @@ class TilesTab(TabPrototype, ABC):
             [os.path.normpath(path) for path in
              self.dlg.file_widget.filePath.split('"') if os.path.exists(path)])
 
-    def setup_dialog(self):
+    def setup_dialog(self) -> None:
         self.dlg.tiling_save_btn.clicked.connect(self.save_data)
         self.dlg.tiling_outdir_lineedit = insert_file_widget(
             self.dlg.tiling_outdir_groupBox.layout(), (0, 1),

@@ -44,13 +44,14 @@ def get_extensions(ext_type: bool = True) -> List[str]:
                     vector_extensions.update(set(ext.split()))
                 else:
                     vector_extensions.add(ext)
-    return list(reversed(
-        sorted(raster_extensions.difference(vector_extensions),
-               key=lambda extension: popular_formats.index(
-                   extension) if extension in popular_formats else -1)) if ext_type else list(
-        reversed(sorted(vector_extensions.difference(raster_extensions),
-                        key=lambda extension: popular_formats.index(
-                            extension) if extension in popular_formats else -1))))
+    return list(
+        reversed(sorted(raster_extensions.difference(vector_extensions),
+                        key=lambda extension: popular_formats.index(extension)
+                        if extension in popular_formats else -1))
+        if ext_type else list(reversed(sorted(
+            vector_extensions.difference(raster_extensions),
+            key=lambda extension: popular_formats.index(extension)
+            if extension in popular_formats else -1))))
 
 
 def universal_executor(cmd: str or List[str], stdout: int = PIPE,
