@@ -2,12 +2,14 @@ import json
 import os.path
 from abc import ABC
 from typing import List, Optional, Any
+
+import matplotlib.pyplot as plt
+import numpy as np
 import rasterio
+from matplotlib.backends.backend_qt5agg import \
+    FigureCanvasQTAgg as FigureCanvas
 from rasterio import DatasetReader
 from rasterio.plot import get_plt
-import numpy as np
-from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
-import matplotlib.pyplot as plt
 
 from gdal_modules.TabPrototype import TabPrototype
 from utils import multiprocessing_execution
@@ -85,6 +87,7 @@ class BandPlotTab(TabPrototype, ABC):
 
     def fill_bands_combo(self, file_name: str) -> None:
         if file_name:
+            self.dlg.band_combo_plot.disconnect()
             self.raster_file = rasterio.open(file_name)
             self.dlg.band_combo_plot.clear()
             self.dlg.band_combo_plot.currentTextChanged[str].connect(
