@@ -44,17 +44,18 @@ class MplCanvas(FigureCanvas):
             colors = ['red', 'green', 'blue', 'violet', 'gold', 'saddlebrown']
         if arr.shape[-1] > len(colors):
             n = arr.shape[-1] - len(colors)
-            colors.extend(np.ndarray.tolist(plt.get_cmap('Accent')(np.linspace(0, 1, n))))
+            colors.extend(np.ndarray.tolist(
+                plt.get_cmap('Accent')(np.linspace(0, 1, n))))
         else:
             colors = colors[:arr.shape[-1]]
         self.ax = plt.gca()
         self.fig = self.ax.get_figure()
         self.ax.clear()
         self.ax.hist(arr,
-                bins=50,
-                color=colors,
-                label=label,
-                range=rng)
+                     bins=50,
+                     color=colors,
+                     label=label,
+                     range=rng)
         self.ax.legend(loc="upper right")
         self.ax.set_title(f'Histogram for file {file_name}', fontweight='bold')
         self.ax.grid(True)
@@ -66,7 +67,8 @@ class BandPlotTab(TabPrototype, ABC):
     def __init__(self, main_class: callable):
         super().__init__(main_class)
         self.insert_plot_widget()
-        self.dlg.file_combo_plot.currentTextChanged[str].connect(self.fill_bands_combo)
+        self.dlg.file_combo_plot.currentTextChanged[str].connect(
+            self.fill_bands_combo)
 
     def run(self, input_files: List[str],
             output_path: Optional[str] = None) -> Optional[Any] or None:
@@ -87,17 +89,26 @@ class BandPlotTab(TabPrototype, ABC):
 
     def fill_bands_combo(self, file_name: str) -> None:
         if file_name:
-            self.dlg.band_combo_plot.disconnect()
+            try:
+                self.dlg.band_combo_plot.disconnect()
+            except TypeError:
+                pass
+
             self.raster_file = rasterio.open(file_name)
             self.dlg.band_combo_plot.clear()
             self.dlg.band_combo_plot.currentTextChanged[str].connect(
                 lambda band_name: self.insert_plot_widget(
-                    self.raster_file.read([int(band_name.split(' ')[-1])]), band_name,
-                    os.path.basename(self.dlg.file_combo_plot.currentText())) if band_name else None)
-            self.dlg.band_combo_plot.addItems(f'Band {count}'for count in range(1, self.files_dict.get(file_name)+1))
+                    self.raster_file.read([int(band_name.split(' ')[-1])]),
+                    band_name,
+                    os.path.basename(self.dlg.file_combo_plot.currentText()))
+                if band_name else None)
+            self.dlg.band_combo_plot.addItems(
+                f'Band {count}' for count in range(
+                    1, self.files_dict.get(file_name) + 1))
 
     def insert_plot_widget(self, *args: List[Any]) -> None:
         if args:
-            self.dlg.plot_groupBox.layout().removeItem(self.dlg.plot_groupBox.layout().itemAt(0))
+            self.dlg.plot_groupBox.layout().removeItem(
+                self.dlg.plot_groupBox.layout().itemAt(0))
         self.canvas = MplCanvas(*args)
         self.dlg.plot_groupBox.layout().addWidget(self.canvas)

@@ -25,7 +25,9 @@ def get_extensions(ext_type: bool = True) -> List[str]:
     """
     :type ext_type: True == raster extensions; False == vector extensions
     """
-
+    popular_formats = [
+        'img', 'png', 'jpg', 'jpeg', 'tiff', 'tif', 'gpkg', 'shp'
+    ]
     raster_extensions = set()
     vector_extensions = set()
     for drv_index in range(gdal.GetDriverCount()):
@@ -42,9 +44,13 @@ def get_extensions(ext_type: bool = True) -> List[str]:
                     vector_extensions.update(set(ext.split()))
                 else:
                     vector_extensions.add(ext)
-    return list(sorted(raster_extensions.difference(vector_extensions))) \
-        if ext_type \
-        else list(sorted(vector_extensions.difference(raster_extensions)))
+    return list(reversed(
+        sorted(raster_extensions.difference(vector_extensions),
+               key=lambda extension: popular_formats.index(
+                   extension) if extension in popular_formats else -1)) if ext_type else list(
+        reversed(sorted(vector_extensions.difference(raster_extensions),
+                        key=lambda extension: popular_formats.index(
+                            extension) if extension in popular_formats else -1))))
 
 
 def universal_executor(cmd: str or List[str], stdout: int = PIPE,
@@ -92,7 +98,6 @@ def proper_is_digit(string_num: str, ret: bool = False) -> bool or float:
 def json_to_html(
         data: Union[Dict[str, Any], List[Any]], new: bool = True,
         headers: Optional[List[str]] = None, delimiter_char: str = ':') -> str:
-
     color = 'rgb(0, 0, 0)'
     settings = load_settings()
     if settings.get('style') and settings['style'] == 'dark':
@@ -136,7 +141,7 @@ def create_progress_bar(
     progress.setValue(0)
     progress.setAutoClose(True)
     progress.setCancelButton(None)
-    # progress.setWindowIcon(icon)
+    progress.setWindowIcon(get_icon())
     return progress
 
 
