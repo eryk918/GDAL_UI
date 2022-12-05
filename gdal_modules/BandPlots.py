@@ -8,27 +8,30 @@ from typing import List, Optional, Any
 import matplotlib.pyplot as plt
 import numpy as np
 import rasterio
-from matplotlib.backends.backend_qt5agg import \
-    FigureCanvasQTAgg as FigureCanvas
+from geopandas import GeoDataFrame
+from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from rasterio import DatasetReader
-from rasterio.plot import get_plt
+from rasterio.plot import get_plt, show
 
 from gdal_modules.TabPrototype import TabPrototype
 from utils import multiprocessing_execution, load_settings
 
 
-class MplCanvas(FigureCanvas):
+class MplCanvas(FigureCanvasQTAgg):
 
-    def __init__(self, source=None, label='', file_name=''):
-        if source is None:
+    def __init__(self, source=None, label='', file_name='',
+                 vector: GeoDataFrame = None, map_preview: bool = False):
+        if map_preview:
+            self.create_map_preview(source, vector)
+        elif source is None:
             self.ax = plt.gca()
             self.fig = self.ax.get_figure()
         else:
-            self.create_hist(source, label, file_name)
+            self.create_hist(source, label)
         self.set_theme(file_name)
         super(MplCanvas, self).__init__(self.fig)
 
-    def create_hist(self, source: Any, label: str, file_name: str) -> None:
+    def create_hist(self, source: Any, label: str) -> None:
 
         plt = get_plt()
         if isinstance(source, DatasetReader):
@@ -60,7 +63,17 @@ class MplCanvas(FigureCanvas):
         self.ax.grid(True)
         self.ax.set_xlabel('DN')
         self.ax.set_ylabel('Frequency')
-        self.set_theme(file_name)
+        plt.axis('on')
+
+    def create_map_preview(
+            self, source: Any, vector_layer: GeoDataFrame) -> None:
+        plt = get_plt()
+        self.ax = plt.gca()
+        self.fig = self.ax.get_figure()
+        self.ax.clear()
+        show(source.read(), transform=source.transform, ax=self.ax)
+        vector_layer.plot(ax=self.ax, color='white', alpha=.75)
+        plt.axis('off')
 
     def set_theme(self, file_name: str = None) -> None:
         if load_settings().get('style') and load_settings()['style'] == 'dark':
