@@ -8,6 +8,7 @@ from UI.main_window import MainWindowDialog
 from gdal_modules.BandPlots import BandPlotTab
 from gdal_modules.ClipTab import ClipTab
 from gdal_modules.CompareTab import CompareTab
+from gdal_modules.ConvertTab import ConvertTab
 from gdal_modules.DEMTab import DEMTab
 from gdal_modules.DataInformationTab import DataInformationTab
 from gdal_modules.MergeTilesTab import MergeTilesTab
@@ -42,6 +43,7 @@ class MainDialogFunctionality(QApplication):
         self.clip_tab = ClipTab(self)
         self.merge_tab = MergeTilesTab(self)
         self.transform_tab = TransformTab(self)
+        self.convert_tab = ConvertTab(self)
 
     def tab_execution(self) -> None:
         if self.connected_rasters:
@@ -63,6 +65,8 @@ class MainDialogFunctionality(QApplication):
                 self.merge_tab.run(self.connected_rasters)
             elif self.active_tab == 'Transform':
                 self.transform_tab.run(self.connected_rasters)
+            elif self.active_tab == 'Convert':
+                self.convert_tab.run(self.connected_rasters)
 
     def run(self) -> None:
         self.change_style(False, True)
