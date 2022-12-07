@@ -39,6 +39,12 @@ class TilesTab(TabPrototype, ABC):
         self.dlg.tiling_xyz_checkbox.hide()
 
     def save_data(self) -> None:
+        if not self.dlg.tiling_file_cbbx.currentText():
+            QMessageBox.critical(
+                self.dlg, f'{APPLICATION_NAME} - Tiling',
+                'No input file selected.',
+                QMessageBox.Ok)
+            return
         if not self.dlg.tiling_outdir_lineedit.filePath:
             QMessageBox.critical(
                 self.dlg, f'{APPLICATION_NAME} - Tiling',

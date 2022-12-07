@@ -35,10 +35,9 @@ class MergeTilesTab(TabPrototype, ABC):
         self.input_files = input_files
 
     def merge_rasters(self) -> None:
-        input_file = self.input_files
         output_file = self.dlg.outfile_widget.filePath
 
-        if not input_file:
+        if not hasattr(self, 'input_files') or not self.input_files:
             QMessageBox.critical(
                 self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'No input file selected.',

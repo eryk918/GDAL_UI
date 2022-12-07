@@ -65,6 +65,12 @@ class NoDataTab(TabPrototype, ABC):
         output_file = self.dlg.nodata_output_path_lineedit.filePath
         input_file = self.dlg.nodata_file_cbbx.currentText()
         overwrite_source = False
+        if not input_file:
+            QMessageBox.critical(
+                self.dlg, f'{APPLICATION_NAME} - NoData value',
+                'No input file selected.',
+                QMessageBox.Ok)
+            return
         if not proper_is_digit(no_data):
             QMessageBox.critical(
                 self.dlg, f'{APPLICATION_NAME} - NoData value',
