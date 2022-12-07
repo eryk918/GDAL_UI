@@ -15,21 +15,25 @@ from rasterio.plot import get_plt, show
 
 from gdal_modules.TabPrototype import TabPrototype
 from utils import multiprocessing_execution, load_settings
+from matplotlib._pylab_helpers import Gcf
 
 
 class MplCanvas(FigureCanvasQTAgg):
 
     def __init__(self, source=None, label='', file_name='',
                  vector: GeoDataFrame = None, map_preview: bool = False):
+        self.fig = plt.gca().get_figure()
         if map_preview:
+            Gcf.destroy_fig(self.fig)
             self.create_map_preview(source, vector)
         elif source is None:
             self.ax = plt.gca()
             self.fig = self.ax.get_figure()
         else:
+            Gcf.destroy_fig(self.fig)
             self.create_hist(source, label)
-        self.set_theme(file_name)
         super(MplCanvas, self).__init__(self.fig)
+        self.set_theme(file_name)
 
     def create_hist(self, source: Any, label: str) -> None:
 
@@ -71,8 +75,11 @@ class MplCanvas(FigureCanvasQTAgg):
         self.ax = plt.gca()
         self.fig = self.ax.get_figure()
         self.ax.clear()
+        minx, miny, maxx, maxy = vector_layer.total_bounds
         show(source.read(), transform=source.transform, ax=self.ax)
         vector_layer.plot(ax=self.ax, color='white', alpha=.75)
+        self.ax.set_xlim(minx- minx*0.01, maxx + maxx*0.01)
+        self.ax.set_ylim(miny- miny*0.01, maxy+ maxy*0.01)
         plt.axis('off')
 
     def set_theme(self, file_name: str = None) -> None:
