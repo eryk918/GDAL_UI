@@ -165,7 +165,7 @@
           <item row="1" column="0" colspan="2">
            <widget class="QGroupBox" name="converter_options_groupBox">
             <property name="title">
-             <string>Options</string>
+             <string>Options:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_34">
              <item row="0" column="2">
@@ -342,7 +342,7 @@
           <item row="2" column="0" colspan="2">
            <widget class="QGroupBox" name="converter_outpath_groupBox">
             <property name="title">
-             <string>Output settings</string>
+             <string>Output settings:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_35">
              <item row="0" column="0">
@@ -422,7 +422,7 @@
           <item row="2" column="0">
            <widget class="QLabel" name="clip_output_label">
             <property name="text">
-             <string>Output file path</string>
+             <string>Output file path:</string>
             </property>
            </widget>
           </item>
@@ -600,7 +600,7 @@
           <item row="1" column="0" colspan="3">
            <widget class="QGroupBox" name="transform_options_groupBox">
             <property name="title">
-             <string>Options</string>
+             <string>Options:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_28">
              <item row="4" column="0">
@@ -891,7 +891,7 @@
           <item row="2" column="0" colspan="3">
            <widget class="QGroupBox" name="transform_outfile_groupBox">
             <property name="title">
-             <string>Output settings</string>
+             <string>Output settings:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_27">
              <item row="0" column="0">
@@ -989,7 +989,7 @@
              <item row="2" column="0">
               <widget class="QGroupBox" name="plot_groupBox">
                <property name="title">
-                <string>Plot</string>
+                <string>Plot:</string>
                </property>
                <layout class="QGridLayout" name="gridLayout_10"/>
               </widget>
@@ -1092,7 +1092,7 @@
           <item row="3" column="0" colspan="3">
            <widget class="QGroupBox" name="dem_mode_groupBox">
             <property name="title">
-             <string>Mode option</string>
+             <string>Mode option:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_16">
              <item row="15" column="0">
@@ -1375,7 +1375,7 @@
           <item row="2" column="0" colspan="3">
            <widget class="QGroupBox" name="dem_options_groupBox">
             <property name="title">
-             <string>General options</string>
+             <string>General options:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_18">
              <item row="2" column="0">
@@ -1457,7 +1457,7 @@
           <item row="4" column="0" colspan="3">
            <widget class="QGroupBox" name="dem_outdir_groupBox">
             <property name="title">
-             <string>Output settings</string>
+             <string>Output settings:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_21">
              <item row="0" column="0">
@@ -1535,7 +1535,7 @@
           <item row="1" column="0" colspan="3">
            <widget class="QGroupBox" name="tiling_options_groupBox">
             <property name="title">
-             <string>Options</string>
+             <string>Options:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_8">
              <item row="1" column="2">
@@ -1722,7 +1722,7 @@
           <item row="2" column="0" colspan="3">
            <widget class="QGroupBox" name="tiling_outdir_groupBox">
             <property name="title">
-             <string>Output settings</string>
+             <string>Output settings:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_9">
              <item row="0" column="0">
@@ -1800,7 +1800,7 @@
           <item row="0" column="0" colspan="3">
            <widget class="QGroupBox" name="transform_options_groupBox_2">
             <property name="title">
-             <string>Options</string>
+             <string>Options:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_26">
              <item row="1" column="0">
@@ -1817,13 +1817,6 @@
               <widget class="QLabel" name="merge_nodata_label">
                <property name="text">
                 <string>NoData</string>
-               </property>
-              </widget>
-             </item>
-             <item row="2" column="1" colspan="2">
-              <widget class="QLineEdit" name="merge_nodata_lineEdit">
-               <property name="placeholderText">
-                <string>New NoData value</string>
                </property>
               </widget>
              </item>
@@ -1850,13 +1843,20 @@
              <item row="0" column="2">
               <widget class="QLineEdit" name="pixel_x_lineEdit"/>
              </item>
+             <item row="2" column="2">
+              <widget class="QLineEdit" name="merge_nodata_lineEdit">
+               <property name="placeholderText">
+                <string>New NoData value</string>
+               </property>
+              </widget>
+             </item>
             </layout>
            </widget>
           </item>
           <item row="1" column="0" colspan="3">
            <widget class="QGroupBox" name="merge_outfile_groupBox">
             <property name="title">
-             <string>Output settings</string>
+             <string>Output settings:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_11">
              <item row="0" column="0">
@@ -2045,7 +2045,7 @@ self.information_file_webView.setUrl(QtCore.QUrl(codecs.decode( 'uggcf://fgernzn
       <string notr="true"/>
      </property>
      <property name="styleSheet">
-      <string notr="true">background: qradialgradient(spread:pad, cx:0.5, cy:0.5, radius:0.5, fx:0.5, fy:0.5, stop:0 rgba(0, 112, 17, 255), stop:1 rgba(0, 0, 0, 255))</string>
+      <string notr="true">background: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(56, 0, 170, 255), stop:1 rgba(81, 140, 62, 255))</string>
      </property>
      <property name="frameShape">
       <enum>QFrame::NoFrame</enum>
@@ -2060,6 +2060,105 @@ self.information_file_webView.setUrl(QtCore.QUrl(codecs.decode( 'uggcf://fgernzn
       <property name="topMargin">
        <number>0</number>
       </property>
+      <item row="0" column="1" rowspan="2">
+       <widget class="QFrame" name="settings_btn_frame">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>34</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>48</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">z-index:999; background: none</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_24">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>3</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="settings_btn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>33</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>33</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>Change window theme</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:white;border:none; background: none</string>
+           </property>
+           <property name="text">
+            <string>🌞</string>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="title_label">
         <property name="sizePolicy">
@@ -2087,7 +2186,7 @@ self.information_file_webView.setUrl(QtCore.QUrl(codecs.decode( 'uggcf://fgernzn
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">color : white;margin-left: 33px;</string>
+         <string notr="true">color : white;margin-left: 33px; background: none;</string>
         </property>
         <property name="lineWidth">
          <number>0</number>
@@ -2142,105 +2241,6 @@ QPushButton{
         <property name="flat">
          <bool>true</bool>
         </property>
-       </widget>
-      </item>
-      <item row="0" column="1" rowspan="2">
-       <widget class="QFrame" name="settings_btn_frame">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>34</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>32</width>
-          <height>48</height>
-         </size>
-        </property>
-        <property name="layoutDirection">
-         <enum>Qt::LeftToRight</enum>
-        </property>
-        <property name="autoFillBackground">
-         <bool>false</bool>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">z-index:999;</string>
-        </property>
-        <property name="frameShape">
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow">
-         <enum>QFrame::Raised</enum>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_24">
-         <property name="leftMargin">
-          <number>0</number>
-         </property>
-         <property name="topMargin">
-          <number>3</number>
-         </property>
-         <property name="rightMargin">
-          <number>0</number>
-         </property>
-         <property name="bottomMargin">
-          <number>0</number>
-         </property>
-         <property name="spacing">
-          <number>0</number>
-         </property>
-         <item row="0" column="0">
-          <widget class="QPushButton" name="settings_btn">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize">
-            <size>
-             <width>33</width>
-             <height>28</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>33</width>
-             <height>33</height>
-            </size>
-           </property>
-           <property name="font">
-            <font>
-             <pointsize>16</pointsize>
-            </font>
-           </property>
-           <property name="toolTip">
-            <string>Change window theme</string>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">color:white;border:none;</string>
-           </property>
-           <property name="text">
-            <string>🌞</string>
-           </property>
-           <property name="iconSize">
-            <size>
-             <width>32</width>
-             <height>32</height>
-            </size>
-           </property>
-           <property name="checkable">
-            <bool>true</bool>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </widget>
       </item>
      </layout>
