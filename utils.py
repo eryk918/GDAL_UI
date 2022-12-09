@@ -17,7 +17,7 @@ SETTINGS_PATH = os.path.join(tempfile.gettempdir(), 'gdal_ui_settings.json')
 
 
 def get_icon() -> QIcon:
-    icon_path = os.path.join(PLUGIN_DIR, 'images', 'icon.ico')
+    icon_path = os.path.join(PLUGIN_DIR, 'images', 'icon.png')
     return QIcon(icon_path)
 
 

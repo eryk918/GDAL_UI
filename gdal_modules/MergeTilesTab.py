@@ -15,7 +15,6 @@ import gdal_merge as gm
 
 
 class MergeTilesTab(TabPrototype, ABC):
-
     TOOL_NAME = 'Merge Rasters'
 
     def __init__(self, main_class: callable):

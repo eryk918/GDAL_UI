@@ -348,7 +348,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="converter_outpath_label">
                <property name="text">
-                <string>Output path</string>
+                <string>Output file path</string>
                </property>
               </widget>
              </item>
@@ -422,7 +422,7 @@
           <item row="2" column="0">
            <widget class="QLabel" name="clip_output_label">
             <property name="text">
-             <string>Output file path:</string>
+             <string>Output file path</string>
             </property>
            </widget>
           </item>
@@ -610,13 +610,6 @@
                </property>
               </widget>
              </item>
-             <item row="6" column="1">
-              <widget class="QLineEdit" name="transform_nodata_lineEdit">
-               <property name="placeholderText">
-                <string>New NoData value</string>
-               </property>
-              </widget>
-             </item>
              <item row="7" column="0">
               <widget class="QLabel" name="tiling_resampling_label_2">
                <property name="text">
@@ -700,20 +693,20 @@
                </item>
               </widget>
              </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="transform_source_coord_lineEdit"/>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLineEdit" name="transform_nodata_lineEdit">
+               <property name="placeholderText">
+                <string>New NoData value</string>
+               </property>
+              </widget>
+             </item>
              <item row="5" column="0">
               <widget class="QLabel" name="label_2">
                <property name="text">
                 <string>Output image data type</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="transform_source_coord_lineEdit"/>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="transform_target_coord_label">
-               <property name="text">
-                <string>Target coordinate system</string>
                </property>
               </widget>
              </item>
@@ -726,9 +719,6 @@
                 <string>Source coordinate system [optional]</string>
                </property>
               </widget>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLineEdit" name="transform_target_coord_lineEdit"/>
              </item>
              <item row="5" column="1">
               <widget class="QComboBox" name="transform_output_data_type_cbbx">
@@ -804,13 +794,6 @@
                </item>
               </widget>
              </item>
-             <item row="8" column="0" colspan="2">
-              <widget class="QCheckBox" name="transform_overwrite_checkBox">
-               <property name="text">
-                <string>Overwrite existing file?</string>
-               </property>
-              </widget>
-             </item>
              <item row="4" column="1">
               <widget class="QComboBox" name="transform_source_data_type_cbbx">
                <item>
@@ -884,6 +867,16 @@
                 </property>
                </item>
               </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="transform_target_coord_label">
+               <property name="text">
+                <string>Target coordinate system</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="transform_target_coord_lineEdit"/>
              </item>
             </layout>
            </widget>
@@ -1463,7 +1456,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="dem_outdir_label">
                <property name="text">
-                <string>Output directory</string>
+                <string>Output file path</string>
                </property>
               </widget>
              </item>
@@ -1862,7 +1855,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="merge_outfile_label">
                <property name="text">
-                <string>Output directory</string>
+                <string>Output file path</string>
                </property>
               </widget>
              </item>
@@ -2113,44 +2106,6 @@ self.information_file_webView.setUrl(QtCore.QUrl(codecs.decode( 'uggcf://fgernzn
                </layout>
               </widget>
              </item>
-             <item row="0" column="0" colspan="2">
-              <widget class="QLabel" name="tiling_profile_label_2">
-               <property name="text">
-                <string>Resolution</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="2">
-              <widget class="QComboBox" name="vrt_resolution_comboBox">
-               <item>
-                <property name="text">
-                 <string>highest</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>lowest</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>average</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>user</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="2" column="0" colspan="2">
-              <widget class="QLabel" name="tiling_resampling_label_3">
-               <property name="text">
-                <string>Resampling</string>
-               </property>
-              </widget>
-             </item>
              <item row="3" column="0" colspan="3">
               <widget class="QCheckBox" name="vrt_different_proj_checkBox">
                <property name="text">
@@ -2203,31 +2158,62 @@ self.information_file_webView.setUrl(QtCore.QUrl(codecs.decode( 'uggcf://fgernzn
                </item>
               </widget>
              </item>
-             <item row="4" column="0" colspan="2">
-              <widget class="QCheckBox" name="vrt_overwrite_checkBox">
+             <item row="6" column="0">
+              <widget class="QCheckBox" name="vrt_alpha_mask_checkBox">
                <property name="text">
-                <string>Overwrite?</string>
+                <string>Add an alpha mask</string>
                </property>
               </widget>
              </item>
-             <item row="8" column="0" colspan="3">
+             <item row="0" column="0" colspan="2">
+              <widget class="QLabel" name="tiling_profile_label_2">
+               <property name="text">
+                <string>Resolution</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" colspan="2">
+              <widget class="QLabel" name="tiling_resampling_label_3">
+               <property name="text">
+                <string>Resampling</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0" colspan="3">
               <widget class="QCheckBox" name="vrt_separate_checkBox">
                <property name="text">
                 <string>Place each input file into a separate band</string>
                </property>
               </widget>
              </item>
-             <item row="5" column="0" rowspan="2" colspan="2">
+             <item row="0" column="2">
+              <widget class="QComboBox" name="vrt_resolution_comboBox">
+               <item>
+                <property name="text">
+                 <string>highest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lowest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>user</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0" rowspan="2" colspan="2">
               <widget class="QCheckBox" name="vrt_nodata_checkBox">
                <property name="text">
                 <string>Hide no data</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="0">
-              <widget class="QCheckBox" name="vrt_alpha_mask_checkBox">
-               <property name="text">
-                <string>Add an alpha mask</string>
                </property>
               </widget>
              </item>
@@ -2243,7 +2229,7 @@ self.information_file_webView.setUrl(QtCore.QUrl(codecs.decode( 'uggcf://fgernzn
              <item row="0" column="0">
               <widget class="QLabel" name="tiling_outdir_label_2">
                <property name="text">
-                <string>Output directory</string>
+                <string>Output file path</string>
                </property>
               </widget>
              </item>

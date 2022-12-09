@@ -11,7 +11,8 @@ from utils import APPLICATION_NAME, universal_executor
 
 
 class CompareTab(TabPrototype, ABC):
-
+    TOOL_NAME = 'Compare'
+    
     def __init__(self, main_class: callable):
         super().__init__(main_class)
         self.dlg.compare_results_groupBox.hide()
@@ -41,19 +42,19 @@ class CompareTab(TabPrototype, ABC):
         file2compare = self.dlg.compare_second_file_cbbx.currentText()
         if not os.path.exists(lib_path):
             QMessageBox.critical(
-                self.dlg, f'{APPLICATION_NAME} - Compare',
+                self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'GDAL library not found.',
                 QMessageBox.Ok)
             return
         if not os.path.exists(base_file) or not os.path.exists(file2compare):
             QMessageBox.critical(
-                self.dlg, f'{APPLICATION_NAME} - Compare',
+                self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'The selected files do not exist.',
                 QMessageBox.Ok)
             return
         if base_file == file2compare:
             QMessageBox.critical(
-                self.dlg, f'{APPLICATION_NAME} - Compare',
+                self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'The files selected for comparison are the same.',
                 QMessageBox.Ok)
             return
@@ -61,7 +62,7 @@ class CompareTab(TabPrototype, ABC):
             ["python", lib_path, base_file, file2compare])
         if ret_code != 1:
             QMessageBox.critical(
-                self.dlg, f'{APPLICATION_NAME} - Compare',
+                self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'The comparison process failed.',
                 QMessageBox.Ok)
             return

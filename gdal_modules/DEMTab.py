@@ -12,6 +12,7 @@ from utils import insert_file_widget, get_extensions, APPLICATION_NAME, \
 
 
 class DEMTab(TabPrototype, ABC):
+    TOOL_NAME = 'DEM Analysis'
     modes_dict = {
         'hillshade': ['dem_mode_groupBox', 'dem_algorithm_label',
                       'dem_algorithm_comboBox',
@@ -79,26 +80,26 @@ class DEMTab(TabPrototype, ABC):
 
         if not input_file:
             QMessageBox.critical(
-                self.dlg, f'{APPLICATION_NAME} - DEM Analysis',
+                self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'No input file selected.',
                 QMessageBox.Ok)
             return
         if not output_file:
             QMessageBox.critical(
-                self.dlg, f'{APPLICATION_NAME} - DEM Analysis',
+                self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'No output file selected.',
                 QMessageBox.Ok)
             return
         if not color_file:
             if not output_file:
                 QMessageBox.critical(
-                    self.dlg, f'{APPLICATION_NAME} - DEM Analysis',
+                    self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                     'No color text file selected.',
                     QMessageBox.Ok)
                 return
         elif os.path.exists(output_file):
             question = QMessageBox.warning(
-                self.dlg, f'{APPLICATION_NAME} - DEM Analysis',
+                self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'A file with this output path exists.\n'
                 'Do you want to overwrite it?',
                 QMessageBox.Yes, QMessageBox.No)
@@ -114,12 +115,12 @@ class DEMTab(TabPrototype, ABC):
             )
         if ret_code:
             QMessageBox.critical(
-                self.dlg, f'{APPLICATION_NAME} - DEM Analysis',
+                self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 f'{mode.capitalize()} file generation failed.',
                 QMessageBox.Ok)
             return
         QMessageBox.information(
-            self.dlg, f'{APPLICATION_NAME} - DEM Analysis',
+            self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
             f'{mode.capitalize()} file generation succeeded.',
             QMessageBox.Ok)
 

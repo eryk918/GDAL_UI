@@ -2,7 +2,7 @@
 import os
 from abc import ABC
 from tempfile import mkstemp
-from typing import List, Optional
+from typing import List
 
 from PyQt5.QtCore import QRegExp
 from PyQt5.QtGui import QRegExpValidator
@@ -32,24 +32,33 @@ class VRTTab(TabPrototype, ABC):
         self.dlg.vrt_user_res_y_lineEdit.setValidator(
             QRegExpValidator(QRegExp('[0-9]{1,}')))
         self.dlg.vrt_resolution_comboBox.currentTextChanged[str].connect(
-            lambda text: self.dlg.user_res_frame.hide() if text != 'user' else self.dlg.user_res_frame.show())
+            lambda text: self.dlg.user_res_frame.hide()
+            if text != 'user' else self.dlg.user_res_frame.show())
         self.dlg.user_res_frame.hide()
         self.dlg.vrt_alpha_mask_checkBox.toggled.connect(
-            lambda state: self.dlg.vrt_separate_checkBox.setChecked(False) if state else None)
+            lambda state: self.dlg.vrt_separate_checkBox.setChecked(
+                False) if state else None)
         self.dlg.vrt_separate_checkBox.toggled.connect(
-            lambda state: self.dlg.vrt_alpha_mask_checkBox.setChecked(False) if state else None)
+            lambda state: self.dlg.vrt_alpha_mask_checkBox.setChecked(
+                False) if state else None)
 
     def create_tmp_txt_file(self) -> str:
         file_handle, tmp_file = mkstemp(suffix='.txt')
         os.close(file_handle)
         with open(tmp_file, 'w') as file:
             file.write('\n'.join([os.path.normpath(path) for path in
-                                  self.dlg.file_widget.filePath.split('"') if os.path.exists(path)]))
+                                  self.dlg.file_widget.filePath.split('"') if
+                                  os.path.exists(path)]))
         return tmp_file
 
     def build_vrt(self) -> None:
         output_file = self.dlg.vrt_output_path_lineEdit.filePath
-
+        if not self.dlg.file_widget.filePath:
+            QMessageBox.critical(
+                self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
+                'No input file selected.',
+                QMessageBox.Ok)
+            return
         if not output_file:
             QMessageBox.critical(
                 self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
@@ -67,7 +76,9 @@ class VRTTab(TabPrototype, ABC):
         tmp_file = self.create_tmp_txt_file()
         _, _, ret_code, _ = \
             universal_executor(
-                [cmd for cmd in ['gdalbuildvrt ', *self.cmd_parameters(), output_file, '-input_file_list', tmp_file,]
+                [cmd for cmd in
+                 ['gdalbuildvrt ', *self.cmd_parameters(), output_file,
+                  '-input_file_list', tmp_file, ]
                  if cmd],
                 progress_bar=True
             )
@@ -84,7 +95,9 @@ class VRTTab(TabPrototype, ABC):
 
     def cmd_parameters(self) -> List[str]:
         params = [f'-r', self.dlg.vrt_resampling_comboBox.currentText(),
-                  f'-resolution', self.dlg.vrt_resolution_comboBox.currentText()]
+                  f'-resolution',
+                  self.dlg.vrt_resolution_comboBox.currentText(),
+                  '-overwrite']
 
         if self.dlg.vrt_resolution_comboBox.currentText() == 'user':
             params.extend(['-tr', self.dlg.vrt_user_res_x_lineEdit.text(),
@@ -97,6 +110,4 @@ class VRTTab(TabPrototype, ABC):
             params.append('-separate')
         if self.dlg.vrt_different_proj_checkBox.isChecked():
             params.append('-allow_projection_difference')
-        if self.dlg.vrt_overwrite_checkBox.isChecked():
-            params.append('-overwrite')
         return params

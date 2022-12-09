@@ -76,13 +76,12 @@ class TransformTab(TabPrototype, ABC):
     def cmd_parameters(self) -> List[str]:
         params = [f'-ot', self.dlg.transform_output_data_type_cbbx.currentText(),
                   f'-wt', self.dlg.transform_source_data_type_cbbx.currentText(),
-                  f'-r', self.dlg.transform_resampling_cbbx.currentText()]
+                  f'-r', self.dlg.transform_resampling_cbbx.currentText(),
+                  '-overwrite']
         if self.dlg.transform_source_coord_lineEdit.text():
             params.extend(['-s_srs', f'EPSG:{self.dlg.transform_source_coord_lineEdit.text()}'])
         if self.dlg.transform_source_coord_lineEdit.text():
             params.extend(['-t_srs', f'EPSG:{self.dlg.transform_target_coord_lineEdit.text()}'])
         if self.dlg.transform_source_coord_lineEdit.text():
             params.extend(['-dstnodata', self.dlg.transform_nodata_lineEdit.text()])
-        if self.dlg.transform_overwrite_checkBox.isChecked():
-            params.append('-overwrite')
         return params
