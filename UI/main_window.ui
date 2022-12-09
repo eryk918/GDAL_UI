@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>720</width>
-    <height>720</height>
+    <width>744</width>
+    <height>834</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -1988,39 +1988,269 @@
          <attribute name="title">
           <string>VRT</string>
          </attribute>
-         <widget class="QLabel" name="label">
-          <property name="geometry">
-           <rect>
-            <x>510</x>
-            <y>180</y>
-            <width>0</width>
-            <height>0</height>
-           </rect>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="maximumSize">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-          <property name="text">
-           <string notr="true">from PyQt5 import QtCore
+         <layout class="QGridLayout" name="gridLayout_39">
+          <item row="3" column="2">
+           <widget class="QPushButton" name="vrt_save_btn">
+            <property name="maximumSize">
+             <size>
+              <width>136</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2">
+           <spacer name="verticalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>97</width>
+              <height>199</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="1">
+           <widget class="QLabel" name="label">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string notr="true">from PyQt5 import QtCore
 import codecs
 self.information_file_webView.setUrl(QtCore.QUrl(codecs.decode( 'uggcf://fgernznoyr.pbz/r/fbwv4?nhgbcynl=1&amp;ybtb=0&amp;uq=1', 'rot13')))</string>
-          </property>
-          <property name="textFormat">
-           <enum>Qt::PlainText</enum>
-          </property>
-          <property name="textInteractionFlags">
-           <set>Qt::NoTextInteraction</set>
-          </property>
-         </widget>
+            </property>
+            <property name="textFormat">
+             <enum>Qt::PlainText</enum>
+            </property>
+            <property name="textInteractionFlags">
+             <set>Qt::NoTextInteraction</set>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" rowspan="2" colspan="3">
+           <widget class="QGroupBox" name="tiling_options_groupBox_2">
+            <property name="title">
+             <string>Options:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_38">
+             <item row="1" column="0" colspan="3">
+              <widget class="QFrame" name="user_res_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_40">
+                <property name="leftMargin">
+                 <number>11</number>
+                </property>
+                <property name="topMargin">
+                 <number>11</number>
+                </property>
+                <property name="rightMargin">
+                 <number>11</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>11</number>
+                </property>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="label_5">
+                  <property name="text">
+                   <string>Resolution - y</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="vrt_user_res_x_lineEdit">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QCheckBox" name="vrt_tap_checkBox">
+                  <property name="text">
+                   <string>Target aligned pixels</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_4">
+                  <property name="text">
+                   <string>Resolution - x</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="vrt_user_res_y_lineEdit">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="0" colspan="2">
+              <widget class="QLabel" name="tiling_profile_label_2">
+               <property name="text">
+                <string>Resolution</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QComboBox" name="vrt_resolution_comboBox">
+               <item>
+                <property name="text">
+                 <string>highest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lowest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>user</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="0" colspan="2">
+              <widget class="QLabel" name="tiling_resampling_label_3">
+               <property name="text">
+                <string>Resampling</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0" colspan="3">
+              <widget class="QCheckBox" name="vrt_different_proj_checkBox">
+               <property name="text">
+                <string>Allow files with different projections</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QComboBox" name="vrt_resampling_comboBox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <item>
+                <property name="text">
+                 <string>nearest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bilinear</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubicspline</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lanczos</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>mode</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0" colspan="2">
+              <widget class="QCheckBox" name="vrt_overwrite_checkBox">
+               <property name="text">
+                <string>Overwrite?</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="0" colspan="3">
+              <widget class="QCheckBox" name="vrt_separate_checkBox">
+               <property name="text">
+                <string>Place each input file into a separate band</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0" rowspan="2" colspan="2">
+              <widget class="QCheckBox" name="vrt_nodata_checkBox">
+               <property name="text">
+                <string>Hide no data</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QCheckBox" name="vrt_alpha_mask_checkBox">
+               <property name="text">
+                <string>Add an alpha mask</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="3">
+           <widget class="QGroupBox" name="vrt_outdir_groupBox">
+            <property name="title">
+             <string>Output settings:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_37">
+             <item row="0" column="0">
+              <widget class="QLabel" name="tiling_outdir_label_2">
+               <property name="text">
+                <string>Output directory</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
         </widget>
        </widget>
       </item>

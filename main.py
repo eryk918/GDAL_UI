@@ -15,6 +15,7 @@ from gdal_modules.MergeTilesTab import MergeTilesTab
 from gdal_modules.NoDataTab import NoDataTab
 from gdal_modules.TilesTab import TilesTab
 from gdal_modules.TransformTab import TransformTab
+from gdal_modules.VRTTab import VRTTab
 from style.StyleManager import StyleManager
 from utils import get_icon
 
@@ -44,6 +45,7 @@ class MainDialogFunctionality(QApplication):
         self.merge_tab = MergeTilesTab(self)
         self.transform_tab = TransformTab(self)
         self.convert_tab = ConvertTab(self)
+        self.vrt_tab = VRTTab(self)
 
     def tab_execution(self) -> None:
         if self.connected_rasters:
