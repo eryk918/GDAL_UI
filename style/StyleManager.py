@@ -2,10 +2,10 @@
 import os
 
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QPalette, QColor
+from PyQt5.QtGui import QPalette, QColor, QFontDatabase
 from PyQt5.QtWidgets import QApplication, QDialog
 
-from utils import load_settings, save_settings
+from utils import load_settings, save_settings, PLUGIN_DIR
 
 
 class StyleManager:
@@ -126,6 +126,8 @@ class StyleManager:
 
     def apply_theme(self) -> None:
         self.application.setStyle('Fusion')
+        QFontDatabase.addApplicationFont(
+            os.path.join(PLUGIN_DIR, 'fonts', "NotoSans-ExtraCondensedBold.ttf"))
         with open(os.path.join('style', 'style.qss')) as stylesheet:
             self.application.setStyleSheet(stylesheet.read())
         self._setup_web_view_style()
