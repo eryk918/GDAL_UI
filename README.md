@@ -1,7 +1,7 @@
 ## GDAL UI: Geospatial Data Abstraction Library User Interface
 **Simple graphical interface for the GDAL library**
 
-<p align="center"><img src="https://github.com/eryk918/gdal_ui/blob/main/images/light.png?raw=true" alt="GDAL UI Light Mode" width="460"/> <img src="https://github.com/eryk918/gdal_ui/blob/main/images/dark.png?raw=true" alt="GDAL UI Dark Mode" width="460"/><p>
+<p align="center"><img src="https://github.com/eryk918/gdal_ui/blob/main/images/light.png?raw=true" alt="GDAL UI Light Mode" width="350"/> <img src="https://github.com/eryk918/gdal_ui/blob/main/images/dark.png?raw=true" alt="GDAL UI Dark Mode" width="350"/><p>
 
 ### Description:
 The application includes the implementation of the following programs:
