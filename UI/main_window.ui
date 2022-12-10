@@ -815,7 +815,7 @@
              <item row="0" column="0">
               <widget class="QLabel" name="transform_outfile_label">
                <property name="text">
-                <string>Output directory</string>
+                <string>Output file path</string>
                </property>
               </widget>
              </item>

@@ -75,7 +75,7 @@ class StyleManager:
         ''')
         self.application.setPalette(dark_palette)
 
-    def set_light_style(self):
+    def set_light_style(self) -> None:
         light_palette = QPalette()
         light_palette.setColor(QPalette.WindowText, QColor(0, 0, 0))
         light_palette.setColor(QPalette.Button, QColor(240, 240, 240))

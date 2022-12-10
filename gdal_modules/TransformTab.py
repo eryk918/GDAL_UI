@@ -12,7 +12,7 @@ from utils import insert_file_widget, get_extensions, APPLICATION_NAME, \
 
 
 class TransformTab(TabPrototype, ABC):
-    TOOL_NAME = 'Merge Rasters'
+    TOOL_NAME = 'Transform'
 
     def __init__(self, main_class: callable):
         super().__init__(main_class)
@@ -20,9 +20,9 @@ class TransformTab(TabPrototype, ABC):
             self.dlg.transform_outfile_groupBox.layout(), (0, 1),
             mode=CustomFileWidget.SaveFile,
             filters=';; '.join([f'*.{ext}' for ext in get_extensions()]))
-        self.dlg.transform_save_btn.clicked.connect(self.generate_dem)
+        self.dlg.transform_save_btn.clicked.connect(self.transform_file)
 
-    def generate_dem(self) -> None:
+    def transform_file(self) -> None:
         input_file = self.dlg.file_cbbx.currentText()
         output_file = self.dlg.transform_output_path_lineEdit.filePath
 

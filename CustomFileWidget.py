@@ -4,7 +4,7 @@ import os
 import re
 from typing import List
 
-from PyQt5.QtCore import Qt, QRegularExpression, QFileInfo, pyqtSignal, QDir
+from PyQt5.QtCore import Qt, QRegularExpression, QFileInfo, pyqtSignal, QDir, QSize
 from PyQt5.QtGui import QDropEvent, QDragEnterEvent, QDragLeaveEvent
 from PyQt5.QtWidgets import QFileDialog, QHBoxLayout, QWidget, QLineEdit, \
     QToolButton
@@ -20,30 +20,30 @@ class QgsFileDropEdit(QLineEdit):
         self.acceptable_extensions = []
 
     @property
-    def dir_only(self):
+    def dir_only(self) -> bool:
         return self.dir_only
 
     @dir_only.setter
-    def dir_only(self, value):
+    def dir_only(self, value: bool) -> None:
         self.dir_only = value
 
     @property
-    def file_only(self):
+    def file_only(self) -> bool:
         return self.file_only
 
     @file_only.setter
-    def file_only(self, value):
+    def file_only(self, value: bool) -> None:
         self.file_only = value
 
     @property
-    def suffixFilter(self):
+    def suffixFilter(self) -> str:
         return self.suffixFilter
 
     @suffixFilter.setter
-    def suffixFilter(self, value):
+    def suffixFilter(self, value: str) -> None:
         self.suffixFilter = value
 
-    def set_filters(self, filters: str):
+    def set_filters(self, filters: str) -> None:
         self.acceptable_extensions.clear()
         if '*.*' in filters:
             return
@@ -91,14 +91,14 @@ class QgsFileDropEdit(QLineEdit):
         else:
             return ''
 
-    def dragEnterEvent(self, event: QDragEnterEvent):
+    def dragEnterEvent(self, event: QDragEnterEvent) -> None:
         file_path = self.acceptable_path(event)
         if file_path:
             event.acceptProposedAction()
         else:
             event.ignore()
 
-    def dragLeaveEvent(self, event: QDragLeaveEvent):
+    def dragLeaveEvent(self, event: QDragLeaveEvent) -> None:
         super(QgsFileDropEdit, self).dragLeaveEvent(event)
         event.accept()
 
@@ -135,11 +135,11 @@ class CustomFileWidget(QWidget):
         self._mStorageMode = CustomFileWidget.GetMultipleFiles
 
     @property
-    def filePath(self):
+    def filePath(self) -> str:
         return self._filePath
 
     @filePath.setter
-    def filePath(self, value):
+    def filePath(self, value: str) -> None:
         self._filePath = value
 
     def splitFilePaths(self, path: str) -> List[str]:
@@ -153,40 +153,40 @@ class CustomFileWidget(QWidget):
     def setFilePath(self, path: str) -> None:
         self.file_lineEdit.setText(path)
 
-    def setReadOnly(self, readOnly: bool):
+    def setReadOnly(self, readOnly: bool) -> None:
         if self.mReadOnly != readOnly:
             self.mReadOnly = readOnly
             self.updateLayout()
 
     @property
-    def dialogTitle(self):
+    def dialogTitle(self) -> str:
         return self._dialogTitle
 
     @dialogTitle.setter
-    def dialogTitle(self, value):
+    def dialogTitle(self, value: str) -> None:
         self._dialogTitle = value
 
     @property
-    def filter(self):
+    def filter(self) -> str:
         return self._filter
 
     @filter.setter
-    def filter(self, value):
+    def filter(self, value: str) -> None:
         self._filter = value
         self.file_lineEdit.set_filters(value)
 
     @property
-    def options(self):
+    def options(self) -> str:
         return self._options
 
     @options.setter
-    def options(self, value):
+    def options(self, value: str) -> None:
         self._options = value
 
-    def isMultiFiles(self, path: str):
+    def isMultiFiles(self, path: str) -> bool:
         return "\" \"" in path
 
-    def textEdited(self, path: str):
+    def textEdited(self, path: str) -> None:
         self._filePath = path
         if self.isMultiFiles(path):
             self.file_lineEdit.setToolTip(
@@ -194,37 +194,37 @@ class CustomFileWidget(QWidget):
         else:
             self.file_lineEdit.setToolTip('')
 
-    def fileDropped(self, filePath: str):
+    def fileDropped(self, filePath: str) -> None:
         self.setSelectedFileNames([filePath])
         self.file_lineEdit.selectAll()
         self.file_lineEdit.setFocus(Qt.MouseFocusReason)
 
     @property
-    def defaultRoot(self):
+    def defaultRoot(self) -> str:
         return self._defaultRoot
 
     @defaultRoot.setter
-    def defaultRoot(self, value):
+    def defaultRoot(self, value: str) -> None:
         self._defaultRoot = value
 
     @property
-    def mStorageMode(self):
+    def mStorageMode(self) -> int:
         return self._mStorageMode
 
     @mStorageMode.setter
-    def mStorageMode(self, value):
+    def mStorageMode(self, value: int) -> None:
         self._mStorageMode = value
         self.file_lineEdit.setStorageMode(value)
 
     @property
-    def lineEdit(self):
+    def lineEdit(self) -> QLineEdit:
         return self.file_lineEdit
 
-    def updateLayout(self):
+    def updateLayout(self) -> None:
         self.browse_btn.setEnabled(not self.mReadOnly)
         self.file_lineEdit.setEnabled(not self.mReadOnly)
 
-    def openFileDialog(self):
+    def openFileDialog(self) -> None:
         old_path = ''
         if self._filePath and (os.path.exists(
                 self._filePath) or self._mStorageMode == CustomFileWidget.SaveFile):
@@ -286,14 +286,14 @@ class CustomFileWidget(QWidget):
                 QFileInfo(file_names[index]).absoluteFilePath()))
         self.setSelectedFileNames(file_names)
 
-    def setSelectedFileNames(self, file_names: List[str]):
+    def setSelectedFileNames(self, file_names: List[str]) -> None:
         if file_names:
             for index in range(len(file_names)):
                 file_names[index] = os.path.normpath(
                     self.relativePath(file_names[index], True))
         self.setFilePaths(file_names)
 
-    def setFilePaths(self, file_names: List[str]):
+    def setFilePaths(self, file_names: List[str]) -> None:
         if not self._mStorageMode == CustomFileWidget.GetMultipleFiles:
             self.setFilePath(file_names[0])
         else:
@@ -302,7 +302,7 @@ class CustomFileWidget(QWidget):
             else:
                 self.setFilePath(file_names[0])
 
-    def relativePath(self, file_path: str, remove_relative: bool):
+    def relativePath(self, file_path: str, remove_relative: bool) -> str:
         relative_path = QDir.toNativeSeparators(
             QDir.cleanPath(self._defaultRoot))
         if relative_path:
@@ -312,7 +312,7 @@ class CustomFileWidget(QWidget):
                 QDir(relative_path).filePath(file_path))
         return file_path
 
-    def minimumSizeHint(self):
+    def minimumSizeHint(self) -> QSize:
         size = self.file_lineEdit.minimumSizeHint()
         btn_size = self.browse_btn.minimumSizeHint()
         size.setWidth(size.width() + btn_size.width())

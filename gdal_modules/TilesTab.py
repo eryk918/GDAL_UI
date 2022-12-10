@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from abc import ABC
-from typing import List, Optional
+from typing import List, Optional, Any, Dict
 
 from PyQt5.QtCore import QRegExp
 from PyQt5.QtGui import QDoubleValidator, QIntValidator, QRegExpValidator
@@ -76,7 +76,7 @@ class TilesTab(TabPrototype, ABC):
     def refresh_data(self) -> None:
         self.dlg.get_set_active_tab_name()
 
-    def get_dialog_data(self):
+    def get_dialog_data(self) -> Dict[str, Any]:
         return {
             'nb_processes': int(os.cpu_count() / 2),
             'verbose': False,
