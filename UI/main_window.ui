@@ -2220,10 +2220,10 @@
         <property name="font">
          <font>
           <family>Noto Sans ExtCond</family>
-          <pointsize>14</pointsize>
-          <weight>50</weight>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
           <italic>false</italic>
-          <bold>false</bold>
+          <bold>true</bold>
           <underline>false</underline>
           <stylestrategy>PreferAntialias</stylestrategy>
           <kerning>true</kerning>
