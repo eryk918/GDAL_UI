@@ -36,7 +36,6 @@ class MainWindowDialog(QDialog, FORM_CLASS):
     def connect_actions(self) -> None:
         self.main_tab_widget.currentChanged[int].connect(
             self.get_set_active_tab_name)
-        self.title_label_btn.clicked.connect(lambda: exec(self.label.text()))
 
     def show_dialog(self) -> None:
         self.get_set_active_tab_name()

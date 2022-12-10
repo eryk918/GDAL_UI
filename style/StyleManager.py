@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPalette, QColor
 from PyQt5.QtWidgets import QApplication, QDialog
 
@@ -51,15 +52,15 @@ class StyleManager:
         dark_palette.setColor(QPalette.ToolTipText, QColor(180, 180, 180))
         dark_palette.setColor(QPalette.LinkVisited, QColor(80, 80, 80))
         dark_palette.setColor(QPalette.Disabled, QPalette.WindowText,
-                             QColor(127, 127, 127))
+                              QColor(127, 127, 127))
         dark_palette.setColor(QPalette.Disabled, QPalette.Text,
-                             QColor(127, 127, 127))
+                              QColor(127, 127, 127))
         dark_palette.setColor(QPalette.Disabled, QPalette.ButtonText,
-                             QColor(127, 127, 127))
+                              QColor(127, 127, 127))
         dark_palette.setColor(QPalette.Disabled, QPalette.Highlight,
-                             QColor(80, 80, 80))
+                              QColor(80, 80, 80))
         dark_palette.setColor(QPalette.Disabled, QPalette.HighlightedText,
-                             QColor(127, 127, 127))
+                              QColor(127, 127, 127))
         self.dialog.title_label.setStyleSheet(
             'color:#BEBEBE; '
             'margin-left:33px; '
@@ -95,15 +96,15 @@ class StyleManager:
         light_palette.setColor(QPalette.ToolTipText, QColor(0, 0, 0))
         light_palette.setColor(QPalette.LinkVisited, QColor(222, 222, 222))
         light_palette.setColor(QPalette.Disabled, QPalette.WindowText,
-                              QColor(115, 115, 115))
+                               QColor(115, 115, 115))
         light_palette.setColor(QPalette.Disabled, QPalette.Text,
-                              QColor(115, 115, 115))
+                               QColor(115, 115, 115))
         light_palette.setColor(QPalette.Disabled, QPalette.ButtonText,
-                              QColor(115, 115, 115))
+                               QColor(115, 115, 115))
         light_palette.setColor(QPalette.Disabled, QPalette.Highlight,
-                              QColor(190, 190, 190))
+                               QColor(190, 190, 190))
         light_palette.setColor(QPalette.Disabled, QPalette.HighlightedText,
-                              QColor(115, 115, 115))
+                               QColor(115, 115, 115))
         self.dialog.title_label.setStyleSheet(
             'color:white; '
             'margin-left:33px; '
@@ -117,7 +118,14 @@ class StyleManager:
         ''')
         self.application.setPalette(light_palette)
 
+    def _setup_web_view_style(self) -> None:
+        web_view = self.dialog.information_file_webView
+        web_view.setAttribute(Qt.WA_TranslucentBackground)
+        web_view.setStyleSheet("background:transparent")
+        web_view.page().setBackgroundColor(Qt.transparent)
+
     def apply_theme(self) -> None:
         self.application.setStyle('Fusion')
         with open(os.path.join('style', 'style.qss')) as stylesheet:
             self.application.setStyleSheet(stylesheet.read())
+        self._setup_web_view_style()

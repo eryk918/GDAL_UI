@@ -116,7 +116,7 @@ def json_to_html(
             if isinstance(value, (dict, list)):
                 info += f"<tr><th>{key}{delimiter_char}</th>" \
                         f"<td>{json_to_html(value, False)}</td></tr>"
-            elif value:
+            elif value is not None:
                 info += f"<tr><th>{key}{delimiter_char}</th>" \
                         f"<td>{value}</td></tr>"
     elif isinstance(data, list):
