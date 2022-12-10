@@ -77,7 +77,7 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0" colspan="2">
+      <item row="2" column="0" colspan="2">
        <widget class="QTabWidget" name="main_tab_widget">
         <property name="currentIndex">
          <number>0</number>
@@ -99,22 +99,6 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="information_file_label">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Select file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="information_file_cbbx"/>
-          </item>
          </layout>
         </widget>
         <widget class="QWidget" name="convert">
@@ -122,20 +106,7 @@
           <string>Convert</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_33">
-          <item row="4" column="0">
-           <spacer name="verticalSpacer_7">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="0" colspan="2">
+          <item row="1" column="0" colspan="2">
            <widget class="QGroupBox" name="converter_outpath_groupBox">
             <property name="title">
              <string>Output settings:</string>
@@ -151,51 +122,20 @@
             </layout>
            </widget>
           </item>
-          <item row="3" column="0" colspan="2">
-           <widget class="QFrame" name="frame_2">
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
+          <item row="3" column="0">
+           <spacer name="verticalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
             </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
             </property>
-            <layout class="QGridLayout" name="gridLayout_36">
-             <item row="0" column="1">
-              <widget class="QPushButton" name="converter_save_btn">
-               <property name="minimumSize">
-                <size>
-                 <width>136</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>136</width>
-                 <height>22</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Save</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <spacer name="horizontalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </widget>
+           </spacer>
           </item>
-          <item row="1" column="0" colspan="2">
+          <item row="0" column="0" colspan="2">
            <widget class="QGroupBox" name="converter_options_groupBox">
             <property name="title">
              <string>Options:</string>
@@ -372,21 +312,49 @@
             </layout>
            </widget>
           </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="converter_file_label">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
+          <item row="2" column="0" colspan="2">
+           <widget class="QFrame" name="frame_2">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
             </property>
-            <property name="text">
-             <string>Select file</string>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
             </property>
+            <layout class="QGridLayout" name="gridLayout_36">
+             <item row="0" column="1">
+              <widget class="QPushButton" name="converter_save_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>136</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>136</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Save</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <spacer name="horizontalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="converter_file_cbbx"/>
           </item>
          </layout>
         </widget>
@@ -395,14 +363,77 @@
           <string>Clip</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_26">
-          <item row="1" column="0">
+          <item row="4" column="0">
+           <spacer name="verticalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QFrame" name="clip_frame_2">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_27">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item row="1" column="1">
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="clip_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Clip</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
            <widget class="QLabel" name="mask_file_label">
             <property name="text">
              <string>Mask vector file</string>
             </property>
            </widget>
           </item>
-          <item row="3" column="0" colspan="2">
+          <item row="2" column="0" colspan="2">
            <widget class="QFrame" name="clip_frame">
             <property name="frameShape">
              <enum>QFrame::NoFrame</enum>
@@ -464,91 +495,12 @@
             </layout>
            </widget>
           </item>
-          <item row="4" column="0" colspan="2">
-           <widget class="QFrame" name="clip_frame_2">
-            <property name="frameShape">
-             <enum>QFrame::NoFrame</enum>
-            </property>
-            <property name="frameShadow">
-             <enum>QFrame::Raised</enum>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_27">
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item row="1" column="1">
-              <spacer name="horizontalSpacer_2">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item row="1" column="2">
-              <widget class="QPushButton" name="clip_btn">
-               <property name="minimumSize">
-                <size>
-                 <width>120</width>
-                 <height>0</height>
-                </size>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>120</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Clip</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="2" column="0">
+          <item row="1" column="0">
            <widget class="QLabel" name="clip_output_label">
             <property name="text">
              <string>Output file path</string>
             </property>
            </widget>
-          </item>
-          <item row="5" column="0">
-           <spacer name="verticalSpacer_5">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="clip_file_label">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Select file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1">
-           <widget class="QComboBox" name="clip_file_cbbx"/>
           </item>
          </layout>
         </widget>
@@ -557,7 +509,7 @@
           <string>Transform</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_29">
-          <item row="1" column="0" colspan="3">
+          <item row="0" column="0" colspan="3">
            <widget class="QGroupBox" name="transform_options_groupBox">
             <property name="title">
              <string>Options:</string>
@@ -841,7 +793,7 @@
             </layout>
            </widget>
           </item>
-          <item row="3" column="2">
+          <item row="2" column="2">
            <widget class="QPushButton" name="transform_save_btn">
             <property name="maximumSize">
              <size>
@@ -854,7 +806,7 @@
             </property>
            </widget>
           </item>
-          <item row="2" column="0" colspan="3">
+          <item row="1" column="0" colspan="3">
            <widget class="QGroupBox" name="transform_outfile_groupBox">
             <property name="title">
              <string>Output settings:</string>
@@ -870,7 +822,7 @@
             </layout>
            </widget>
           </item>
-          <item row="3" column="1">
+          <item row="2" column="1">
            <spacer name="verticalSpacer_6">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -882,22 +834,6 @@
              </size>
             </property>
            </spacer>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="transform_file_label">
-            <property name="maximumSize">
-             <size>
-              <width>120</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Select file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QComboBox" name="transform_file_cbbx"/>
           </item>
          </layout>
         </widget>
@@ -915,15 +851,7 @@
              <enum>QFrame::Raised</enum>
             </property>
             <layout class="QGridLayout" name="gridLayout_9">
-             <item row="2" column="0">
-              <widget class="QGroupBox" name="plot_groupBox">
-               <property name="title">
-                <string>Plot:</string>
-               </property>
-               <layout class="QGridLayout" name="gridLayout_10"/>
-              </widget>
-             </item>
-             <item row="1" column="0">
+             <item row="0" column="0">
               <layout class="QGridLayout" name="gridLayout_8">
                <item row="0" column="0">
                 <widget class="QLabel" name="band_label_plot">
@@ -943,25 +871,13 @@
                </item>
               </layout>
              </item>
-             <item row="0" column="0">
-              <layout class="QGridLayout" name="file_layout_plot">
-               <item row="0" column="0">
-                <widget class="QLabel" name="file_label_plot">
-                 <property name="maximumSize">
-                  <size>
-                   <width>100</width>
-                   <height>16777215</height>
-                  </size>
-                 </property>
-                 <property name="text">
-                  <string>Select file</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QComboBox" name="file_combo_plot"/>
-               </item>
-              </layout>
+             <item row="1" column="0">
+              <widget class="QGroupBox" name="plot_groupBox">
+               <property name="title">
+                <string>Plot:</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_10"/>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -973,7 +889,37 @@
           <string>NoData value</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_4">
-          <item row="4" column="0" rowspan="2" colspan="5">
+          <item row="5" column="2">
+           <widget class="QPushButton" name="new_nodata_save_btn">
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <widget class="QLineEdit" name="nodata_new_value_lineedit"/>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QTextEdit" name="nodata_text_box">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="new_nodata_label">
+            <property name="text">
+             <string>New NoData value</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" rowspan="2" colspan="3">
            <widget class="QGroupBox" name="nodata_output_path_groupBox">
             <property name="title">
              <string>Create new file</string>
@@ -992,37 +938,7 @@
             </layout>
            </widget>
           </item>
-          <item row="3" column="1" colspan="4">
-           <widget class="QLineEdit" name="nodata_new_value_lineedit"/>
-          </item>
-          <item row="6" column="4">
-           <widget class="QPushButton" name="new_nodata_save_btn">
-            <property name="text">
-             <string>Save</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="nodata_file_label">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Select file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="0">
-           <widget class="QLabel" name="new_nodata_label">
-            <property name="text">
-             <string>New NoData value</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="4">
+          <item row="6" column="2">
            <spacer name="verticalSpacer">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
@@ -1035,59 +951,14 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="0" colspan="5">
-           <widget class="QTextEdit" name="nodata_text_box">
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>150</height>
-             </size>
-            </property>
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" colspan="4">
-           <widget class="QComboBox" name="nodata_file_cbbx"/>
-          </item>
          </layout>
         </widget>
         <widget class="QWidget" name="dem">
          <attribute name="title">
-          <string>DEM Analysis</string>
+          <string>DEM analysis</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_17">
-          <item row="4" column="0" colspan="3">
-           <widget class="QGroupBox" name="dem_outdir_groupBox">
-            <property name="title">
-             <string>Output settings:</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_21">
-             <item row="0" column="0">
-              <widget class="QLabel" name="dem_outdir_label">
-               <property name="text">
-                <string>Output file path</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="7" column="2">
-           <spacer name="verticalSpacer_4">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>20</width>
-              <height>40</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="0" colspan="3">
+          <item row="1" column="0" colspan="2">
            <widget class="QGroupBox" name="dem_options_groupBox">
             <property name="title">
              <string>General options:</string>
@@ -1169,7 +1040,49 @@
             </layout>
            </widget>
           </item>
-          <item row="3" column="0" colspan="3">
+          <item row="5" column="1">
+           <widget class="QPushButton" name="dem_save_btn">
+            <property name="maximumSize">
+             <size>
+              <width>136</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QGroupBox" name="dem_outdir_groupBox">
+            <property name="title">
+             <string>Output settings:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_21">
+             <item row="0" column="0">
+              <widget class="QLabel" name="dem_outdir_label">
+               <property name="text">
+                <string>Output file path</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <spacer name="verticalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="0" colspan="2">
            <widget class="QGroupBox" name="dem_mode_groupBox">
             <property name="title">
              <string>Mode option:</string>
@@ -1255,7 +1168,7 @@
                 <property name="bottomMargin">
                  <number>0</number>
                 </property>
-                <item row="11" column="1">
+                <item row="10" column="1">
                  <widget class="QSpinBox" name="dem_hill_z_spinBox">
                   <property name="minimum">
                    <number>1</number>
@@ -1265,60 +1178,6 @@
                   </property>
                   <property name="value">
                    <number>1</number>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="1">
-                 <widget class="QSpinBox" name="dem_hill_azimuth_spinBox">
-                  <property name="minimum">
-                   <number>0</number>
-                  </property>
-                  <property name="maximum">
-                   <number>359</number>
-                  </property>
-                  <property name="value">
-                   <number>315</number>
-                  </property>
-                 </widget>
-                </item>
-                <item row="9" column="1">
-                 <widget class="QSpinBox" name="dem_hill_scale_spinBox">
-                  <property name="minimum">
-                   <number>1</number>
-                  </property>
-                  <property name="maximum">
-                   <number>999999999</number>
-                  </property>
-                  <property name="value">
-                   <number>1</number>
-                  </property>
-                 </widget>
-                </item>
-                <item row="7" column="0">
-                 <widget class="QLabel" name="dem_hill_azimuth_label">
-                  <property name="text">
-                   <string>Azimuth </string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="9" column="0">
-                 <widget class="QLabel" name="dem_hill_scale_label">
-                  <property name="text">
-                   <string>Scale</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="8" column="0">
-                 <widget class="QLabel" name="dem_hill_altitude_label">
-                  <property name="text">
-                   <string>Altitude of the light</string>
-                  </property>
-                 </widget>
-                </item>
-                <item row="12" column="0">
-                 <widget class="QCheckBox" name="dem_hill_combined_shading_checkBox">
-                  <property name="text">
-                   <string>Combined shading</string>
                   </property>
                  </widget>
                 </item>
@@ -1336,16 +1195,50 @@
                  </widget>
                 </item>
                 <item row="11" column="0">
-                 <widget class="QLabel" name="dem_hill_z_label">
+                 <widget class="QCheckBox" name="dem_hill_combined_shading_checkBox">
                   <property name="text">
-                   <string>Z factor (vertical exaggeration)</string>
+                   <string>Combined shading</string>
                   </property>
                  </widget>
                 </item>
-                <item row="13" column="0">
+                <item row="8" column="0">
+                 <widget class="QLabel" name="dem_hill_altitude_label">
+                  <property name="text">
+                   <string>Altitude of the light</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="0">
+                 <widget class="QLabel" name="dem_hill_azimuth_label">
+                  <property name="text">
+                   <string>Azimuth </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="12" column="0">
                  <widget class="QCheckBox" name="dem_hill_multidirectional_checkBox">
                   <property name="text">
                    <string>Multidirectional</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="1">
+                 <widget class="QSpinBox" name="dem_hill_azimuth_spinBox">
+                  <property name="minimum">
+                   <number>0</number>
+                  </property>
+                  <property name="maximum">
+                   <number>359</number>
+                  </property>
+                  <property name="value">
+                   <number>315</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="10" column="0">
+                 <widget class="QLabel" name="dem_hill_z_label">
+                  <property name="text">
+                   <string>Z factor (vertical exaggeration)</string>
                   </property>
                  </widget>
                 </item>
@@ -1452,35 +1345,6 @@
             </layout>
            </widget>
           </item>
-          <item row="6" column="2">
-           <widget class="QPushButton" name="dem_save_btn">
-            <property name="maximumSize">
-             <size>
-              <width>136</width>
-              <height>22</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Save</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0">
-           <widget class="QLabel" name="dem_file_label">
-            <property name="maximumSize">
-             <size>
-              <width>100</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Select file</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" colspan="2">
-           <widget class="QComboBox" name="dem_file_cbbx"/>
-          </item>
          </layout>
         </widget>
         <widget class="QWidget" name="tiling">
@@ -1488,20 +1352,36 @@
           <string>Tiling</string>
          </attribute>
          <layout class="QGridLayout" name="gridLayout_7">
-          <item row="3" column="2">
-           <widget class="QPushButton" name="tiling_save_btn">
-            <property name="maximumSize">
+          <item row="3" column="1">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>136</width>
-              <height>22</height>
+              <width>97</width>
+              <height>209</height>
              </size>
             </property>
-            <property name="text">
-             <string>Save</string>
+           </spacer>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QGroupBox" name="tiling_outdir_groupBox">
+            <property name="title">
+             <string>Output settings:</string>
             </property>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <widget class="QLabel" name="tiling_outdir_label">
+               <property name="text">
+                <string>Output directory</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
-          <item row="1" column="0" colspan="3">
+          <item row="0" column="0" colspan="2">
            <widget class="QGroupBox" name="tiling_options_groupBox">
             <property name="title">
              <string>Options:</string>
@@ -1688,50 +1568,18 @@
             </layout>
            </widget>
           </item>
-          <item row="4" column="2">
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>97</width>
-              <height>209</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="0" colspan="3">
-           <widget class="QGroupBox" name="tiling_outdir_groupBox">
-            <property name="title">
-             <string>Output settings:</string>
-            </property>
-            <layout class="QGridLayout" name="gridLayout_9">
-             <item row="0" column="0">
-              <widget class="QLabel" name="tiling_outdir_label">
-               <property name="text">
-                <string>Output directory</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item row="0" column="0">
-           <widget class="QLabel" name="tiling_file_label">
+          <item row="2" column="1">
+           <widget class="QPushButton" name="tiling_save_btn">
             <property name="maximumSize">
              <size>
-              <width>100</width>
-              <height>16777215</height>
+              <width>136</width>
+              <height>22</height>
              </size>
             </property>
             <property name="text">
-             <string>Select file</string>
+             <string>Save</string>
             </property>
            </widget>
-          </item>
-          <item row="0" column="1" colspan="2">
-           <widget class="QComboBox" name="tiling_file_cbbx"/>
           </item>
          </layout>
         </widget>
@@ -1909,31 +1757,15 @@
              <string>Options:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_15">
-             <item row="1" column="0">
+             <item row="0" column="1">
+              <widget class="QComboBox" name="compare_second_file_cbbx"/>
+             </item>
+             <item row="0" column="0">
               <widget class="QLabel" name="compare_second_file_label">
                <property name="text">
                 <string>Select file to compare</string>
                </property>
               </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="compare_file_label">
-               <property name="maximumSize">
-                <size>
-                 <width>100</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="text">
-                <string>Select base file</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QComboBox" name="compare_file_cbbx"/>
-             </item>
-             <item row="1" column="1">
-              <widget class="QComboBox" name="compare_second_file_cbbx"/>
              </item>
             </layout>
            </widget>
@@ -2189,7 +2021,7 @@
         </widget>
        </widget>
       </item>
-      <item row="0" column="0">
+      <item row="0" column="0" colspan="2">
        <widget class="QGroupBox" name="load_groupBox">
         <property name="font">
          <font>
@@ -2216,6 +2048,22 @@
             <string>Raster file</string>
            </property>
           </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="information_file_label">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Select file</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="file_cbbx"/>
          </item>
         </layout>
        </widget>

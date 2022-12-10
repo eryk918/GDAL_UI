@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import os
 from typing import Optional
 
@@ -6,7 +7,7 @@ from PyQt5 import uic
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QDialog, QWidget
 
-from utils import insert_file_widget
+from utils import insert_file_widget, multiprocessing_execution
 
 FORM_CLASS, _ = uic.loadUiType(os.path.join(
     os.path.dirname(__file__), 'main_window.ui'))
@@ -46,4 +47,28 @@ class MainWindowDialog(QDialog, FORM_CLASS):
                  self.file_widget.filePath.split('"') if os.path.exists(path)]
         if files and files[0] != '.':
             self.main_class.connected_rasters = files
+            self._load_infos(files)
             self.main_class.tab_execution()
+
+    def _load_infos(self, input_files) -> None:
+        self.main_class.files_dict = {}
+        cmd_list = [[f'gdalinfo|-json|{file}'] for file in input_files]
+        for response in multiprocessing_execution(cmd_list):
+            std_out, _, code, file_path = response
+            if not code:
+                self.main_class.files_dict[file_path] = [json.loads(std_out)]
+                if response and not response[2]:
+                    bands_list = json.loads(std_out)['bands']
+                    if bands_list:
+                        self.main_class.files_dict[file_path].extend(
+                            [
+                                {
+                                    band["band"]: band['noDataValue']
+                                    for band in bands_list if
+                                    'noDataValue' in band.keys()
+                                },
+                                len(bands_list)
+                            ]
+                        )
+        self.file_cbbx.clear()
+        self.file_cbbx.addItems(self.main_class.files_dict.keys())

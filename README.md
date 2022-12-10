@@ -1,4 +1,4 @@
-## GDAL UI <br> Geospatial Data Abstraction Library User Interface
+## GDAL UI: Geospatial Data Abstraction Library User Interface
 **Simple graphical interface for the GDAL library**
 
 ### Description:
@@ -11,7 +11,6 @@ The application includes the implementation of the following programs:
 - gdalwarp
 - gdal_merge.py
 - gdal_translate
-
 
 ### Requirements:
 It's recommended to use a package manager like **Conda** or **OSGeo4W**.

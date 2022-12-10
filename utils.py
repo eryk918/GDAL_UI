@@ -15,6 +15,13 @@ APPLICATION_NAME = 'GDAL UI'
 PLUGIN_DIR = os.path.normpath(os.path.dirname(__file__))
 SETTINGS_PATH = os.path.join(tempfile.gettempdir(), 'gdal_ui_settings.json')
 
+FILE_DICT_INDEXES = {
+    'Data information': 0,
+    'NoData value': 1,
+    'Band plots': 2,
+    'DEM Analysis': 2
+}
+
 
 def get_icon() -> QIcon:
     icon_path = os.path.join(PLUGIN_DIR, 'images', 'icon.png')

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import json
 import sys
 from typing import List
 
@@ -17,7 +18,7 @@ from gdal_modules.TilesTab import TilesTab
 from gdal_modules.TransformTab import TransformTab
 from gdal_modules.VRTTab import VRTTab
 from style.StyleManager import StyleManager
-from utils import get_icon
+from utils import get_icon, multiprocessing_execution
 
 
 class MainDialogFunctionality(QApplication):

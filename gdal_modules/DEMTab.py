@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QMessageBox
 from CustomFileWidget import CustomFileWidget
 from gdal_modules.TabPrototype import TabPrototype
 from utils import insert_file_widget, get_extensions, APPLICATION_NAME, \
-    universal_executor
+    universal_executor, FILE_DICT_INDEXES
 
 
 class DEMTab(TabPrototype, ABC):
@@ -52,19 +52,26 @@ class DEMTab(TabPrototype, ABC):
             filters='*.txt')
         self.dlg.dem_mode_comboBox.currentTextChanged[str].connect(
             self.show_hide_correct_objects)
+        self.dlg.file_cbbx.currentTextChanged[str].connect(
+            lambda: self.show_hide_correct_objects())
         self.dlg.dem_save_btn.clicked.connect(self.generate_dem)
 
     def run(self, input_files: List[str],
             output_path: Optional[str] = None) -> None:
-        self.execute_process(input_files, output_path)
         self.show_hide_correct_objects()
 
-    def execute_process(self, input_files: List[str],
-                        output_path: Optional[str] = None) -> None:
-        self.dlg.dem_file_cbbx.clear()
-        self.dlg.dem_file_cbbx.addItems(input_files)
+    def show_hide_correct_objects(self, mode: str = 'hillshade') -> None:
+        band_spinbox = self.dlg.dem_band_spinBox
+        if self.dlg.file_cbbx.currentText():
+            band_spinbox.setMaximum(
+                self.main_class.files_dict.get(
+                    self.dlg.file_cbbx.currentText())[
+                    FILE_DICT_INDEXES[self.TOOL_NAME]])
+            band_spinbox.setValue(1)
+        else:
+            band_spinbox.setMaximum(1)
+            band_spinbox.setValue(1)
 
-    def show_hide_correct_objects(self, mode: str = 'hillshade', ) -> None:
         for obj in self.all_objects:
             getattr(self.dlg, obj).hide()
         if mode:
@@ -73,7 +80,7 @@ class DEMTab(TabPrototype, ABC):
 
     def generate_dem(self) -> None:
         mode = self.dlg.dem_mode_comboBox.currentText()
-        input_file = self.dlg.dem_file_cbbx.currentText()
+        input_file = self.dlg.file_cbbx.currentText()
         color_file = self.dlg.dem_color_text_file.filePath \
             if mode == 'color-relief' else ''
         output_file = self.dlg.dem_output_path_lineEdit.filePath
@@ -133,7 +140,6 @@ class DEMTab(TabPrototype, ABC):
         if mode == 'hillshade':
             params.extend([
                 f'-z {self.dlg.dem_hill_z_spinBox.value()}',
-                f'-s {self.dlg.dem_hill_scale_spinBox.value()}',
                 f'-az {self.dlg.dem_hill_azimuth_spinBox.value()}',
                 f'-alt {self.dlg.dem_hill_altitude_spinBox.value()}',
                 f'-combined'

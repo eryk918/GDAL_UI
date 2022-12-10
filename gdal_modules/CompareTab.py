@@ -17,7 +17,7 @@ class CompareTab(TabPrototype, ABC):
         super().__init__(main_class)
         self.dlg.compare_results_groupBox.hide()
         self.dlg.compare_btn.clicked.connect(self.compare_data)
-        self.dlg.compare_file_cbbx.currentTextChanged.connect(
+        self.dlg.file_cbbx.currentTextChanged.connect(
             lambda: self.dlg.compare_results_groupBox.hide())
         self.dlg.compare_second_file_cbbx.currentTextChanged.connect(
             lambda: self.dlg.compare_results_groupBox.hide())
@@ -29,16 +29,14 @@ class CompareTab(TabPrototype, ABC):
     def execute_process(self, input_files: List[str],
                         output_path: Optional[str] = None) -> None:
         self.dlg.compare_results_groupBox.hide()
-        self.dlg.compare_file_cbbx.clear()
         self.dlg.compare_second_file_cbbx.clear()
-        self.dlg.compare_file_cbbx.addItems(input_files)
         self.dlg.compare_second_file_cbbx.addItems(input_files)
 
     def compare_data(self) -> None:
         self.dlg.compare_results_groupBox.hide()
         lib_path = os.path.join(
             os.path.dirname(sys.executable), 'Scripts', 'gdalcompare.py')
-        base_file = self.dlg.compare_file_cbbx.currentText()
+        base_file = self.dlg.file_cbbx.currentText()
         file2compare = self.dlg.compare_second_file_cbbx.currentText()
         if not os.path.exists(lib_path):
             QMessageBox.critical(
@@ -60,7 +58,7 @@ class CompareTab(TabPrototype, ABC):
             return
         std_out, _, ret_code, _ = universal_executor(
             ["python", lib_path, base_file, file2compare])
-        if ret_code != 1:
+        if ret_code == 0:
             QMessageBox.critical(
                 self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'The comparison process failed.',

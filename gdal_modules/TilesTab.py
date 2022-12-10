@@ -20,13 +20,6 @@ class TilesTab(TabPrototype, ABC):
         super().__init__(main_class)
         self.setup_dialog()
 
-    def run(self, input_files: List[str],
-            output_path: Optional[str] = None) -> None:
-        self.dlg.tiling_file_cbbx.clear()
-        self.dlg.tiling_file_cbbx.addItems(
-            [os.path.normpath(path) for path in
-             self.dlg.file_widget.filePath.split('"') if os.path.exists(path)])
-
     def setup_dialog(self) -> None:
         self.dlg.tiling_save_btn.clicked.connect(self.save_data)
         self.dlg.tiling_outdir_lineedit = insert_file_widget(
@@ -40,7 +33,7 @@ class TilesTab(TabPrototype, ABC):
         self.dlg.tiling_xyz_checkbox.hide()
 
     def save_data(self) -> None:
-        if not self.dlg.tiling_file_cbbx.currentText():
+        if not self.dlg.file_cbbx.currentText():
             QMessageBox.critical(
                 self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',
                 'No input file selected.',
@@ -61,12 +54,14 @@ class TilesTab(TabPrototype, ABC):
             if question == QMessageBox.No:
                 return
         g2t = SimpleGdal2Tiles()
-        ret_code = g2t.execute_gdal2tiles(
-            self.dlg.tiling_file_cbbx.currentText(),
-            self.dlg.tiling_outdir_lineedit.filePath,
-            self.get_dialog_data()
-        )
-
+        try:
+            ret_code = g2t.execute_gdal2tiles(
+                self.dlg.file_cbbx.currentText(),
+                self.dlg.tiling_outdir_lineedit.filePath,
+                self.get_dialog_data()
+            )
+        except AttributeError:
+            ret_code = 1
         if ret_code:
             QMessageBox.critical(
                 self.dlg, f'{APPLICATION_NAME} - {self.TOOL_NAME}',

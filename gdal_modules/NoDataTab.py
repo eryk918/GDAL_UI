@@ -1,19 +1,17 @@
 # -*- coding: utf-8 -*-
-import json
 import os
 import tempfile
 import uuid
 from abc import ABC
 from shutil import move
-from typing import List, Optional, Any
+from typing import Any
 
 from PyQt5.QtWidgets import QMessageBox
 
 from CustomFileWidget import CustomFileWidget
 from gdal_modules.TabPrototype import TabPrototype
 from utils import universal_executor, json_to_html, APPLICATION_NAME, \
-    get_extensions, proper_is_digit, multiprocessing_execution, \
-    insert_file_widget
+    get_extensions, proper_is_digit, insert_file_widget, FILE_DICT_INDEXES
 
 
 class NoDataTab(TabPrototype, ABC):
@@ -21,50 +19,39 @@ class NoDataTab(TabPrototype, ABC):
 
     def __init__(self, main_class: callable):
         super().__init__(main_class)
-        self.dlg.nodata_file_cbbx.currentTextChanged[str].connect(
+        self.dlg.file_cbbx.currentTextChanged[str].connect(
             lambda text: self.show_data(text))
         self.dlg.settings_btn.clicked.connect(
             lambda: self.show_data(
-                self.dlg.nodata_file_cbbx.currentText()))
+                self.dlg.file_cbbx.currentText()))
         self.dlg.new_nodata_save_btn.clicked.connect(self.save_data)
         self.dlg.nodata_output_path_lineedit = insert_file_widget(
             self.dlg.nodata_output_path_groupBox.layout(), (0, 1),
             mode=CustomFileWidget.SaveFile,
             filters=';; '.join([f'*.{ext}' for ext in get_extensions()]))
 
-    def run(self, input_files: List[str],
-            output_path: Optional[str] = None) -> None:
-        self.execute_process(input_files, output_path)
-        self.dlg.nodata_file_cbbx.clear()
-        self.dlg.nodata_file_cbbx.addItems(self.files_dict.keys())
-
-    def execute_process(self, input_files: List[str],
-                        output_path: Optional[str] = None) -> None:
-        self.files_dict = {}
-        cmd_list = [[f'gdalinfo|-json|{file}'] for file in input_files]
-        for response in multiprocessing_execution(cmd_list):
-            std_out, _, code, file_path = response
-            if response and not response[2]:
-                bands_list = json.loads(std_out)['bands']
-                if bands_list:
-                    self.files_dict[file_path] = {
-                        band["band"]: band['noDataValue']
-                        for band in bands_list if 'noDataValue' in band.keys()
-                    }
-
     def show_data(self, data: Any) -> None:
         if not data:
             return
-        elif data not in self.files_dict.keys() or not self.files_dict[data]:
+        elif not self.main_class.files_dict.get(data) or not \
+                self.main_class.files_dict[data][
+                    FILE_DICT_INDEXES[self.TOOL_NAME]]:
             self.dlg.nodata_text_box.setText('<h2>No NoData Value!<h2>')
         else:
-            self.dlg.nodata_text_box.setHtml(json_to_html(
-                self.files_dict[data], True, ['Band', 'Value'], ''))
+            self.dlg.nodata_text_box.setHtml(
+                json_to_html(
+                    self.main_class.files_dict[data][
+                        FILE_DICT_INDEXES[self.TOOL_NAME]],
+                    True,
+                    ['Band', 'Value'],
+                    ''
+                )
+            )
 
     def save_data(self) -> None:
         no_data = self.dlg.nodata_new_value_lineedit.text()
         output_file = self.dlg.nodata_output_path_lineedit.filePath
-        input_file = self.dlg.nodata_file_cbbx.currentText()
+        input_file = self.dlg.file_cbbx.currentText()
         overwrite_source = False
         if not input_file:
             QMessageBox.critical(
@@ -130,4 +117,4 @@ class NoDataTab(TabPrototype, ABC):
 
     def refresh_data(self) -> None:
         self.dlg.get_set_active_tab_name()
-        self.show_data(self.dlg.nodata_file_cbbx.currentText())
+        self.show_data(self.dlg.file_cbbx.currentText())

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from abc import ABC
-from typing import List, Optional
+from typing import List
 
 from PyQt5.QtGui import QIntValidator
 from PyQt5.QtWidgets import QMessageBox
@@ -24,17 +24,8 @@ class ConvertTab(TabPrototype, ABC):
         self.dlg.converter_save_btn.clicked.connect(self.convert_file)
         self.dlg.converter_srs_lineEdit.setValidator(QIntValidator())
 
-    def run(self, input_files: List[str],
-            output_path: Optional[str] = None) -> None:
-        self.execute_process(input_files, output_path)
-
-    def execute_process(self, input_files: List[str],
-                        output_path: Optional[str] = None) -> None:
-        self.dlg.converter_file_cbbx.clear()
-        self.dlg.converter_file_cbbx.addItems(input_files)
-
     def convert_file(self) -> None:
-        input_file = self.dlg.converter_file_cbbx.currentText()
+        input_file = self.dlg.file_cbbx.currentText()
         output_file = self.dlg.converter_out_path_lineEdit.filePath
 
         if not input_file:

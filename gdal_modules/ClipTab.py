@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from abc import ABC
-from typing import List, Optional, Any
+from typing import List, Any
 
 import geopandas as gpd
 import rasterio
@@ -21,26 +21,19 @@ class ClipTab(TabPrototype, ABC):
         super().__init__(main_class)
         self.setup_dialog()
 
-    def run(self, input_files: List[str],
-            output_path: Optional[str] = None) -> None:
-        self.dlg.clip_file_cbbx.clear()
-        self.dlg.clip_file_cbbx.addItems(
-            [os.path.normpath(path) for path in
-             self.dlg.file_widget.filePath.split('"') if os.path.exists(path)])
-
     def setup_dialog(self) -> None:
         self.dlg.clip_btn.clicked.connect(self.save_data)
         self.dlg.clip_preview_btn.clicked.connect(self.show_preview)
-        self.dlg.clip_file_cbbx.currentTextChanged[str].connect(
+        self.dlg.file_cbbx.currentTextChanged[str].connect(
             self.hide_preview)
         self.dlg.clip_mask_widget = insert_file_widget(
-            self.dlg.clip.layout(), (1, 1),
+            self.dlg.clip.layout(), (0, 1),
             mode=CustomFileWidget.GetFile,
             filters='; '.join([f'*.{ext}' for ext in get_extensions(False)]))
         self.dlg.clip_mask_widget.lineEdit.textChanged.connect(
             self.hide_preview)
         self.dlg.clip_outdir_widget = insert_file_widget(
-            self.dlg.clip.layout(), (2, 1),
+            self.dlg.clip.layout(), (1, 1),
             mode=CustomFileWidget.SaveFile,
             filters=';; '.join([f'*.{ext}' for ext in get_extensions()]))
 
@@ -54,7 +47,7 @@ class ClipTab(TabPrototype, ABC):
     def show_preview(self) -> None:
         if self.hide_preview():
             return
-        raster_file = self.dlg.clip_file_cbbx.currentText()
+        raster_file = self.dlg.file_cbbx.currentText()
         clip_path = self.dlg.clip_mask_widget.filePath
         if not raster_file:
             QMessageBox.critical(
@@ -85,7 +78,7 @@ class ClipTab(TabPrototype, ABC):
         self.dlg.clip_preview_frame.layout().addWidget(self.canvas)
 
     def save_data(self) -> None:
-        input_file = self.dlg.clip_file_cbbx.currentText()
+        input_file = self.dlg.file_cbbx.currentText()
         output_path = self.dlg.clip_outdir_widget.filePath
         clip_path = self.dlg.clip_mask_widget.filePath
         if not input_file:

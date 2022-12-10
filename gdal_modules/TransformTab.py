@@ -22,17 +22,8 @@ class TransformTab(TabPrototype, ABC):
             filters=';; '.join([f'*.{ext}' for ext in get_extensions()]))
         self.dlg.transform_save_btn.clicked.connect(self.generate_dem)
 
-    def run(self, input_files: List[str],
-            output_path: Optional[str] = None) -> None:
-        self.execute_process(input_files, output_path)
-
-    def execute_process(self, input_files: List[str],
-                        output_path: Optional[str] = None) -> None:
-        self.dlg.transform_file_cbbx.clear()
-        self.dlg.transform_file_cbbx.addItems(input_files)
-
     def generate_dem(self) -> None:
-        input_file = self.dlg.transform_file_cbbx.currentText()
+        input_file = self.dlg.file_cbbx.currentText()
         output_file = self.dlg.transform_output_path_lineEdit.filePath
 
         if not input_file:

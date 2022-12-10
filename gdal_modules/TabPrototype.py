@@ -18,7 +18,7 @@ class TabPrototype:
 
     def execute_process(self, input_files: List[str],
                         output_path: Optional[str] = None) -> Optional[Any]:
-        raise NotImplementedError
+        pass
 
     def show_data(self, data: Any) -> Optional[Any]:
         raise NotImplementedError

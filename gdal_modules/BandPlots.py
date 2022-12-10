@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
 
-import json
 import os.path
 from abc import ABC
-from typing import List, Optional, Any
+from typing import List, Any
 
 import matplotlib.pyplot as plt
 import numpy as np
 import rasterio
 from geopandas import GeoDataFrame
+from matplotlib._pylab_helpers import Gcf
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg
 from rasterio import DatasetReader
 from rasterio.plot import get_plt, show
 
 from gdal_modules.TabPrototype import TabPrototype
-from utils import multiprocessing_execution, load_settings
-from matplotlib._pylab_helpers import Gcf
+from utils import load_settings, FILE_DICT_INDEXES
 
 
 class MplCanvas(FigureCanvasQTAgg):
@@ -78,8 +77,8 @@ class MplCanvas(FigureCanvasQTAgg):
         minx, miny, maxx, maxy = vector_layer.total_bounds
         show(source.read(), transform=source.transform, ax=self.ax)
         vector_layer.plot(ax=self.ax, color='white', alpha=.75)
-        self.ax.set_xlim(minx- minx*0.01, maxx + maxx*0.01)
-        self.ax.set_ylim(miny- miny*0.01, maxy+ maxy*0.01)
+        self.ax.set_xlim(minx - minx * 0.01, maxx + maxx * 0.01)
+        self.ax.set_ylim(miny - miny * 0.01, maxy + maxy * 0.01)
         plt.axis('off')
 
     def set_theme(self, file_name: str = None) -> None:
@@ -110,30 +109,15 @@ class MplCanvas(FigureCanvasQTAgg):
 
 
 class BandPlotTab(TabPrototype, ABC):
+    TOOL_NAME = 'Band plots'
+
     def __init__(self, main_class: callable):
         super().__init__(main_class)
         self.insert_plot_widget()
-        self.dlg.file_combo_plot.currentTextChanged[str].connect(
+        self.dlg.file_cbbx.currentTextChanged[str].connect(
             self.fill_bands_combo)
         self.dlg.settings_btn.clicked.connect(
             lambda: self.insert_plot_widget(reload=True))
-
-    def run(self, input_files: List[str],
-            output_path: Optional[str] = None) -> Optional[Any] or None:
-        self.execute_process(input_files, output_path)
-        self.dlg.file_combo_plot.clear()
-        self.dlg.file_combo_plot.addItems(self.files_dict.keys())
-
-    def execute_process(self, input_files: List[str],
-                        output_path: Optional[str] = None) -> None:
-        self.files_dict = {}
-        cmd_list = [[f'gdalinfo|-json|{file}'] for file in input_files]
-        for response in multiprocessing_execution(cmd_list):
-            std_out, _, code, file_path = response
-            if response and not response[2]:
-                bands_list = json.loads(std_out)['bands']
-                if bands_list:
-                    self.files_dict[file_path] = len(bands_list)
 
     def fill_bands_combo(self, file_name: str) -> None:
         if file_name:
@@ -147,11 +131,12 @@ class BandPlotTab(TabPrototype, ABC):
                 lambda band_name: self.insert_plot_widget(
                     self.raster_file.read([int(band_name.split(' ')[-1])]),
                     band_name,
-                    os.path.basename(self.dlg.file_combo_plot.currentText()))
+                    os.path.basename(self.dlg.file_cbbx.currentText()))
                 if band_name else None)
             self.dlg.band_combo_plot.addItems(
                 f'Band {count}' for count in range(
-                    1, self.files_dict.get(file_name) + 1))
+                    1, self.main_class.files_dict.get(file_name)
+                       [FILE_DICT_INDEXES[self.TOOL_NAME]] + 1))
 
     def insert_plot_widget(self, *args: List[Any],
                            reload: bool = False) -> None:
