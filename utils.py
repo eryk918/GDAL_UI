@@ -108,10 +108,23 @@ def json_to_html(
         headers: Optional[List[str]] = None, delimiter_char: str = ':') -> str:
     color = 'rgb(0, 0, 0)'
     settings = load_settings()
+    info = ''
     if settings.get('style') and settings['style'] == 'dark':
         color = 'rgb(190, 190, 190)'
-
-    info = f'<table {"border=1" if new else ""} ' \
+    if new:
+        info += f'''<head><style>
+        ::-webkit-scrollbar {{
+            width: 12px;
+                }}
+            ::-webkit-scrollbar-track {{
+                background: rgb({'42, 42, 42' if color == 'rgb(190, 190, 190)' else '237, 237, 237'});
+            }}
+            
+            ::-webkit-scrollbar-thumb {{
+                background: rgb({'90, 90, 90' if color == 'rgb(190, 190, 190)' else '200, 200, 200'});
+            }}
+            </style></head><body>'''
+    info += f'<table {"border=1" if new else ""} ' \
            f'style="font-family: Segoe UI, sans-serif; ' \
            f'font-size: 10pt; color:{color};">'
     if headers:
@@ -135,6 +148,8 @@ def json_to_html(
                 info += f"<li>{value}</li>"
         info += f"</ul>"
     info += '</table>'
+    if new:
+        info += '</body>'
     return info
 
 
