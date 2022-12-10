@@ -55,6 +55,12 @@ class DEMTab(TabPrototype, ABC):
         self.dlg.file_cbbx.currentTextChanged[str].connect(
             lambda: self.show_hide_correct_objects())
         self.dlg.dem_save_btn.clicked.connect(self.generate_dem)
+        self.dlg.dem_hill_combined_shading_checkBox.toggled.connect(
+            lambda state: self.dlg.dem_hill_multidirectional_checkBox.setChecked(
+                False) if state else None)
+        self.dlg.dem_hill_multidirectional_checkBox.toggled.connect(
+            lambda state: self.dlg.dem_hill_combined_shading_checkBox.setChecked(
+                False) if state else None)
 
     def run(self, input_files: List[str],
             output_path: Optional[str] = None) -> None:
@@ -135,13 +141,12 @@ class DEMTab(TabPrototype, ABC):
         params = [
             f'-compute_edges'
             if self.dlg.dem_compute_edges_checkBox.isChecked() else '',
-            f'-b' if self.dlg.dem_band_spinBox.value() else '',
-        ]
+            f'-b', f'{self.dlg.dem_band_spinBox.value()}']
         if mode == 'hillshade':
             params.extend([
-                f'-z {self.dlg.dem_hill_z_spinBox.value()}',
-                f'-az {self.dlg.dem_hill_azimuth_spinBox.value()}',
-                f'-alt {self.dlg.dem_hill_altitude_spinBox.value()}',
+                f'-z', f'{self.dlg.dem_hill_z_spinBox.value()}',
+                f'-az', f'{self.dlg.dem_hill_azimuth_spinBox.value()}',
+                f'-alt', f'{self.dlg.dem_hill_altitude_spinBox.value()}',
                 f'-combined'
                 if self.dlg.dem_hill_combined_shading_checkBox.isChecked()
                 else '',
@@ -179,8 +184,8 @@ class DEMTab(TabPrototype, ABC):
 
         if mode in ('hillshade', 'slope', 'aspect'):
             params.extend(
-                [f'-alg {self.dlg.dem_algorithm_comboBox.currentText()}'])
+                [f'-alg', self.dlg.dem_algorithm_comboBox.currentText()])
         elif mode == 'TRI':
             params.extend(
-                [f'-alg {self.dlg.dem_tri_algorithm_comboBox.currentText()}'])
+                [f'-alg', self.dlg.dem_tri_algorithm_comboBox.currentText()])
         return params
