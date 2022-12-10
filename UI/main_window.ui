@@ -1,0 +1,2263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>main_window</class>
+ <widget class="QDialog" name="main_window">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>744</width>
+    <height>834</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>720</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+    <pointsize>10</pointsize>
+    <weight>50</weight>
+    <italic>false</italic>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::NoContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>GDAL UI - Main Window</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
+  <property name="sizeGripEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <property name="spacing">
+    <number>0</number>
+   </property>
+   <item row="1" column="0" colspan="2">
+    <widget class="QFrame" name="style_frame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="2" column="0" colspan="2">
+       <widget class="QTabWidget" name="main_tab_widget">
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="data_information">
+         <attribute name="title">
+          <string>Data information</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_5">
+          <item row="1" column="0" colspan="2">
+           <widget class="QWebEngineView" name="information_file_webView">
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
+            <property name="url">
+             <url>
+              <string>about:blank</string>
+             </url>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="convert">
+         <attribute name="title">
+          <string>Convert</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_33">
+          <item row="1" column="0" colspan="2">
+           <widget class="QGroupBox" name="converter_outpath_groupBox">
+            <property name="title">
+             <string>Output settings:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_35">
+             <item row="0" column="0">
+              <widget class="QLabel" name="converter_outpath_label">
+               <property name="text">
+                <string>Output file path</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <spacer name="verticalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QGroupBox" name="converter_options_groupBox">
+            <property name="title">
+             <string>Options:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_34">
+             <item row="0" column="2">
+              <widget class="QComboBox" name="converter_data_type_comboBox">
+               <item>
+                <property name="text">
+                 <string>Same as source</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Byte</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int8</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UInt16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UInt32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UInt64</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int64</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Float32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Float64</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CInt16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CInt32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CFloat32 </string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CFloat64</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QComboBox" name="converter_resampling_comboBox">
+               <item>
+                <property name="text">
+                 <string>nearest (default)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bilinear</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubicspline</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lanczos</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>rms</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>mode</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="3" column="0" colspan="3">
+              <widget class="QCheckBox" name="converter_recalc_stat_checkBox">
+               <property name="text">
+                <string>Force recalculate statistics</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="converter_data_type_label">
+               <property name="text">
+                <string>Profile</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="converter_resampling_label">
+               <property name="text">
+                <string>Resampling</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0" colspan="3">
+              <widget class="QCheckBox" name="converter_strict_checkbox">
+               <property name="text">
+                <string>Strict</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="converter_srs_label">
+               <property name="text">
+                <string>Override SRS</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLineEdit" name="converter_srs_lineEdit">
+               <property name="maxLength">
+                <number>327679999</number>
+               </property>
+               <property name="placeholderText">
+                <string>Same as source SRS</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QFrame" name="frame_2">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_36">
+             <item row="0" column="1">
+              <widget class="QPushButton" name="converter_save_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>136</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>136</width>
+                 <height>22</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Save</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <spacer name="horizontalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="clip">
+         <attribute name="title">
+          <string>Clip</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_26">
+          <item row="4" column="0">
+           <spacer name="verticalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QFrame" name="clip_frame_2">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_27">
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item row="1" column="1">
+              <spacer name="horizontalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="clip_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>120</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Clip</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0">
+           <widget class="QLabel" name="mask_file_label">
+            <property name="text">
+             <string>Mask vector file</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QFrame" name="clip_frame">
+            <property name="frameShape">
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_31">
+             <property name="topMargin">
+              <number>9</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <item row="0" column="2">
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item row="0" column="0">
+              <widget class="QPushButton" name="clip_preview_btn">
+               <property name="minimumSize">
+                <size>
+                 <width>120</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Show preview</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0" colspan="3">
+              <widget class="QFrame" name="clip_preview_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_32">
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0">
+           <widget class="QLabel" name="clip_output_label">
+            <property name="text">
+             <string>Output file path</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="transform">
+         <attribute name="title">
+          <string>Transform</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_29">
+          <item row="0" column="0" colspan="3">
+           <widget class="QGroupBox" name="transform_options_groupBox">
+            <property name="title">
+             <string>Options:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_28">
+             <item row="4" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Source image data type</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="tiling_resampling_label_2">
+               <property name="text">
+                <string>Resampling</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="tiling_nodata_label_2">
+               <property name="text">
+                <string>NoData</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="1">
+              <widget class="QComboBox" name="transform_resampling_cbbx">
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>near</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bilinear</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubicspline</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lanczos</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>antialias</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>mode</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>max</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>min</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>med</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>q1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>q3</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="transform_source_coord_lineEdit"/>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLineEdit" name="transform_nodata_lineEdit">
+               <property name="placeholderText">
+                <string>New NoData value</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Output image data type</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="transform_source_coord_label">
+               <property name="toolTip">
+                <string>If not specified the Coordinate system found in the input layers will be used.</string>
+               </property>
+               <property name="text">
+                <string>Source coordinate system [optional]</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
+              <widget class="QComboBox" name="transform_output_data_type_cbbx">
+               <item>
+                <property name="text">
+                 <string>Byte</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int8</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UInt16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UInt32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UInt64</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int64</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Float32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Float64</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CInt16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CInt32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CFloat32 </string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CFloat64</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="1">
+              <widget class="QComboBox" name="transform_source_data_type_cbbx">
+               <item>
+                <property name="text">
+                 <string>Byte</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int8</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UInt16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UInt32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>UInt64</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Int64</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Float32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Float64</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CInt16</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CInt32</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CFloat32 </string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>CFloat64</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="transform_target_coord_label">
+               <property name="text">
+                <string>Target coordinate system</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="transform_target_coord_lineEdit"/>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="2">
+           <widget class="QPushButton" name="transform_save_btn">
+            <property name="maximumSize">
+             <size>
+              <width>136</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QGroupBox" name="transform_outfile_groupBox">
+            <property name="title">
+             <string>Output settings:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_27">
+             <item row="0" column="0">
+              <widget class="QLabel" name="transform_outfile_label">
+               <property name="text">
+                <string>Output file path</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <spacer name="verticalSpacer_6">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>118</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="bands">
+         <attribute name="title">
+          <string>Band plots</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="0" column="0">
+           <widget class="QFrame" name="frame">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+             <enum>QFrame::Raised</enum>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <layout class="QGridLayout" name="gridLayout_8">
+               <item row="0" column="0">
+                <widget class="QLabel" name="band_label_plot">
+                 <property name="maximumSize">
+                  <size>
+                   <width>100</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Band</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="band_combo_plot"/>
+               </item>
+              </layout>
+             </item>
+             <item row="1" column="0">
+              <widget class="QGroupBox" name="plot_groupBox">
+               <property name="title">
+                <string>Plot:</string>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_10"/>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="nodata">
+         <attribute name="title">
+          <string>NoData value</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_4">
+          <item row="5" column="2">
+           <widget class="QPushButton" name="new_nodata_save_btn">
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" colspan="2">
+           <widget class="QLineEdit" name="nodata_new_value_lineedit"/>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QTextEdit" name="nodata_text_box">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>150</height>
+             </size>
+            </property>
+            <property name="readOnly">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QLabel" name="new_nodata_label">
+            <property name="text">
+             <string>New NoData value</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" rowspan="2" colspan="3">
+           <widget class="QGroupBox" name="nodata_output_path_groupBox">
+            <property name="title">
+             <string>Create new file</string>
+            </property>
+            <property name="checkable">
+             <bool>true</bool>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_6">
+             <item row="0" column="0">
+              <widget class="QLabel" name="nodata_output_path_label">
+               <property name="text">
+                <string>Output file path</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="6" column="2">
+           <spacer name="verticalSpacer">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="dem">
+         <attribute name="title">
+          <string>DEM analysis</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_17">
+          <item row="1" column="0" colspan="2">
+           <widget class="QGroupBox" name="dem_options_groupBox">
+            <property name="title">
+             <string>General options:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_18">
+             <item row="2" column="0">
+              <widget class="QLabel" name="dem_band_label">
+               <property name="text">
+                <string>Band</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QSpinBox" name="dem_band_spinBox">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+               <property name="value">
+                <number>1</number>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="dem_mode_comboBox">
+               <item>
+                <property name="text">
+                 <string>hillshade</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>slope</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>aspect</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>color-relief</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>TRI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>TPI</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>roughness</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="dem_mode_label">
+               <property name="text">
+                <string>Mode</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0" colspan="2">
+              <widget class="QCheckBox" name="dem_compute_edges_checkBox">
+               <property name="text">
+                <string>Compute edges</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="5" column="1">
+           <widget class="QPushButton" name="dem_save_btn">
+            <property name="maximumSize">
+             <size>
+              <width>136</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QGroupBox" name="dem_outdir_groupBox">
+            <property name="title">
+             <string>Output settings:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_21">
+             <item row="0" column="0">
+              <widget class="QLabel" name="dem_outdir_label">
+               <property name="text">
+                <string>Output file path</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="6" column="1">
+           <spacer name="verticalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="2" column="0" colspan="2">
+           <widget class="QGroupBox" name="dem_mode_groupBox">
+            <property name="title">
+             <string>Mode option:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_16">
+             <item row="15" column="0">
+              <widget class="QFrame" name="dem_aspect_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_20">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="dem_aspect_trigonometric_checkBox">
+                  <property name="text">
+                   <string>Trigonometric</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="dem_aspect_zero_for_flat_checkBox">
+                  <property name="text">
+                   <string>Zero for flat</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QComboBox" name="dem_algorithm_comboBox">
+               <item>
+                <property name="text">
+                 <string>Horn</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>ZevenbergenThorne</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="dem_algorithm_label">
+               <property name="text">
+                <string>Algorithm</string>
+               </property>
+              </widget>
+             </item>
+             <item row="13" column="0" colspan="2">
+              <widget class="QFrame" name="dem_hill_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_22">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="10" column="1">
+                 <widget class="QSpinBox" name="dem_hill_z_spinBox">
+                  <property name="minimum">
+                   <number>1</number>
+                  </property>
+                  <property name="maximum">
+                   <number>999999999</number>
+                  </property>
+                  <property name="value">
+                   <number>1</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="1">
+                 <widget class="QSpinBox" name="dem_hill_altitude_spinBox">
+                  <property name="minimum">
+                   <number>0</number>
+                  </property>
+                  <property name="maximum">
+                   <number>90</number>
+                  </property>
+                  <property name="value">
+                   <number>90</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="11" column="0">
+                 <widget class="QCheckBox" name="dem_hill_combined_shading_checkBox">
+                  <property name="text">
+                   <string>Combined shading</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="8" column="0">
+                 <widget class="QLabel" name="dem_hill_altitude_label">
+                  <property name="text">
+                   <string>Altitude of the light</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="0">
+                 <widget class="QLabel" name="dem_hill_azimuth_label">
+                  <property name="text">
+                   <string>Azimuth </string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="12" column="0">
+                 <widget class="QCheckBox" name="dem_hill_multidirectional_checkBox">
+                  <property name="text">
+                   <string>Multidirectional</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="7" column="1">
+                 <widget class="QSpinBox" name="dem_hill_azimuth_spinBox">
+                  <property name="minimum">
+                   <number>0</number>
+                  </property>
+                  <property name="maximum">
+                   <number>359</number>
+                  </property>
+                  <property name="value">
+                   <number>315</number>
+                  </property>
+                 </widget>
+                </item>
+                <item row="10" column="0">
+                 <widget class="QLabel" name="dem_hill_z_label">
+                  <property name="text">
+                   <string>Z factor (vertical exaggeration)</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="14" column="0">
+              <widget class="QFrame" name="dem_slope_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_23">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0">
+                 <widget class="QCheckBox" name="dem_slope_percent_checkBox">
+                  <property name="text">
+                   <string>Percent slope</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="dem_tri_algorithm_label">
+               <property name="text">
+                <string>Algorithm</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QComboBox" name="dem_tri_algorithm_comboBox">
+               <item>
+                <property name="text">
+                 <string>Wilson</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Riley</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="17" column="0" colspan="2">
+              <widget class="QFrame" name="dem_color_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_19">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item row="0" column="0" colspan="2">
+                 <widget class="QCheckBox" name="dem_color_nearest_checkBox">
+                  <property name="text">
+                   <string>Nearest color entry</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QCheckBox" name="dem_color_exact_color_checkBox">
+                  <property name="text">
+                   <string>Exact color entry</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QCheckBox" name="dem_color_alpha_checkBox">
+                  <property name="text">
+                   <string>Add alpha channel</string>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="tiling">
+         <attribute name="title">
+          <string>Tiling</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_7">
+          <item row="3" column="1">
+           <spacer name="verticalSpacer_2">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>97</width>
+              <height>209</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="0" colspan="2">
+           <widget class="QGroupBox" name="tiling_outdir_groupBox">
+            <property name="title">
+             <string>Output settings:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <widget class="QLabel" name="tiling_outdir_label">
+               <property name="text">
+                <string>Output directory</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QGroupBox" name="tiling_options_groupBox">
+            <property name="title">
+             <string>Options:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="1" column="2">
+              <widget class="QComboBox" name="tiling_resampling_comboBox">
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>near</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bilinear</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubicspline</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lanczos</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>antialias</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>mode</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>max</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>min</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>med</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>q1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>q3</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QSpinBox" name="tiling_tilesize_spinBox">
+               <property name="minimum">
+                <number>1</number>
+               </property>
+               <property name="maximum">
+                <number>999999999</number>
+               </property>
+               <property name="value">
+                <number>256</number>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0" colspan="3">
+              <widget class="QCheckBox" name="tiling_excludetransparent_checkBox">
+               <property name="text">
+                <string>Exclude transparent tiles</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="tiling_resampling_label">
+               <property name="text">
+                <string>Resampling</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QComboBox" name="tiling_profile_comboBox">
+               <item>
+                <property name="text">
+                 <string>mercator</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>geodetic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>raster</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="tiling_profile_label">
+               <property name="text">
+                <string>Profile</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0" colspan="3">
+              <widget class="QCheckBox" name="tiling_xyz_checkbox">
+               <property name="text">
+                <string>Generate XYZ tiles</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="tiling_tilesize_label">
+               <property name="text">
+                <string>Tile size</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="tiling_zoom_label">
+               <property name="text">
+                <string>Zoom</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="tiling_nodata_label">
+               <property name="text">
+                <string>NoData</string>
+               </property>
+              </widget>
+             </item>
+             <item row="4" column="2">
+              <widget class="QLineEdit" name="tiling_nodata_lineEdit">
+               <property name="placeholderText">
+                <string>New NoData value</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="2">
+              <widget class="QLineEdit" name="tiling_zoom_lineEdit">
+               <property name="placeholderText">
+                <string>Format: ’2-5’, ‘10-’ or ‘10</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="2">
+              <widget class="QLineEdit" name="tiling_srs_lineEdit">
+               <property name="placeholderText">
+                <string>Same as source SRS</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="tiling_srs_label">
+               <property name="text">
+                <string>SRS</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="1">
+           <widget class="QPushButton" name="tiling_save_btn">
+            <property name="maximumSize">
+             <size>
+              <width>136</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="mergetiles">
+         <attribute name="title">
+          <string>Merge tiles</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_30">
+          <item row="2" column="2">
+           <widget class="QPushButton" name="merge_save_btn">
+            <property name="maximumSize">
+             <size>
+              <width>136</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="3" column="1">
+           <spacer name="verticalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>386</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="0" column="0" colspan="3">
+           <widget class="QGroupBox" name="transform_options_groupBox_2">
+            <property name="title">
+             <string>Options:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_26">
+             <item row="1" column="0">
+              <widget class="QLabel" name="merge_piksel_y_label">
+               <property name="toolTip">
+                <string>If not specified the Coordinate system found in the input layers will be used.</string>
+               </property>
+               <property name="text">
+                <string>Pixel size Y</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="merge_nodata_label">
+               <property name="text">
+                <string>NoData</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0" colspan="3">
+              <widget class="QCheckBox" name="separate_checkBox">
+               <property name="text">
+                <string>Place each input file into a separate band</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLineEdit" name="pixel_y_lineEdit"/>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="merge_piksel_label">
+               <property name="toolTip">
+                <string>If not specified the Coordinate system found in the input layers will be used.</string>
+               </property>
+               <property name="text">
+                <string>Pixel size X</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLineEdit" name="pixel_x_lineEdit"/>
+             </item>
+             <item row="2" column="2">
+              <widget class="QLineEdit" name="merge_nodata_lineEdit">
+               <property name="placeholderText">
+                <string>New NoData value</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="1" column="0" colspan="3">
+           <widget class="QGroupBox" name="merge_outfile_groupBox">
+            <property name="title">
+             <string>Output settings:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_11">
+             <item row="0" column="0">
+              <widget class="QLabel" name="merge_outfile_label">
+               <property name="text">
+                <string>Output file path</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="compare">
+         <attribute name="title">
+          <string>Compare</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_12">
+          <item row="2" column="0" colspan="2">
+           <layout class="QGridLayout" name="gridLayout_13">
+            <item row="1" column="0">
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType">
+               <enum>QSizePolicy::MinimumExpanding</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="1" column="1">
+             <widget class="QPushButton" name="compare_btn">
+              <property name="minimumSize">
+               <size>
+                <width>120</width>
+                <height>0</height>
+               </size>
+              </property>
+              <property name="maximumSize">
+               <size>
+                <width>120</width>
+                <height>16777215</height>
+               </size>
+              </property>
+              <property name="text">
+               <string>Compare</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item row="3" column="0" colspan="2">
+           <widget class="QGroupBox" name="compare_results_groupBox">
+            <property name="title">
+             <string>Results:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_14">
+             <item row="0" column="0">
+              <widget class="QTextEdit" name="compare_textEdit">
+               <property name="autoFormatting">
+                <set>QTextEdit::AutoAll</set>
+               </property>
+               <property name="readOnly">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="0" column="0" colspan="2">
+           <widget class="QGroupBox" name="compare_results_groupBox_2">
+            <property name="title">
+             <string>Options:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_15">
+             <item row="0" column="1">
+              <widget class="QComboBox" name="compare_second_file_cbbx"/>
+             </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="compare_second_file_label">
+               <property name="text">
+                <string>Select file to compare</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="4" column="0">
+           <spacer name="verticalSpacer_3">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="vrt">
+         <attribute name="title">
+          <string>VRT</string>
+         </attribute>
+         <layout class="QGridLayout" name="gridLayout_39">
+          <item row="4" column="2">
+           <widget class="QPushButton" name="vrt_save_btn">
+            <property name="maximumSize">
+             <size>
+              <width>136</width>
+              <height>22</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Save</string>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="0" rowspan="3" colspan="3">
+           <widget class="QGroupBox" name="tiling_options_groupBox_2">
+            <property name="title">
+             <string>Options:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_38">
+             <item row="1" column="0" colspan="3">
+              <widget class="QFrame" name="user_res_frame">
+               <property name="frameShape">
+                <enum>QFrame::NoFrame</enum>
+               </property>
+               <property name="frameShadow">
+                <enum>QFrame::Raised</enum>
+               </property>
+               <layout class="QGridLayout" name="gridLayout_40">
+                <property name="leftMargin">
+                 <number>11</number>
+                </property>
+                <property name="topMargin">
+                 <number>11</number>
+                </property>
+                <property name="rightMargin">
+                 <number>11</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>11</number>
+                </property>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="label_5">
+                  <property name="text">
+                   <string>Resolution - y</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLineEdit" name="vrt_user_res_x_lineEdit">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QCheckBox" name="vrt_tap_checkBox">
+                  <property name="text">
+                   <string>Target aligned pixels</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="0">
+                 <widget class="QLabel" name="label_4">
+                  <property name="text">
+                   <string>Resolution - x</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLineEdit" name="vrt_user_res_y_lineEdit">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item row="3" column="0" colspan="3">
+              <widget class="QCheckBox" name="vrt_different_proj_checkBox">
+               <property name="text">
+                <string>Allow files with different projections</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2">
+              <widget class="QComboBox" name="vrt_resampling_comboBox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <item>
+                <property name="text">
+                 <string>nearest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bilinear</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubicspline</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lanczos</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>mode</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QCheckBox" name="vrt_alpha_mask_checkBox">
+               <property name="text">
+                <string>Add an alpha mask</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="0" colspan="2">
+              <widget class="QLabel" name="tiling_profile_label_2">
+               <property name="text">
+                <string>Resolution</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" colspan="2">
+              <widget class="QLabel" name="tiling_resampling_label_3">
+               <property name="text">
+                <string>Resampling</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0" colspan="3">
+              <widget class="QCheckBox" name="vrt_separate_checkBox">
+               <property name="text">
+                <string>Place each input file into a separate band</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QComboBox" name="vrt_resolution_comboBox">
+               <item>
+                <property name="text">
+                 <string>highest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lowest</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>user</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0" rowspan="2" colspan="2">
+              <widget class="QCheckBox" name="vrt_nodata_checkBox">
+               <property name="text">
+                <string>Hide no data</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0" colspan="3">
+           <widget class="QGroupBox" name="vrt_outdir_groupBox">
+            <property name="title">
+             <string>Output settings:</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_37">
+             <item row="0" column="0">
+              <widget class="QLabel" name="tiling_outdir_label_2">
+               <property name="text">
+                <string>Output file path</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="5" column="2">
+           <spacer name="verticalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>97</width>
+              <height>199</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+         </layout>
+        </widget>
+       </widget>
+      </item>
+      <item row="0" column="0" colspan="2">
+       <widget class="QGroupBox" name="load_groupBox">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="title">
+         <string>Input:</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="file_label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Raster file</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="information_file_label">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Select file</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="file_cbbx"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="0" column="0" colspan="2">
+    <widget class="QFrame" name="title_frame">
+     <property name="minimumSize">
+      <size>
+       <width>200</width>
+       <height>36</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>36</height>
+      </size>
+     </property>
+     <property name="accessibleName">
+      <string notr="true"/>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background: qlineargradient(spread:reflect, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(56, 0, 170, 255), stop:1 rgba(81, 140, 62, 255))</string>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="lineWidth">
+      <number>0</number>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_25">
+      <property name="topMargin">
+       <number>0</number>
+      </property>
+      <item row="0" column="1" rowspan="2">
+       <widget class="QFrame" name="settings_btn_frame">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>34</height>
+         </size>
+        </property>
+        <property name="maximumSize">
+         <size>
+          <width>32</width>
+          <height>48</height>
+         </size>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background: none</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::NoFrame</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_24">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>3</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <property name="spacing">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QPushButton" name="settings_btn">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>33</width>
+             <height>28</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>33</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>16</pointsize>
+            </font>
+           </property>
+           <property name="toolTip">
+            <string>Change window theme</string>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">color:white;border:none; background: none</string>
+           </property>
+           <property name="text">
+            <string>🌞</string>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="checkable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="title_label">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>36</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <family>Noto Sans ExtCond</family>
+          <pointsize>16</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+          <underline>false</underline>
+          <stylestrategy>PreferAntialias</stylestrategy>
+          <kerning>true</kerning>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color : white;margin-left: 33px; background: none; font-family: Noto Sans ExtCond;</string>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="text">
+         <string>Geospatial Data Abstraction Library User Interface</string>
+        </property>
+        <property name="scaledContents">
+         <bool>false</bool>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QWebEngineView</class>
+   <extends>QWidget</extends>
+   <header location="global">QtWebEngineWidgets/QWebEngineView</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>
