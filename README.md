@@ -1,7 +1,7 @@
 ## GDAL UI: Geospatial Data Abstraction Library User Interface
-**Simple graphical interface for the GDAL library**
+**Simple graphical interface for the GDAL library.**
 
-<p align="center"><img src="https://github.com/eryk918/gdal_ui/blob/main/images/light.png?raw=true" alt="GDAL UI Light Mode" width="350"/> <img src="https://github.com/eryk918/gdal_ui/blob/main/images/dark.png?raw=true" alt="GDAL UI Dark Mode" width="350"/><p>
+<p align="center"><img src="https://github.com/eryk918/GDAL_UI/blob/main/images/light.png?raw=true" alt="GDAL UI Light Mode" width="350"/> <img src="https://github.com/eryk918/GDAL_UI/blob/main/images/dark.png?raw=true" alt="GDAL UI Dark Mode" width="350"/><p>
 
 ### Description:
 The application includes the implementation of the following programs:
@@ -22,7 +22,7 @@ It's recommended to use a package manager like **Conda** or **OSGeo4W**.
 #### Dependencies:
 
 ```
-PyQt5==5.15.7,
+PyQt5>=5.15.7,
 PyQtWebEngine>=5.15.5,
 gdal>=3.4.34,
 gdal2tiles,
@@ -37,11 +37,11 @@ geopandas>=0.11.1
 Clone the repository via command:
 
 ```bash
-git clone https://github.com/eryk918/gdal_ui
+git clone https://github.com/eryk918/GDAL_UI
 ```
 
 Start application by:
 ```bash
-python gdal_ui/main.py
+python GDAL_UI/main.py
 ```
 
