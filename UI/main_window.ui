@@ -77,6 +77,53 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0" colspan="2">
+       <widget class="QGroupBox" name="load_groupBox">
+        <property name="font">
+         <font>
+          <family>Segoe UI</family>
+          <pointsize>9</pointsize>
+          <weight>50</weight>
+          <italic>false</italic>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="title">
+         <string>Input:</string>
+        </property>
+        <layout class="QGridLayout" name="gridLayout_3">
+         <item row="0" column="0">
+          <widget class="QLabel" name="file_label">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Raster file</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="information_file_label">
+           <property name="maximumSize">
+            <size>
+             <width>120</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="text">
+            <string>Select file</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QComboBox" name="file_cbbx"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
       <item row="2" column="0" colspan="2">
        <widget class="QTabWidget" name="main_tab_widget">
         <property name="currentIndex">
@@ -515,124 +562,7 @@
              <string>Options:</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_28">
-             <item row="4" column="0">
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Source image data type</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="0">
-              <widget class="QLabel" name="tiling_resampling_label_2">
-               <property name="text">
-                <string>Resampling</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="tiling_nodata_label_2">
-               <property name="text">
-                <string>NoData</string>
-               </property>
-              </widget>
-             </item>
-             <item row="7" column="1">
-              <widget class="QComboBox" name="transform_resampling_cbbx">
-               <item>
-                <property name="text">
-                 <string>average</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>near</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>bilinear</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>cubic</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>cubicspline</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>lanczos</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>antialias</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>mode</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>max</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>min</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>med</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>q1</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>q3</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="transform_source_coord_lineEdit"/>
-             </item>
              <item row="6" column="1">
-              <widget class="QLineEdit" name="transform_nodata_lineEdit">
-               <property name="placeholderText">
-                <string>New NoData value</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Output image data type</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="transform_source_coord_label">
-               <property name="toolTip">
-                <string>If not specified the Coordinate system found in the input layers will be used.</string>
-               </property>
-               <property name="text">
-                <string>Source coordinate system [optional]</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
               <widget class="QComboBox" name="transform_output_data_type_cbbx">
                <item>
                 <property name="text">
@@ -706,7 +636,59 @@
                </item>
               </widget>
              </item>
-             <item row="4" column="1">
+             <item row="3" column="1">
+              <widget class="QLineEdit" name="transform_target_coord_lineEdit">
+               <property name="placeholderText">
+                <string>Same as source SRS</string>
+               </property>
+              </widget>
+             </item>
+             <item row="7" column="0">
+              <widget class="QLabel" name="tiling_nodata_label_2">
+               <property name="text">
+                <string>NoData</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QLineEdit" name="transform_source_coord_lineEdit">
+               <property name="placeholderText">
+                <string>Same as source SRS</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="transform_target_coord_label">
+               <property name="text">
+                <string>Target coordinate system</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="transform_source_coord_label">
+               <property name="toolTip">
+                <string>If not specified the Coordinate system found in the input layers will be used.</string>
+               </property>
+               <property name="text">
+                <string>Source coordinate system [optional]</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="0">
+              <widget class="QLabel" name="label_3">
+               <property name="text">
+                <string>Source image data type</string>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Output image data type</string>
+               </property>
+              </widget>
+             </item>
+             <item row="5" column="1">
               <widget class="QComboBox" name="transform_source_data_type_cbbx">
                <item>
                 <property name="text">
@@ -780,15 +762,88 @@
                </item>
               </widget>
              </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="transform_target_coord_label">
-               <property name="text">
-                <string>Target coordinate system</string>
+             <item row="7" column="1">
+              <widget class="QLineEdit" name="transform_nodata_lineEdit">
+               <property name="placeholderText">
+                <string>New NoData value</string>
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
-              <widget class="QLineEdit" name="transform_target_coord_lineEdit"/>
+             <item row="4" column="1">
+              <widget class="QComboBox" name="transform_resampling_cbbx">
+               <item>
+                <property name="text">
+                 <string>average</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>near</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>bilinear</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubic</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>cubicspline</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>lanczos</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>antialias</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>mode</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>max</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>min</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>med</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>q1</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>q3</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="4" column="0">
+              <widget class="QLabel" name="tiling_resampling_label_2">
+               <property name="text">
+                <string>Resampling</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </widget>
@@ -1561,7 +1616,7 @@
              <item row="5" column="0">
               <widget class="QLabel" name="tiling_srs_label">
                <property name="text">
-                <string>SRS</string>
+                <string>Source SRS</string>
                </property>
               </widget>
              </item>
@@ -1833,7 +1888,7 @@
                 <item row="2" column="0">
                  <widget class="QLabel" name="label_5">
                   <property name="text">
-                   <string>Resolution - y</string>
+                   <string>Resolution Y</string>
                   </property>
                  </widget>
                 </item>
@@ -1857,7 +1912,7 @@
                 <item row="0" column="0">
                  <widget class="QLabel" name="label_4">
                   <property name="text">
-                   <string>Resolution - x</string>
+                   <string>Resolution X</string>
                   </property>
                  </widget>
                 </item>
@@ -2019,53 +2074,6 @@
           </item>
          </layout>
         </widget>
-       </widget>
-      </item>
-      <item row="0" column="0" colspan="2">
-       <widget class="QGroupBox" name="load_groupBox">
-        <property name="font">
-         <font>
-          <family>Segoe UI</family>
-          <pointsize>9</pointsize>
-          <weight>50</weight>
-          <italic>false</italic>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="title">
-         <string>Input:</string>
-        </property>
-        <layout class="QGridLayout" name="gridLayout_3">
-         <item row="0" column="0">
-          <widget class="QLabel" name="file_label">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text">
-            <string>Raster file</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0">
-          <widget class="QLabel" name="information_file_label">
-           <property name="maximumSize">
-            <size>
-             <width>120</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Select file</string>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QComboBox" name="file_cbbx"/>
-         </item>
-        </layout>
        </widget>
       </item>
      </layout>

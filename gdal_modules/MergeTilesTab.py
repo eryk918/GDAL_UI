@@ -8,7 +8,9 @@ from PyQt5.QtWidgets import QMessageBox
 
 from CustomFileWidget import CustomFileWidget
 from gdal_modules.TabPrototype import TabPrototype
-from utils import insert_file_widget, get_extensions, APPLICATION_NAME
+from utils import insert_file_widget, get_extensions, APPLICATION_NAME, \
+    simple_float_validator, simple_int_validator
+
 if os.path.exists(os.path.join(os.path.dirname(sys.executable), 'Scripts')):
     sys.path.append(os.path.join(os.path.dirname(sys.executable), 'Scripts'))
 import gdal_merge as gm
@@ -24,6 +26,9 @@ class MergeTilesTab(TabPrototype, ABC):
             mode=CustomFileWidget.SaveFile,
             filters=';; '.join([f'*.{ext}' for ext in get_extensions()]))
         self.dlg.merge_save_btn.clicked.connect(self.merge_rasters)
+        self.dlg.merge_nodata_lineEdit.setValidator(simple_float_validator())
+        self.dlg.pixel_x_lineEdit.setValidator(simple_int_validator(1))
+        self.dlg.pixel_y_lineEdit.setValidator(simple_int_validator(1))
 
     def run(self, input_files: List[str],
             output_path: Optional[str] = None) -> None:

@@ -18,6 +18,7 @@ class QgsFileDropEdit(QLineEdit):
         self.parent = parent
         self.setAcceptDrops(True)
         self.acceptable_extensions = []
+        self.set_correct_placeholder_text()
 
     @property
     def dir_only(self) -> bool:
@@ -42,6 +43,16 @@ class QgsFileDropEdit(QLineEdit):
     @suffixFilter.setter
     def suffixFilter(self, value: str) -> None:
         self.suffixFilter = value
+
+    def set_correct_placeholder_text(self) -> None:
+        if self.parent.mStorageMode == CustomFileWidget.GetMultipleFiles:
+            self.setPlaceholderText('Select files..')
+        elif self.parent.mStorageMode == CustomFileWidget.GetFile:
+            self.setPlaceholderText('Select file..')
+        elif self.parent.mStorageMode == CustomFileWidget.SaveFile:
+            self.setPlaceholderText('Save output file..')
+        else:
+            self.setPlaceholderText('Select directory..')
 
     def set_filters(self, filters: str) -> None:
         self.acceptable_extensions.clear()
@@ -114,6 +125,12 @@ class CustomFileWidget(QWidget):
         super(CustomFileWidget, self).__init__(parent)
         main_layout = QHBoxLayout()
         main_layout.setContentsMargins(0, 0, 0, 0)
+        self._filePath = ''
+        self._defaultRoot = default_root
+        self._dialogTitle = dialog_title
+        self._filter = ''
+        self._options = QFileDialog.ShowDirsOnly
+        self._mStorageMode = CustomFileWidget.GetMultipleFiles
         self.file_lineEdit = QgsFileDropEdit(self)
         self.file_lineEdit.setDragEnabled(True)
         self.file_lineEdit.setToolTip(
@@ -127,12 +144,6 @@ class CustomFileWidget(QWidget):
         self.browse_btn.clicked.connect(self.openFileDialog)
         main_layout.addWidget(self.browse_btn)
         self.setLayout(main_layout)
-        self._filePath = ''
-        self._defaultRoot = default_root
-        self._dialogTitle = dialog_title
-        self._filter = ''
-        self._options = QFileDialog.ShowDirsOnly
-        self._mStorageMode = CustomFileWidget.GetMultipleFiles
 
     @property
     def filePath(self) -> str:

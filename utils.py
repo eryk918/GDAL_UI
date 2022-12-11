@@ -5,7 +5,7 @@ import tempfile
 from subprocess import run, PIPE
 from typing import Optional, List, Tuple, Any, Union, Dict
 
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QDoubleValidator, QIntValidator
 from PyQt5.QtWidgets import QProgressDialog, QApplication, QLayout
 from osgeo import gdal
 
@@ -101,6 +101,19 @@ def proper_is_digit(string_num: str, ret: bool = False) -> bool or float:
         return True if not ret else value
     except ValueError:
         return False
+
+
+def simple_float_validator(minimum_val: float = -999999.9999999,
+                           maximum_val: float = 999999.9999999,
+                           precision: int = 20) -> QDoubleValidator:
+    valid = QDoubleValidator(minimum_val, maximum_val, precision)
+    valid.setNotation(QDoubleValidator.StandardNotation)
+    return valid
+
+
+def simple_int_validator(minimum_val: float = -99999999,
+                         maximum_val: float = 99999999) -> QIntValidator:
+    return QIntValidator(minimum_val, maximum_val)
 
 
 def json_to_html(
@@ -229,5 +242,6 @@ def insert_file_widget(destination_layout: QLayout, pos: Tuple[int, int],
     file_widget.filter = filters
     if action_after_use:
         file_widget.lineEdit.textChanged.connect(action_after_use)
+    file_widget.lineEdit.set_correct_placeholder_text()
     destination_layout.addWidget(file_widget, *pos)
     return file_widget

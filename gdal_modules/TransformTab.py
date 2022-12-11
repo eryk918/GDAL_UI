@@ -8,7 +8,7 @@ from PyQt5.QtWidgets import QMessageBox
 from CustomFileWidget import CustomFileWidget
 from gdal_modules.TabPrototype import TabPrototype
 from utils import insert_file_widget, get_extensions, APPLICATION_NAME, \
-    universal_executor
+    universal_executor, simple_float_validator, simple_int_validator
 
 
 class TransformTab(TabPrototype, ABC):
@@ -21,6 +21,12 @@ class TransformTab(TabPrototype, ABC):
             mode=CustomFileWidget.SaveFile,
             filters=';; '.join([f'*.{ext}' for ext in get_extensions()]))
         self.dlg.transform_save_btn.clicked.connect(self.transform_file)
+        self.dlg.transform_nodata_lineEdit.setValidator(
+            simple_float_validator())
+        self.dlg.transform_source_coord_lineEdit.setValidator(
+            simple_int_validator(1))
+        self.dlg.transform_target_coord_lineEdit.setValidator(
+            simple_int_validator(1))
 
     def transform_file(self) -> None:
         input_file = self.dlg.file_cbbx.currentText()
