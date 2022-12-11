@@ -9,7 +9,7 @@ from PyQt5.QtWidgets import QMessageBox
 from CustomFileWidget import CustomFileWidget
 from gdal_modules.TabPrototype import TabPrototype
 from utils import insert_file_widget, get_extensions, APPLICATION_NAME, \
-    universal_executor
+    universal_executor, simple_int_validator
 
 
 class ConvertTab(TabPrototype, ABC):
@@ -22,7 +22,7 @@ class ConvertTab(TabPrototype, ABC):
             mode=CustomFileWidget.SaveFile,
             filters=';; '.join([f'*.{ext}' for ext in get_extensions()]))
         self.dlg.converter_save_btn.clicked.connect(self.convert_file)
-        self.dlg.converter_srs_lineEdit.setValidator(QIntValidator())
+        self.dlg.converter_srs_lineEdit.setValidator(simple_int_validator(1))
 
     def convert_file(self) -> None:
         input_file = self.dlg.file_cbbx.currentText()

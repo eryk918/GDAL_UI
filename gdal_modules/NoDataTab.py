@@ -11,7 +11,8 @@ from PyQt5.QtWidgets import QMessageBox
 from CustomFileWidget import CustomFileWidget
 from gdal_modules.TabPrototype import TabPrototype
 from utils import universal_executor, json_to_html, APPLICATION_NAME, \
-    get_extensions, proper_is_digit, insert_file_widget, FILE_DICT_INDEXES
+    get_extensions, proper_is_digit, insert_file_widget, FILE_DICT_INDEXES, \
+    simple_float_validator
 
 
 class NoDataTab(TabPrototype, ABC):
@@ -25,6 +26,8 @@ class NoDataTab(TabPrototype, ABC):
             lambda: self.show_data(
                 self.dlg.file_cbbx.currentText()))
         self.dlg.new_nodata_save_btn.clicked.connect(self.save_data)
+        self.dlg.nodata_new_value_lineedit.setValidator(
+            simple_float_validator())
         self.dlg.nodata_output_path_lineedit = insert_file_widget(
             self.dlg.nodata_output_path_groupBox.layout(), (0, 1),
             mode=CustomFileWidget.SaveFile,

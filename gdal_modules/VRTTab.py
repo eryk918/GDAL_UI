@@ -11,7 +11,7 @@ from PyQt5.QtWidgets import QMessageBox
 from CustomFileWidget import CustomFileWidget
 from gdal_modules.TabPrototype import TabPrototype
 from utils import insert_file_widget, APPLICATION_NAME, \
-    universal_executor
+    universal_executor, simple_int_validator
 
 
 class VRTTab(TabPrototype, ABC):
@@ -24,6 +24,8 @@ class VRTTab(TabPrototype, ABC):
             mode=CustomFileWidget.SaveFile,
             filters='*.vrt')
         self.dlg.vrt_save_btn.clicked.connect(self.build_vrt)
+        self.dlg.vrt_user_res_x_lineEdit.setValidator(simple_int_validator(1))
+        self.dlg.vrt_user_res_y_lineEdit.setValidator(simple_int_validator(1))
         self.setup_dialog()
 
     def setup_dialog(self) -> None:

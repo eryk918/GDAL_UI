@@ -10,7 +10,8 @@ from PyQt5.QtWidgets import QMessageBox
 from CustomFileWidget import CustomFileWidget
 from SimpleGdal2Tiles import SimpleGdal2Tiles
 from gdal_modules.TabPrototype import TabPrototype
-from utils import APPLICATION_NAME, insert_file_widget
+from utils import APPLICATION_NAME, insert_file_widget, simple_float_validator, \
+    simple_int_validator
 
 
 class TilesTab(TabPrototype, ABC):
@@ -25,11 +26,10 @@ class TilesTab(TabPrototype, ABC):
         self.dlg.tiling_outdir_lineedit = insert_file_widget(
             self.dlg.tiling_outdir_groupBox.layout(), (0, 1),
             mode=CustomFileWidget.GetDirectory)
-        self.dlg.tiling_srs_lineEdit.setValidator(QIntValidator())
+        self.dlg.tiling_srs_lineEdit.setValidator(simple_int_validator(1))
         self.dlg.tiling_zoom_lineEdit.setValidator(
             QRegExpValidator(QRegExp('[0-9-]{1,}')))
-        self.dlg.tiling_nodata_lineEdit.setValidator(
-            QDoubleValidator(-999999.9999999, 999999.9999999, 20))
+        self.dlg.tiling_nodata_lineEdit.setValidator(simple_float_validator())
         self.dlg.tiling_xyz_checkbox.hide()
 
     def save_data(self) -> None:
