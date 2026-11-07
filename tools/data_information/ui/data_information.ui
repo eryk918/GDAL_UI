@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>DataInformationWidget</class>
+ <widget class="QWidget" name="DataInformationWidget">
+  <layout class="QGridLayout" name="gridLayout_5">
+   <item row="1" column="0" colspan="2">
+    <widget class="QTextBrowser" name="information_text_browser">
+     <property name="styleSheet">
+      <string notr="true" />
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>

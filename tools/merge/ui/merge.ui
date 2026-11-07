@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MergeWidget</class>
+ <widget class="QWidget" name="MergeWidget">
+  <layout class="QGridLayout" name="gridLayout_30">
+   <item row="2" column="2">
+    <widget class="QPushButton" name="merge_save_btn">
+     <property name="maximumSize">
+      <size>
+       <width>136</width>
+       <height>22</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Save</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1">
+    <spacer name="verticalSpacer_5">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>386</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QGroupBox" name="transform_options_groupBox_2">
+     <property name="title">
+      <string>Options:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_26">
+      <item row="1" column="0">
+       <widget class="QLabel" name="merge_piksel_y_label">
+        <property name="toolTip">
+         <string>If not specified the Coordinate system found in the input layers will be used.</string>
+        </property>
+        <property name="text">
+         <string>Pixel size Y</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="merge_nodata_label">
+        <property name="text">
+         <string>NoData</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="3">
+       <widget class="QCheckBox" name="separate_checkBox">
+        <property name="text">
+         <string>Place each input file into a separate band</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2">
+       <widget class="QLineEdit" name="pixel_y_lineEdit" />
+      </item>
+      <item row="0" column="0">
+       <widget class="QLabel" name="merge_piksel_label">
+        <property name="toolTip">
+         <string>If not specified the Coordinate system found in the input layers will be used.</string>
+        </property>
+        <property name="text">
+         <string>Pixel size X</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="2">
+       <widget class="QLineEdit" name="pixel_x_lineEdit" />
+      </item>
+      <item row="2" column="2">
+       <widget class="QLineEdit" name="merge_nodata_lineEdit">
+        <property name="placeholderText">
+         <string>New NoData value</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QGroupBox" name="merge_outfile_groupBox">
+     <property name="title">
+      <string>Output settings:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_11">
+      <item row="0" column="0">
+       <widget class="QLabel" name="merge_outfile_label">
+        <property name="text">
+         <string>Output file path</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>

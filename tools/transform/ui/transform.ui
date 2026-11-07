@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TransformWidget</class>
+ <widget class="QWidget" name="TransformWidget">
+  <layout class="QGridLayout" name="gridLayout_29">
+   <item row="0" column="0" colspan="3">
+    <widget class="QGroupBox" name="transform_options_groupBox">
+     <property name="title">
+      <string>Options:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_28">
+      <item row="6" column="1">
+       <widget class="QComboBox" name="transform_output_data_type_cbbx">
+        <item>
+         <property name="text">
+          <string>Byte</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Int8</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>UInt16</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Int16</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>UInt32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Int32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>UInt64</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Int64</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Float32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Float64</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CInt16</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CInt32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CFloat32 </string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CFloat64</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QLineEdit" name="transform_target_coord_lineEdit">
+        <property name="placeholderText">
+         <string>Same as source SRS</string>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLabel" name="tiling_nodata_label_2">
+        <property name="text">
+         <string>NoData</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QLineEdit" name="transform_source_coord_lineEdit">
+        <property name="placeholderText">
+         <string>Same as source SRS</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0">
+       <widget class="QLabel" name="transform_target_coord_label">
+        <property name="text">
+         <string>Target coordinate system</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="transform_source_coord_label">
+        <property name="toolTip">
+         <string>If not specified the Coordinate system found in the input layers will be used.</string>
+        </property>
+        <property name="text">
+         <string>Source coordinate system [optional]</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLabel" name="label_3">
+        <property name="text">
+         <string>Source image data type</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="label_2">
+        <property name="text">
+         <string>Output image data type</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QComboBox" name="transform_source_data_type_cbbx">
+        <item>
+         <property name="text">
+          <string>Byte</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Int8</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>UInt16</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Int16</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>UInt32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Int32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>UInt64</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Int64</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Float32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Float64</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CInt16</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CInt32</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CFloat32 </string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>CFloat64</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="7" column="1">
+       <widget class="QLineEdit" name="transform_nodata_lineEdit">
+        <property name="placeholderText">
+         <string>New NoData value</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QComboBox" name="transform_resampling_cbbx">
+        <item>
+         <property name="text">
+          <string>near</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>bilinear</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>cubic</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>cubicspline</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>lanczos</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>average</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>rms</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>mode</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>max</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>min</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>med</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>q1</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>q3</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>sum</string>
+         </property>
+        </item>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="tiling_resampling_label_2">
+        <property name="text">
+         <string>Resampling</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QPushButton" name="transform_save_btn">
+     <property name="maximumSize">
+      <size>
+       <width>136</width>
+       <height>22</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>Save</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QGroupBox" name="transform_outfile_groupBox">
+     <property name="title">
+      <string>Output settings:</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_27">
+      <item row="0" column="0">
+       <widget class="QLabel" name="transform_outfile_label">
+        <property name="text">
+         <string>Output file path</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <spacer name="verticalSpacer_6">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>118</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>

@@ -1,0 +1,5 @@
+PyQt6>=6.7
+numpy>=2.0
+matplotlib>=3.9
+gdal>=3.12; sys_platform != "win32"
+gdal-wheel>=3.12; sys_platform == "win32"

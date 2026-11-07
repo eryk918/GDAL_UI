@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>NoDataWidget</class>
+ <widget class="QWidget" name="NoDataWidget">
+  <layout class="QGridLayout" name="gridLayout_4">
+   <item row="5" column="2">
+    <widget class="QPushButton" name="new_nodata_save_btn">
+     <property name="text">
+      <string>Save</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="2">
+    <widget class="QLineEdit" name="nodata_new_value_lineedit" />
+   </item>
+   <item row="0" column="0" colspan="3">
+    <widget class="QTextEdit" name="nodata_text_box">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>150</height>
+      </size>
+     </property>
+     <property name="readOnly">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="new_nodata_label">
+     <property name="text">
+      <string>New NoData value</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" rowspan="2" colspan="3">
+    <widget class="QGroupBox" name="nodata_output_path_groupBox">
+     <property name="title">
+      <string>Create new file</string>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_6">
+      <item row="0" column="0">
+       <widget class="QLabel" name="nodata_output_path_label">
+        <property name="text">
+         <string>Output file path</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="6" column="2">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <resources />
+ <connections />
+</ui>
